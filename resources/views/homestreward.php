@@ -25,6 +25,35 @@
       <form method="post" id="addForm" name="addForm" ng-submit="newData.addBill()">
         <div class="list-block">
           <ul>
+              <li class="accordion-item">
+                  <a href="#" class="item-link item-content">
+                      <div class="item-inner">
+                          <p>消费类型</p>
+                      </div>
+                  </a>
+                  <div class="accordion-item-content">
+                      <div class="list-block">
+                          <ul>
+                              <li ng-repeat="category in newData.categories">
+                                  <label class="label-radio item-content">
+                                      <input type="radio" name="categoryId" value="{{category.id}}" ng-model="newData.bill.categoryId">
+                                      <div class="item-inner">
+                                          <small>{{category.name}}</small>
+                                      </div>
+                                  </label>
+                              </li>
+<!--                              <li ng-repeat="category in newData.categories">-->
+<!--                                  <label class="label-radio item-content">-->
+<!--                                      <div class="item-inner">-->
+<!--                                          <input type="radio" name="id" value="{{category.id}}" ng-model="newData.bill.categoryId"><small>{{category.name}}</small>-->
+<!--                                      </div>-->
+<!--                                  </label>-->
+<!---->
+<!--                              </li>-->
+                          </ul>
+                      </div>
+                  </div>
+              </li>
             <li>
               <div class="item-content">
                 <div class="item-inner">
@@ -33,28 +62,6 @@
                   </div>
                 </div>
               </div>
-            </li>
-            <li class="accordion-item">
-                <a href="#" class="item-link item-content">
-                    <div class="item-inner">
-                        <p>消费类型</p>
-                    </div>
-                </a>
-                <div class="accordion-item-content">
-                    <div class="list-block">
-                        <ul>
-                            <li ng-repeat="category in newData.categories">
-                                <label class="label-radio item-content">
-                                    <!-- Checked by default -->
-                                    <input type="radio" name="categoryId" value="{{category.id}}" ng-model="newData.bill.categoryId">
-                                    <div class="item-inner">
-                                        <small>{{category.name}}</small>
-                                    </div>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </li>
             <li>
               <div class="item-content">
