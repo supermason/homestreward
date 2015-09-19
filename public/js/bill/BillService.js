@@ -32,7 +32,6 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                     return $http.get(baseAPI + 'total/');
                 },
                 add: function (bill) {
-                    alert(bill.categoryId);
                     return $http({
                         method: 'POST',
                         url: baseAPI + "new",

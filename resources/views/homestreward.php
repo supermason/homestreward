@@ -20,9 +20,9 @@
     <!-- Status bar overlay for full screen mode (PhoneGap) -->
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
-    <div class="panel panel-left-add panel-left panel-reveal" ng-controller="AddController">
+    <div class="panel panel-left-add panel-left panel-reveal">
       <div class="content-block-title"><p>添加消费记录</p></div>
-      <form method="post" id="addForm" name="addForm" ng-submit="newData.addBill()">
+      <form method="post" id="addForm" name="addForm" ng-controller="AddController" ng-submit="newData.addBill()">
         <div class="list-block">
           <ul>
               <li class="accordion-item">
@@ -34,7 +34,7 @@
                   <div class="accordion-item-content">
                       <div class="list-block">
                           <ul>
-                              <li ng-repeat="category in newData.categories">
+                              <li ng-repeat="category in newData.categories" ng-click="newData.bill.updateData(this)">
                                   <label class="label-radio item-content">
                                       <input type="radio" name="categoryId" value="{{category.id}}" ng-model="newData.bill.categoryId">
                                       <div class="item-inner">
@@ -42,14 +42,6 @@
                                       </div>
                                   </label>
                               </li>
-<!--                              <li ng-repeat="category in newData.categories">-->
-<!--                                  <label class="label-radio item-content">-->
-<!--                                      <div class="item-inner">-->
-<!--                                          <input type="radio" name="id" value="{{category.id}}" ng-model="newData.bill.categoryId"><small>{{category.name}}</small>-->
-<!--                                      </div>-->
-<!--                                  </label>-->
-<!---->
-<!--                              </li>-->
                           </ul>
                       </div>
                   </div>
