@@ -9,14 +9,22 @@
 .center {
   text-align: center;
 }
+.app-title {
+  font-weight: bold;
+  color: #007aff;
+}
 /*==login==*/
 .error {
-  border-radius: 2px;
+  border-radius: 6px;
   border: 1px solid #c60026;
   background-color: #fff9fa;
   color: #ff2d55;
   padding: 15px;
-  margin: 0 20px;
+  margin: 0 15px;
+}
+.error ul {
+  list-style: none;
+  padding: 0;
 }
 /*====================================================Mason Start============================================================*/
 /*登录页面底部的 注册|找回密码*/
@@ -172,5 +180,19 @@ i.icon.icon-blank {
 }
 .avatar-container .content-block-inner p span {
   padding: 0 5px;
+}
+.footer {
+  padding: 10px 0px 2px;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-family: "Microsoft YaHei";
+  font-size: .2em;
+}
+.footer p {
+  margin: 0;
+  border: 1px solid #dddddd;
+}
+.footer p a {
+  color: #007aff;
 }
 /*====================================================Mason End============================================================*/

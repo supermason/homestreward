@@ -100,8 +100,12 @@
               </a>
             </div>
             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-            <div class="center sliding">记帐吧</div>
-              <div class="right"></div>
+            <div class="center sliding"><span class="app-title">记帐吧</span></div>
+              <div class="right">
+                  <a href="/auth/logout" class="link icon-only external">
+                      <i class="fa fa-sign-out"></i>
+                  </a>
+              </div>
           </div>
         </div>
         <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -162,7 +166,12 @@
 
                     </div>
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">库存查询</div>
+                    <div class="center sliding"><span class="app-title">库存查询</span></div>
+                    <div class="right">
+                        <a href="/auth/logout" class="link icon-only external">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,7 +183,12 @@
 
                     </div>
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">我的信息</div>
+                    <div class="center sliding"><span class="app-title">我的信息</span></div>
+                    <div class="right">
+                        <a href="/auth/logout" class="link icon-only external">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="pages navbar-through">
@@ -215,6 +229,10 @@
                     <span class="tabbar-label">我</span>
                 </a>
             </div>
+        </div>
+        <div class="footer">
+            <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;
+            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>
         </div>
     </div>
     <!-- Path to your app js-->
