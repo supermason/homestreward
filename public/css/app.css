@@ -28,14 +28,6 @@
 }
 /*====================================================Mason Start============================================================*/
 /*登录页面底部的 注册|找回密码*/
-.login-screen-title img {
-  width: 40%;
-}
-.login-slogan {
-  text-align: center;
-  font-weight: normal;
-  padding-top: 40px;
-}
 .copyright {
   position: relative;
   height: 30px;
