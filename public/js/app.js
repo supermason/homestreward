@@ -14,7 +14,7 @@ define(['framework7'], function () {
 
     // 配置
     myApp.config = {
-        apiRoot: 'http://192.168.1.106:8080/'
+        apiRoot: 'http://192.168.0.158:8088/'
     };
 
     // f7应用
