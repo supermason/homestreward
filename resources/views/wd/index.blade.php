@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/framework7.ios.colors.min.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="/css/wd.css" />
+    <link rel="stylesheet" href="/css/wd.css">
 </head>
 <body>
 <!-- Status bar overlay for full screen mode (PhoneGap) -->
@@ -89,15 +89,13 @@
             <div class="navbar-inner">
                 <div class="left sliding">
                     <a href="#" data-panel="left" class="link icon-only open-panel">
-                        <i class="icon icon-plus">+</i>
+                        <i class="icon icon-list"></i>
                     </a>
                 </div>
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                 <div class="center sliding"><span class="app-title">×îÐÂÉÏ¼Ü</span></div>
                 <div class="right">
-                    <a href="/auth/logout" class="link icon-only external">
-                        <i class="fa fa-sign-out"></i>
-                    </a>
+
                 </div>
             </div>
         </div>
@@ -172,6 +170,6 @@
     </div>
 </div>
 <!-- Path to your app js-->
-<script data-main="js/wd/main" src="/js/lib/require.js"></script>
+<script data-main="/js/wd/main" src="{{asset('/js/lib/require.js')}}"></script>
 </body>
 </html>
