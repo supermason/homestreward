@@ -70,3 +70,13 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
+/*
+ |--------------------------------------------------------------------------
+ | 微店总路由
+ |--------------------------------------------------------------------------
+ */
+Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
+    Route::get("/{category}", "WDController@index")->where('category', '[0-9]+');
+    Route::get("/latest/{category}", "WDController@latestIndex")->where('category', '[0-9]+');
+    Route::get("/detail/{id}", "WDController@index")->where('id', '[0-9]+');
+});
