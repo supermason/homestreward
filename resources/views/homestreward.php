@@ -20,11 +20,32 @@
     <!-- Status bar overlay for full screen mode (PhoneGap) -->
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
-    <div class="panel panel-left-add panel-left panel-reveal" ng-controller="AddController">
+    <div class="panel panel-left-add panel-left panel-reveal">
       <div class="content-block-title"><p>添加消费记录</p></div>
-      <form method="post" id="addForm" name="addForm" ng-submit="newData.addBill()">
+      <form method="post" id="addForm" name="addForm" ng-controller="AddController" ng-submit="newData.addBill()">
         <div class="list-block">
           <ul>
+              <li class="accordion-item">
+                  <a href="#" class="item-link item-content">
+                      <div class="item-inner">
+                          <p>消费类型</p>
+                      </div>
+                  </a>
+                  <div class="accordion-item-content">
+                      <div class="list-block">
+                          <ul>
+                              <li ng-repeat="category in newData.categories" ng-click="newData.bill.updateData(this)">
+                                  <label class="label-radio item-content">
+                                      <input type="radio" name="categoryId" value="{{category.id}}" ng-model="newData.bill.categoryId">
+                                      <div class="item-inner">
+                                          <small>{{category.name}}</small>
+                                      </div>
+                                  </label>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </li>
             <li>
               <div class="item-content">
                 <div class="item-inner">
@@ -33,28 +54,6 @@
                   </div>
                 </div>
               </div>
-            </li>
-            <li class="accordion-item">
-                <a href="#" class="item-link item-content">
-                    <div class="item-inner">
-                        <p>消费类型</p>
-                    </div>
-                </a>
-                <div class="accordion-item-content">
-                    <div class="list-block">
-                        <ul>
-                            <li ng-repeat="category in newData.categories">
-                                <label class="label-radio item-content">
-                                    <!-- Checked by default -->
-                                    <input type="radio" name="categoryId" value="{{category.id}}" ng-model="newData.bill.categoryId">
-                                    <div class="item-inner">
-                                        <small>{{category.name}}</small>
-                                    </div>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </li>
             <li>
               <div class="item-content">
@@ -101,8 +100,12 @@
               </a>
             </div>
             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-            <div class="center sliding">记帐吧</div>
-              <div class="right"></div>
+            <div class="center sliding"><span class="app-title">记帐吧</span></div>
+              <div class="right">
+                  <a href="/auth/logout" class="link icon-only external">
+                      <i class="fa fa-sign-out"></i>
+                  </a>
+              </div>
           </div>
         </div>
         <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -163,7 +166,12 @@
 
                     </div>
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">库存查询</div>
+                    <div class="center sliding"><span class="app-title">库存查询</span></div>
+                    <div class="right">
+                        <a href="/auth/logout" class="link icon-only external">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,7 +183,12 @@
 
                     </div>
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">我的信息</div>
+                    <div class="center sliding"><span class="app-title">我的信息</span></div>
+                    <div class="right">
+                        <a href="/auth/logout" class="link icon-only external">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="pages navbar-through">
@@ -216,6 +229,10 @@
                     <span class="tabbar-label">我</span>
                 </a>
             </div>
+        </div>
+        <div class="footer">
+            <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;
+            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>
         </div>
     </div>
     <!-- Path to your app js-->

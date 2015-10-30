@@ -11,10 +11,10 @@
                 <div class="login-screen-title">
                     欢迎登录JM的小管家
                 </div>
-
                 @if (count($errors) > 0)
-                    <div class="list-block inset error">
+                    <div class="content-block error">
                         <strong>登录失败！</strong>
+                        <br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>
@@ -24,7 +24,9 @@
                         </ul>
                     </div>
                 @endif
-
+                <div class="content-block center">
+                    <img src="{{asset('/img/h/logo.png')}}">
+                </div>
                 <form role="form" method="POST" action="{{ url('/auth/login') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="list-block inset">
@@ -70,7 +72,7 @@
                     </div>
                 </form>
                 <div class="copyright">
-                    <a href="#" class="item-link">注册</a> | <a href="#" class="item-link">忘记密码</a>
+                    <a href="{{url('/auth/register')}}" class="item-link">注册</a> | <a href="#" class="item-link">忘记密码</a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * 创建myApp 对象
  * myApp包含：f7-Framework7的对象
  *           $$-Framework7的选择器变体
@@ -14,7 +14,7 @@ define(['framework7'], function () {
 
     // 配置
     myApp.config = {
-        apiRoot: 'http://192.168.0.158:8088/'
+        apiRoot: 'http://192.168.1.108:8080/'
     };
 
     // f7应用

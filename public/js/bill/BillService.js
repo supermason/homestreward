@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * bill专属服务对象
  */
 define(['ngmodule', 'app'], function (ngmodule, app) {
@@ -32,7 +32,6 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                     return $http.get(baseAPI + 'total/');
                 },
                 add: function (bill) {
-                    alert(bill.categoryId);
                     return $http({
                         method: 'POST',
                         url: baseAPI + "new",

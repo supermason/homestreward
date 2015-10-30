@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * bill专属控制器
  */
 define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
@@ -45,8 +45,9 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                             this.remark = "";
                         },
                         updateData: function(data) {
-                            this.categoryId = data.category.id;
+                            //this.categoryId = data.category.id;
                             //alert("In Scope: " + this.categoryId);
+                            this.categoryId = data.category.id;
                         }
                     },
                     categories: [],
@@ -80,7 +81,6 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
 
                         });
                 }
-
 
                 view.addService("addCT", function(value) {
                     if (value && value !== "") {

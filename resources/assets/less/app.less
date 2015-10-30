@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
     http://winless.org/
 */
 
@@ -17,28 +17,29 @@
   text-align: center;
 }
 
+.app-title {
+  font-weight: bold;
+  color: @default-text-color;
+}
+
 /*==login==*/
 .error {
-  border-radius: 2px;
+  border-radius: 6px;
   border: 1px solid darken(@error-color, 20%);
   background-color: lighten(@error-color, 40%);
   color: @error-color;
   padding: 15px;
-  margin: 0 20px;
+  margin: 0 15px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 }
 
 /*====================================================Mason Start============================================================*/
 /*登录页面底部的 注册|找回密码*/
-.login-screen-title {
-  img {
-    width:40%;
-  }
-}
-.login-slogan {
-  text-align: center;
-  font-weight: normal;
-  padding-top: 40px;
-}
+
 .copyright {
   position: relative;
   height: 30px;
@@ -74,59 +75,59 @@ i.icon.icon-blank {
     background: #fdfdfd;
 }
 
-//.panel-left-add {
-//    >.content-block-title {
-//        background: @panel-inner-color;
-//        margin: 0;
-//       p {
-//           line-height: 80px;
-//           text-align: center;
-//       }
-//    }
-//
-//    .list-block {
-//        margin: 0;
-//
-//        input[type="text"] {
-//            font-size: 12px;
-//            font-weight: bold;
-//            color: lighten(@default-text-color, 10%);
-//            text-align: center;
-//        }
-//
-//        input[type="submit"] {
-//            margin: 5px 0;
-//        }
-//    }
-//
-//    li.accordion-item {
-//
-//      .item-inner {
-//        display: block;
-//
-//        p {
-//          .center;
-//          margin: 0;
-//          color: lighten(@default-text-color, 10%);
-//          font-weight: bold;
-//        }
-//      }
-//
-//      .accordion-item-content {
-//
-//        .label-radio.item-content {
-//          .item-inner{
-//
-//
-//            >small{
-//              font-size: 12px;
-//              color: lighten(@default-text-color, 10%);
-//            }
-//          }
-//        }
-//      }
-//    }
-//}
+.panel-left-add {
+    >.content-block-title {
+        background: @panel-inner-color;
+        margin: 0;
+       p {
+           line-height: 80px;
+           text-align: center;
+       }
+    }
+
+    .list-block {
+        margin: 0;
+
+        input[type="text"] {
+            font-size: 12px;
+            font-weight: bold;
+            color: lighten(@default-text-color, 10%);
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            margin: 5px 0;
+        }
+    }
+
+    li.accordion-item {
+
+      .item-inner {
+        display: block;
+
+        p {
+          .center;
+          margin: 0;
+          color: lighten(@default-text-color, 10%);
+          font-weight: bold;
+        }
+      }
+
+      .accordion-item-content {
+
+        .label-radio.item-content {
+          .item-inner{
+
+
+            >small{
+              font-size: 12px;
+              color: lighten(@default-text-color, 10%);
+            }
+          }
+        }
+      }
+    }
+}
 
 .panel-right-profile {
 
@@ -239,6 +240,22 @@ i.icon.icon-blank {
       span {
         padding: 0 5px;
       }
+    }
+  }
+}
+
+.footer {
+  padding: 10px 0px 2px;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-family: "Microsoft YaHei";
+  font-size: .2em;
+  p {
+    margin: 0;
+    border: 1px solid #dddddd;
+
+    a {
+      color: @default-text-color;
     }
   }
 }
