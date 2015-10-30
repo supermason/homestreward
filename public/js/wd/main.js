@@ -4,6 +4,6 @@
  */
 requirejs.config({
     baseUrl: 'js/lib',
-    deps: ['../wd'],
+    deps: ['../wd/wd'],
     urlArgs: "bust=" + (new Date()).getTime()  //防止读取缓存，调试用
 });
