@@ -7,7 +7,7 @@
             </a>
         </div>
         <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-        <div class="center sliding"><span class="app-title">¶ÁÈ¡°É</span></div>
+        <div class="center sliding"><span class="app-title">åŠ¨æ€è¯»å–åˆ†ç±»</span></div>
     </div>
 </div>
 <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -17,10 +17,10 @@
         <!-- Search bar with "searchbar-init" class for auto initialization -->
         <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
             <div class="searchbar-input">
-                <input type="search" placeholder="ÇëÊäÈë²éÑ¯¹Ø¼ü×Ö"  >
+                <input type="search" placeholder="æ‚¨æƒ³æ‰¾ç‚¹å•¥ï¼Ÿ"  >
                 <a href="#" class="searchbar-clear"></a>
             </div>
-            <a href="#" class="searchbar-cancel">È¡Ïû</a>
+            <a href="#" class="searchbar-cancel">å–æ¶ˆ</a>
         </form>
 
         <!-- Search bar overlay -->
@@ -31,10 +31,10 @@
                 <div class="preloader"></div>
                 <div class="pull-to-refresh-arrow"></div>
             </div>
-            <div class="content-block-title">×îÐÂ±¦±´</div>
+            <div class="content-block-title">æ‰¾åˆ°çš„BB</div>
             <!-- This block will be displayed if nothing found -->
             <div class="list-block searchbar-not-found">
-                <div class="content-block-inner">Ã»ÓÐÕÒµ½ÄúÐèÒªµÄ±¦±´</div>
+                <div class="content-block-inner">æŠ±æ­‰ï¼Œæš‚æ— æ‚¨æŸ¥æ‰¾çš„å®è´</div>
             </div>
             <div class="list-block media-list search-here searchbar-found hidden">
                 <ul>
@@ -43,11 +43,11 @@
                             <div class="item-media"><img src="..." width="80"></div>
                             <div class="item-inner">
                                 <div class="item-title-row">
-                                    <div class="item-title">XXXÉÌÆ·</div>
+                                    <div class="item-title">XXXå®è´</div>
                                     <div class="item-after">$15</div>
                                 </div>
-                                <div class="item-subtitle">¸±±êÌâ</div>
-                                <div class="item-text">Ò»Ð©¼òµ¥µÄ½éÉÜ</div>
+                                <div class="item-subtitle">å‰¯æ ‡é¢˜</div>
+                                <div class="item-text">ç®€å•çš„ä»‹ç»</div>
                             </div>
                         </a>
                     </li>
@@ -56,11 +56,11 @@
                             <div class="item-media"><img src="..." width="80"></div>
                             <div class="item-inner">
                                 <div class="item-title-row">
-                                    <div class="item-title">XXXÉÌÆ·</div>
+                                    <div class="item-title">XXXå®è´</div>
                                     <div class="item-after">$15</div>
                                 </div>
-                                <div class="item-subtitle">¸±±êÌâ</div>
-                                <div class="item-text">Ò»Ð©¼òµ¥µÄ½éÉÜ</div>
+                                <div class="item-subtitle">å‰¯æ ‡é¢˜</div>
+                                <div class="item-text">ç®€å•çš„ä»‹ç»</div>
                             </div>
                         </a>
                     </li>
@@ -69,11 +69,11 @@
                             <div class="item-media"><img src="..." width="80"></div>
                             <div class="item-inner">
                                 <div class="item-title-row">
-                                    <div class="item-title">XXXÉÌÆ·</div>
+                                    <div class="item-title">XXXå®è´</div>
                                     <div class="item-after">$15</div>
                                 </div>
-                                <div class="item-subtitle">¸±±êÌâ</div>
-                                <div class="item-text">Ò»Ð©¼òµ¥µÄ½éÉÜ</div>
+                                <div class="item-subtitle">å‰¯æ ‡é¢˜</div>
+                                <div class="item-text">ç®€å•çš„ä»‹ç»</div>
                             </div>
                         </a>
                     </li>
@@ -82,33 +82,20 @@
                             <div class="item-media"><img src="..." width="80"></div>
                             <div class="item-inner">
                                 <div class="item-title-row">
-                                    <div class="item-title">XXXÉÌÆ·</div>
+                                    <div class="item-title">XXXå®è´</div>
                                     <div class="item-after">$15</div>
                                 </div>
-                                <div class="item-subtitle">¸±±êÌâ</div>
-                                <div class="item-text">Ò»Ð©¼òµ¥µÄ½éÉÜ</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="item-link item-content">
-                            <div class="item-media"><img src="..." width="80"></div>
-                            <div class="item-inner">
-                                <div class="item-title-row">
-                                    <div class="item-title">XXXÉÌÆ·</div>
-                                    <div class="item-after">$15</div>
-                                </div>
-                                <div class="item-subtitle">¸±±êÌâ</div>
-                                <div class="item-text">Ò»Ð©¼òµ¥µÄ½éÉÜ</div>
+                                <div class="item-subtitle">å‰¯æ ‡é¢˜</div>
+                                <div class="item-text">ç®€å•çš„ä»‹ç»</div>
                             </div>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="list-block-label">
-                <p style="text-align:center;">ÏÂÀ­¼ÓÔØ¸ü¶àÄÚÈÝ</p>
+                <p style="text-align:center;">ä¸‹æ‹‰åŠ è½½æ›´å¤šå†…å®¹</p>
             </div>
-            <!-- ¼ÓÔØÌáÊ¾·û -->
+            <!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ -->
             <div class="infinite-scroll-preloader center">
                 <div class="preloader"></div>
             </div>

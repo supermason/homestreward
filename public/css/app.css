@@ -13,6 +13,9 @@
   font-weight: bold;
   color: #007aff;
 }
+.panel {
+  background: #fdfdfd;
+}
 /*==login==*/
 .error {
   border-radius: 6px;
@@ -53,9 +56,6 @@ i.icon.icon-blank {
 }
 .hidden {
   display: none;
-}
-.panel {
-  background: #fdfdfd;
 }
 .panel-left-add > .content-block-title {
   background: #f2f2f2;
