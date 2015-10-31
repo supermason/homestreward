@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- Your app title -->
-    <title>Å£æ¤µÄĞ¡µê</title>
+    <title>ç‰›å¦çš„å°åº—</title>
     <!-- Path to Framework7 Library CSS, iOS Theme -->
     <link rel="stylesheet" href="/css/framework7.ios.min.css">
     <!-- Path to Framework7 color related styles, iOS Theme -->
@@ -21,15 +21,15 @@
 <div class="statusbar-overlay"></div>
 <div class="panel-overlay"></div>
 <div class="panel panel-left-add panel-left panel-reveal">
-    <div class="content-block-title"><p>±¦±´·ÖÀà</p></div>
+    <div class="content-block-title"><p>å®è´åˆ†ç±»</p></div>
     <div class="list-block">
         <ul>
             <li>
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">±êÌâ</div>
-                        <div class="item-after">¸±±êÌâ</div>
+                        <div class="item-title">åˆ†ç±»1</div>
+                        <div class="item-after">å‰¯æ ‡é¢˜</div>
                     </div>
                 </a>
             </li>
@@ -37,8 +37,8 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">±êÌâ</div>
-                        <div class="item-after">¸±±êÌâ</div>
+                        <div class="item-title">åˆ†ç±»1</div>
+                        <div class="item-after">å‰¯æ ‡é¢˜</div>
                     </div>
                 </a>
             </li>
@@ -46,8 +46,8 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">±êÌâ</div>
-                        <div class="item-after">¸±±êÌâ</div>
+                        <div class="item-title">åˆ†ç±»1</div>
+                        <div class="item-after">å‰¯æ ‡é¢˜</div>
                     </div>
                 </a>
             </li>
@@ -55,8 +55,8 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">±êÌâ</div>
-                        <div class="item-after">¸±±êÌâ</div>
+                        <div class="item-title">åˆ†ç±»1</div>
+                        <div class="item-after">å‰¯æ ‡é¢˜</div>
                     </div>
                 </a>
             </li>
@@ -64,8 +64,8 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">±êÌâ</div>
-                        <div class="item-after">¸±±êÌâ</div>
+                        <div class="item-title">åˆ†ç±»1</div>
+                        <div class="item-after">å‰¯æ ‡é¢˜</div>
                     </div>
                 </a>
             </li>
@@ -89,11 +89,11 @@
             <div class="navbar-inner">
                 <div class="left sliding">
                     <a href="#" data-panel="left" class="link icon-only open-panel">
-                        <i class="icon icon-list"></i>
+                        <i class="fa fa-list"></i>
                     </a>
                 </div>
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="center sliding"><span class="app-title">×îĞÂÉÏ¼Ü</span></div>
+                <div class="center sliding"><span class="app-title">ç‰›å¦çš„å°åº—</span></div>
                 <div class="right">
 
                 </div>
@@ -106,10 +106,10 @@
                 <!-- Search bar with "searchbar-init" class for auto initialization -->
                 <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
                     <div class="searchbar-input">
-                        <input type="search" placeholder="ÇëÊäÈë²éÑ¯¹Ø¼ü×Ö"  >
+                        <input type="search" placeholder="è¯·è¾“å…¥å…³é”®å­—"  >
                         <a href="#" class="searchbar-clear"></a>
                     </div>
-                    <a href="#" class="searchbar-cancel">È¡Ïû</a>
+                    <a href="#" class="searchbar-cancel">å–æ¶ˆ</a>
                 </form>
 
                 <!-- Search bar overlay -->
@@ -120,14 +120,14 @@
                         <div class="preloader"></div>
                         <div class="pull-to-refresh-arrow"></div>
                     </div>
-                    <div class="content-block-title">×îĞÂ±¦±´</div>
+                    <div class="content-block-title">æ–°BBåˆ°è´§å’¯</div>
                     <!-- This block will be displayed if nothing found -->
                     <div class="list-block searchbar-not-found">
-                        <div class="content-block-inner">Ã»ÓĞÕÒµ½ÄúĞèÒªµÄ±¦±´</div>
+                        <div class="content-block-inner">æŠ±æ­‰ï¼Œæš‚æ— æ‚¨æŸ¥æ‰¾çš„å®è´</div>
                     </div>
                     <div class="list-block media-list search-here searchbar-found hidden">
                         <div class="card wd-card-header-pic">
-                            <div style="background-image:url(...)" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                            <div style="background-color: #080808" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
                             <div class="card-content">
                                 <div class="card-content-inner">
                                     <p class="color-gray">Posted on January 21, 2015</p>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="card wd-card-header-pic">
-                            <div style="background-image:url(...)" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                            <div style="background-color: #080808" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
                             <div class="card-content">
                                 <div class="card-content-inner">
                                     <p class="color-gray">Posted on January 21, 2015</p>
@@ -154,9 +154,9 @@
                         </div>
                     </div>
                     <div class="list-block-label">
-                        <p style="text-align:center;">ÏÂÀ­¼ÓÔØ¸ü¶àÄÚÈİ</p>
+                        <p style="text-align:center;">ä¸‹æ‹‰åŠ è½½æ›´å¤šå†…å®¹</p>
                     </div>
-                    <!-- ¼ÓÔØÌáÊ¾·û -->
+                    <!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ -->
                     <div class="infinite-scroll-preloader center">
                         <div class="preloader"></div>
                     </div>
@@ -166,7 +166,7 @@
     </div>
     <div class="footer">
         <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;
-            <a href="http://www.miitbeian.gov.cn/">Â³ICP±¸15023821</a></p>
+            <a href="http://www.miitbeian.gov.cn/">é²ICPå¤‡15023821</a></p>
     </div>
 </div>
 <!-- Path to your app js-->

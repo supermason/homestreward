@@ -1,29 +1,29 @@
-?/**
+/**
  * Created by mason.ding on 2015/10/30.
- * ´´½¨wdApp ¶ÔÏó
- * wdApp°üº¬£ºf7-Framework7µÄ¶ÔÏó
- *           $$-Framework7µÄÑ¡ÔñÆ÷±äÌå
- *           mv-Framework7µÄÖ÷ÊÓÍ¼
+ * ï¿½ï¿½ï¿½ï¿½wdApp ï¿½ï¿½ï¿½ï¿½
+ * wdAppï¿½ï¿½ï¿½ï¿½ï¿½ï¿½f7-Framework7ï¿½Ä¶ï¿½ï¿½ï¿½
+ *           $$-Framework7ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ *           mv-Framework7ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
  */
-define(['framework7'], function () {
+define(['framework7', 'wdUtil'], function (wdUtil) {
     'use strict';
 
     var wdApp = {};
 
-    // Ãû³Æ
+    // åº”ç”¨åç§°
     wdApp.name = "wdApp";
 
-    // ÅäÖÃ
+    // é…ç½®
     wdApp.config = {
 
     };
 
-    // f7Ó¦ÓÃ
+    // åˆ›å»ºf7å¯¹è±¡
     wdApp.f7App = new Framework7({
         init: false,
-        modalTitle: "ÌáÊ¾",
-        modalButtonOk: 'È·¶¨',
-        modalButtonCancel: 'È¡Ïû',
+        modalTitle: "ç‰›å¦æç¤ºÊ¾",
+        modalButtonOk: 'ç¡®å®š',
+        modalButtonCancel: 'å–æ¶ˆ',
         smartSelectBackOnSelect: true,
         cache: false,
         pushState: true,
@@ -42,6 +42,41 @@ define(['framework7'], function () {
     // alert
     wdApp.alert = function (msg, callback) {
         wdApp.f7App.alert(msg, callback);
+    };
+
+    /**
+     * åˆå§‹åŒ–åº”ç”¨
+     */
+    wdApp.init = function() {
+        wdApp.$$.ajaxSetup({"dataType": "json"});
+        wdApp.f7App.init();
+    };
+
+    /**
+     * è°ƒç”¨apiæ¥å£è·å–æ•°æ®
+     * @param api {String} apiæ¥å£åœ°å€
+     * @param param {Object} ä¼ å…¥çš„å‚æ•°
+     */
+    wdApp.call = function(api, param) {
+        wdApp.$$.ajax({
+            method: param.method ? param.method : "GET",
+            url: api,
+            beforeSend: function (xhr) {
+                if (wdUtil.isFunction(param.beforeSend)) {
+                    param.beforeSend.call(null, xhr);
+                }
+            },
+            error: function (xhr) {
+                if (wdUtil.isFunction(param.error)) {
+                    param.error.call(null, xhr);
+                }
+            },
+            success: function (data) {
+                if (wdUtil.isFunction(param.success)) {
+                    param.success.call(null, data);
+                }
+            }
+        });
     };
 
     return wdApp;
