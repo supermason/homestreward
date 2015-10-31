@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * bill专属服务对象
  */
 define(['ngmodule', 'app'], function (ngmodule, app) {

@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * 创建myApp 对象
  * myApp包含：f7-Framework7的对象
  *           $$-Framework7的选择器变体

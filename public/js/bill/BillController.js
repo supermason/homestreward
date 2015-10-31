@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * bill专属控制器
  */
 define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {

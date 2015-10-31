@@ -23,6 +23,5 @@
                 @yield('content')
             </div>
         </div>
-        å
     </body>
 </html>
