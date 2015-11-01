@@ -103,29 +103,36 @@
         <div class="pages navbar-through">
             <!-- Page, "data-page" contains page name -->
             <div data-page="home-page" class="page">
-                <!-- Search bar with "searchbar-init" class for auto initialization -->
-                <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
-                    <div class="searchbar-input">
-                        <input type="search" placeholder="请输入关键字"  >
-                        <a href="#" class="searchbar-clear"></a>
-                    </div>
-                    <a href="#" class="searchbar-cancel">取消</a>
-                </form>
-
                 <!-- Search bar overlay -->
                 <div class="searchbar-overlay"></div>
                 <!-- Scrollable page content -->
-                <div class="page-content pull-to-refresh-content infinite-scroll" data-ptr-distance="30" data-distance="50" ng-controller="SearchController" >
-                    <div class="pull-to-refresh-layer">
-                        <div class="preloader"></div>
-                        <div class="pull-to-refresh-arrow"></div>
+                <div class="page-content">
+                    <div class="swiper-container swiper-init swiper-container-horizontal" data-speed="400" data-space-between="40" data-pagination=".swiper-pagination">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">Slide 1</div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
+                    <!-- Search bar with "searchbar-init" class for auto initialization -->
+                    <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+                        <div class="searchbar-input">
+                            <input type="search" placeholder="请输入关键字"  >
+                            <a href="#" class="searchbar-clear"></a>
+                        </div>
+                        <a href="#" class="searchbar-cancel">取消</a>
+                    </form>
                     <div class="content-block-title">新BB到货咯</div>
                     <!-- This block will be displayed if nothing found -->
                     <div class="list-block searchbar-not-found">
                         <div class="content-block-inner">抱歉，暂无您查找的宝贝</div>
                     </div>
-                    <div class="list-block media-list search-here searchbar-found hidden">
+                    <div class="list-block media-list pull-to-refresh-content infinite-scroll" data-ptr-distance="30" data-distance="50" search-here searchbar-found >
+                        <div class="pull-to-refresh-layer">
+                            <div class="preloader"></div>
+                            <div class="pull-to-refresh-arrow"></div>
+                        </div>
                         <div class="card wd-card-header-pic">
                             <div style="background-color: #080808" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
                             <div class="card-content">
