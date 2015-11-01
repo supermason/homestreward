@@ -1,7 +1,7 @@
 ﻿/**
  * 初始化app
  */
-require(['app', 'string-extension'], function (app) {
+require(['app', 'util'], function (app, util) {
     'use strict';
 
     require(['../services', '../controllers'], function () {
@@ -13,6 +13,9 @@ require(['app', 'string-extension'], function (app) {
         // 手动初始化angular
         angular.bootstrap(document, [app.name]);
         // 最后初始化f7App
-        app.f7App.init();
+        app.init({
+            hasInit:false,
+            hasMainView: false
+        });
     });
 });
