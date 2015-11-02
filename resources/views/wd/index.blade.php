@@ -28,7 +28,7 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">分类1</div>
+                        <div class="item-title">洁面</div>
                         <div class="item-after">副标题</div>
                     </div>
                 </a>
@@ -37,7 +37,7 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">分类1</div>
+                        <div class="item-title">洗护</div>
                         <div class="item-after">副标题</div>
                     </div>
                 </a>
@@ -46,7 +46,7 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">分类1</div>
+                        <div class="item-title">套盒</div>
                         <div class="item-after">副标题</div>
                     </div>
                 </a>
@@ -55,7 +55,7 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">分类1</div>
+                        <div class="item-title">面膜</div>
                         <div class="item-after">副标题</div>
                     </div>
                 </a>
@@ -64,7 +64,16 @@
                 <a href="#" class="item-link item-content">
                     <div class="item-media"><i class="icon icon-form-url"></i> </div>
                     <div class="item-inner">
-                        <div class="item-title">分类1</div>
+                        <div class="item-title">彩妆</div>
+                        <div class="item-after">副标题</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="item-link item-content">
+                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
+                    <div class="item-inner">
+                        <div class="item-title">明星单品</div>
                         <div class="item-after">副标题</div>
                     </div>
                 </a>
@@ -72,16 +81,23 @@
         </ul>
     </div>
 </div>
-<div class="panel panel-right-profile panel-right panel-reveal">
+<div class="panel logo-panel panel-right panel-reveal">
     <div class="content-block">
         <div class="content-block-inner">
-
+            <div class="logo">
+                <img src="{{asset('img/wd/bb_miya_logo.jpg')}}">
+            </div>
         </div>
     </div>
-
+    <div class="content-block-title">
+        关于牛妞和她的小店
+    </div>
+    <div class="content-block">
+       <p>这里是各种有趣的夸张的介绍文字，估计不会太短吧，该说什么好呢？先写这么多吧，随便看看。。。</p>
+    </div>
 </div>
 <!-- Views -->
-<div class="views toolbar-through theme-m">
+<div class="views toolbar-through theme-m theme-red">
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
         <!-- Top Navbar-->
@@ -93,9 +109,11 @@
                     </a>
                 </div>
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="center sliding"><span class="app-title">牛妞的小店</span></div>
+                <div class="center sliding"><span class="wd-title">牛妞的小店</span></div>
                 <div class="right">
-
+                    <a href="#" data-panel="right" class="link icon-only open-panel">
+                        <i class="fa fa-info"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -103,11 +121,10 @@
         <div class="pages navbar-through">
             <!-- Page, "data-page" contains page name -->
             <div data-page="home-page" class="page">
-                <!-- Search bar overlay -->
-                <div class="searchbar-overlay"></div>
+
                 <!-- Scrollable page content -->
-                <div class="page-content">
-                    <div class="swiper-container swiper-init swiper-container-horizontal" data-speed="400" data-space-between="40" data-pagination=".swiper-pagination">
+                <div class="page-content infinite-scroll" data-distance="100">
+                    <div class="swiper-container swiper-init swiper-container-horizontal" data-speed="400" data-pagination=".swiper-pagination">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">Slide 1</div>
                             <div class="swiper-slide">Slide 2</div>
@@ -123,57 +140,63 @@
                         </div>
                         <a href="#" class="searchbar-cancel">取消</a>
                     </form>
+                    <!-- Search bar overlay -->
+                    <div class="searchbar-overlay"></div>
                     <div class="content-block-title">新BB到货咯</div>
                     <!-- This block will be displayed if nothing found -->
                     <div class="list-block searchbar-not-found">
                         <div class="content-block-inner">抱歉，暂无您查找的宝贝</div>
                     </div>
-                    <div class="list-block media-list pull-to-refresh-content infinite-scroll" data-ptr-distance="30" data-distance="50" search-here searchbar-found >
-                        <div class="pull-to-refresh-layer">
-                            <div class="preloader"></div>
-                            <div class="pull-to-refresh-arrow"></div>
-                        </div>
-                        <div class="card wd-card-header-pic">
-                            <div style="background-color: #080808" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-                            <div class="card-content">
-                                <div class="card-content-inner">
-                                    <p class="color-gray">Posted on January 21, 2015</p>
-                                    <p>Quisque eget vestibulum nulla...</p>
+                    <div class="list-block cards-list search-here searchbar-found hidden" >
+                        <ul>
+                            <li  class="card wd-card-header-pic">
+                                <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        <p class="color-gray">Posted on January 21, 2015</p>
+                                        <p>Quisque eget vestibulum nulla...</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" class="link">Like</a>
-                                <a href="#" class="link">Read more</a>
-                            </div>
-                        </div>
-                        <div class="card wd-card-header-pic">
-                            <div style="background-color: #080808" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-                            <div class="card-content">
-                                <div class="card-content-inner">
-                                    <p class="color-gray">Posted on January 21, 2015</p>
-                                    <p>Quisque eget vestibulum nulla...</p>
+                                <div class="card-footer">
+                                    <a href="#" class="link">Like</a>
+                                    <a href="#" class="link">Read more</a>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" class="link">Like</a>
-                                <a href="#" class="link">Read more</a>
-                            </div>
-                        </div>
+                            </li>
+                            <li  class="card wd-card-header-pic">
+                                <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        <p class="color-gray">Posted on January 21, 2015</p>
+                                        <p>Quisque eget vestibulum nulla...</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="link">Like</a>
+                                    <a href="#" class="link">Read more</a>
+                                </div>
+                            </li>
+                            <li  class="card wd-card-header-pic">
+                                <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        <p class="color-gray">Posted on January 21, 2015</p>
+                                        <p>Quisque eget vestibulum nulla...</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="link">Like</a>
+                                    <a href="#" class="link">Read more</a>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="list-block-label">
-                        <p style="text-align:center;">下拉加载更多内容</p>
-                    </div>
-                    <!-- ������ʾ�� -->
+                    <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader center">
                         <div class="preloader"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;
-            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>
     </div>
 </div>
 <!-- Path to your app js-->
