@@ -9,6 +9,10 @@
   box-shadow: 2px 2px 6px gray;
 }
 
+.white-background-color {
+  background: #fff none repeat scroll 0 0;
+}
+
 .center {
   text-align: center;
 }
@@ -20,4 +24,30 @@
 
 .panel {
   background: #fdfdfd;
+}
+
+.navbar {
+
+  .white-background-color;
+
+  .center {
+    line-height: normal;
+  }
+
+  &::after {
+    height: 0;
+  }
+}
+
+.page {
+  .white-background-color;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.normal-font {
+  font-size: 12px;
 }

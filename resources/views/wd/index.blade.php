@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- Your app title -->
-    <title>牛妞的小店</title>
+    <title>{{trans('tip.shopTitle')}}</title>
     <!-- Path to Framework7 Library CSS, iOS Theme -->
     <link rel="stylesheet" href="/css/framework7.ios.min.css">
     <!-- Path to Framework7 color related styles, iOS Theme -->
@@ -15,69 +15,31 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="/css/wd.css">
+    <!-- Favicons -->
+    <link rel="icon" href="/img/wd/favicon.ico">
 </head>
 <body>
 <!-- Status bar overlay for full screen mode (PhoneGap) -->
 <div class="statusbar-overlay"></div>
 <div class="panel-overlay"></div>
-<div class="panel panel-left-add panel-left panel-reveal">
-    <div class="content-block-title"><p>宝贝分类</p></div>
-    <div class="list-block">
+<div class="panel panel-left-add panel-left panel-reveal p-category-list">
+    <div class="content-block-title"><p>{{trans('tip.leftPanel.naviTitle')}}</p></div>
+    <div class="list-block media-list">
         <ul>
+            @foreach($data['menu'] as $menu)
             <li>
-                <a href="#" class="item-link item-content">
-                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
+                <a href="{{url('/wd/search/'.$menu->product_category.'?page=1')}}" class="item-link item-content">
+                    <div class="item-media"><img src="{{asset($menu->icon)}}"> </div>
                     <div class="item-inner">
-                        <div class="item-title">洁面</div>
-                        <div class="item-after">副标题</div>
+                        <div class="item-title-row">
+                            <div class="item-title">{{$menu->label}}</div>
+                            <div class="item-after">{{$menu->after_txt}}</div>
+                        </div>
+                        <div class="item-text">{{$menu->description}}</div>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="#" class="item-link item-content">
-                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
-                    <div class="item-inner">
-                        <div class="item-title">洗护</div>
-                        <div class="item-after">副标题</div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="item-link item-content">
-                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
-                    <div class="item-inner">
-                        <div class="item-title">套盒</div>
-                        <div class="item-after">副标题</div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="item-link item-content">
-                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
-                    <div class="item-inner">
-                        <div class="item-title">面膜</div>
-                        <div class="item-after">副标题</div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="item-link item-content">
-                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
-                    <div class="item-inner">
-                        <div class="item-title">彩妆</div>
-                        <div class="item-after">副标题</div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="item-link item-content">
-                    <div class="item-media"><i class="icon icon-form-url"></i> </div>
-                    <div class="item-inner">
-                        <div class="item-title">明星单品</div>
-                        <div class="item-after">副标题</div>
-                    </div>
-                </a>
-            </li>
+            @endforeach
         </ul>
     </div>
 </div>
@@ -90,10 +52,13 @@
         </div>
     </div>
     <div class="content-block-title">
-        关于牛妞和她的小店
+        {{trans('tip.rightPanel.title')}}
     </div>
     <div class="content-block">
-       <p>这里是各种有趣的夸张的介绍文字，估计不会太短吧，该说什么好呢？先写这么多吧，随便看看。。。</p>
+       <p>{{trans('tip.rightPanel.content1')}}</p>
+    </div>
+    <div class="content-block">
+        <img class="img-responsive" src="{{asset('/img/wd/code.jpg')}}" />
     </div>
 </div>
 <!-- Views -->
@@ -105,14 +70,17 @@
             <div class="navbar-inner">
                 <div class="left sliding">
                     <a href="#" data-panel="left" class="link icon-only open-panel">
-                        <i class="fa fa-list"></i>
+                        <i class="fa fa-heart"></i>
                     </a>
                 </div>
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="center sliding"><span class="wd-title">牛妞的小店</span></div>
+                <div class="center sliding app-icon-container">
+                    <img class="app-icon" src="/img/wd/icon_32x32.png">
+                    <span class="wd-title app-icon-txt">{{trans('tip.shopTitle')}}</span>
+                </div>
                 <div class="right">
                     <a href="#" data-panel="right" class="link icon-only open-panel">
-                        <i class="fa fa-info"></i>
+                        <i class="fa fa-info-circle"></i>
                     </a>
                 </div>
             </div>
@@ -124,71 +92,53 @@
 
                 <!-- Scrollable page content -->
                 <div class="page-content infinite-scroll" data-distance="100">
-                    <div class="swiper-container swiper-init swiper-container-horizontal" data-speed="400" data-pagination=".swiper-pagination">
+                    <div class="swiper-container swiper-container-horizontal" data-speed="400" data-pagination=".swiper-pagination">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">Slide 1</div>
-                            <div class="swiper-slide">Slide 2</div>
-                            <div class="swiper-slide">Slide 3</div>
+                            <div class="swiper-slide"><img class="img-banner" src="{{asset('/img/wd/banner/banner_jie.jpg')}}"></div>
+                            <div class="swiper-slide"><img class="img-banner" src="{{asset('/img/wd/banner/banner_jie.jpg')}}"></div>
+                            <div class="swiper-slide"><img class="img-banner" src="{{asset('/img/wd/banner/banner_jie.jpg')}}"></div>
+                            <div class="swiper-slide"><img class="img-banner" src="{{asset('/img/wd/banner/banner_jie.jpg')}}"></div>
+                            <div class="swiper-slide"><img class="img-banner" src="{{asset('/img/wd/banner/banner_jie.jpg')}}"></div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                     <!-- Search bar with "searchbar-init" class for auto initialization -->
                     <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
                         <div class="searchbar-input">
-                            <input type="search" placeholder="请输入关键字"  >
+                            <input type="search" placeholder="{{trans('tip.search.keywords')}}"  >
                             <a href="#" class="searchbar-clear"></a>
                         </div>
-                        <a href="#" class="searchbar-cancel">取消</a>
+                        <a href="#" class="searchbar-cancel">{{trans('tip.cancel')}}</a>
                     </form>
                     <!-- Search bar overlay -->
                     <div class="searchbar-overlay"></div>
-                    <div class="content-block-title">新BB到货咯</div>
+                    <div class="content-block-title"></div>
                     <!-- This block will be displayed if nothing found -->
                     <div class="list-block searchbar-not-found">
-                        <div class="content-block-inner">抱歉，暂无您查找的宝贝</div>
+                        <div class="content-block-inner">{{trans('tip.search.notFound')}}</div>
                     </div>
                     <div class="list-block cards-list search-here searchbar-found hidden" >
-                        <ul>
-                            <li  class="card wd-card-header-pic">
-                                <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-                                <div class="card-content">
-                                    <div class="card-content-inner">
-                                        <p class="color-gray">Posted on January 21, 2015</p>
-                                        <p>Quisque eget vestibulum nulla...</p>
+                        @if (count($data['products']) == 0)
+                           <p>{{trans('tip.search.notFound')}}</p>
+                        @else
+                            <ul>
+                                @foreach($data['products'] as $product)
+                                <li  class="card wd-card-header-pic">
+                                    <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
+                                    <div class="card-content">
+                                        <div class="card-content-inner">
+                                            <p class="color-gray">Posted on January 21, 2015</p>
+                                            <p>Quisque eget vestibulum nulla...</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="#" class="link">Like</a>
-                                    <a href="#" class="link">Read more</a>
-                                </div>
-                            </li>
-                            <li  class="card wd-card-header-pic">
-                                <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-                                <div class="card-content">
-                                    <div class="card-content-inner">
-                                        <p class="color-gray">Posted on January 21, 2015</p>
-                                        <p>Quisque eget vestibulum nulla...</p>
+                                    <div class="card-footer">
+                                        <a href="#" class="link">Like</a>
+                                        <a href="#" class="link">Read more</a>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="#" class="link">Like</a>
-                                    <a href="#" class="link">Read more</a>
-                                </div>
-                            </li>
-                            <li  class="card wd-card-header-pic">
-                                <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-                                <div class="card-content">
-                                    <div class="card-content-inner">
-                                        <p class="color-gray">Posted on January 21, 2015</p>
-                                        <p>Quisque eget vestibulum nulla...</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="#" class="link">Like</a>
-                                    <a href="#" class="link">Read more</a>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader center">

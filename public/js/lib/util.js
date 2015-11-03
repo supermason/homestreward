@@ -54,7 +54,39 @@ define([], function() {
         } else {
             return false;
         }
-    }
+    };
+
+    // 计时器
+    var intervalId = 0;
+    /**
+     * 计时器对象
+     * @type {{start: Function, stop: Function}}
+     */
+    util.timer = {
+        /**
+         * 开启计时器
+         * @param {int} delay
+         * @param {function} callback
+         */
+          start: function(callback, delay) {
+              this.stop();
+
+              if (util.isFunction(callback)) {
+                  intervalId = setInterval(callback, delay);
+              } else {
+                  console.log('回调方法类型错误！');
+              }
+
+          },
+        /**
+         * 计时器结束
+         */
+          stop: function() {
+            if (intervalId != 0) {
+                clearInterval(intervalId);
+            }
+          }
+    };
 
     return util;
 });
