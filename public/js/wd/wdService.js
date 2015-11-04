@@ -13,25 +13,28 @@ define(['app', 'util'], function(app, util) {
 
     /**
      * 调用api接口获取数据
-     * @param param {Object} 传入的参数
+     * @param param {Object} 传入的参数，必须包含[url|onSuccess]
      */
     service.call = function(param) {
+
+        if (!util.hasURL(param)) return;
+
         app.$$.ajax({
             method: param.method ? param.method : "GET",
-            url: wdApiRoot,
+            url: wdApiRoot + param.url,
             beforeSend: function (xhr) {
                 if (util.isFunction(param.beforeSend)) {
                     param.beforeSend.call(null, xhr);
                 }
             },
             error: function (xhr) {
-                if (util.isFunction(param.error)) {
-                    param.error.call(null, xhr);
+                if (util.isFunction(param.onError)) {
+                    param.onError.call(null, xhr);
                 }
             },
             success: function (data) {
-                if (util.isFunction(param.success)) {
-                    param.success.call(null, data);
+                if (util.isFunction(param.onSuccess)) {
+                    param.onSuccess.call(null, data);
                 }
             }
         });

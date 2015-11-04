@@ -1,9 +1,18 @@
 @import "theme";
 
-@red-txt-color: #ff3b30;
+@red-txt-color: #CC3333;
+@default-opacity: 0.3;
 
 .red-background-color {
   .background-color(@red-txt-color);
+}
+
+// 全局样式
+.theme-wd {
+  .theme-m;
+  a {
+    color: @red-txt-color;
+  }
 }
 
 // 整个页面的标题
@@ -72,7 +81,7 @@
       padding: 40px 15px;
 
       .logo {
-        border: 1px solid red;
+        border: 1px solid @red-txt-color;
         border-radius: 65px;
         height: 130px;
         margin: 0 auto;
@@ -114,28 +123,63 @@
   cursor: pointer;
 }
 
-// 中部的产品内容部分
-.wd-card-header-pic {
-  .card-header {
-    height: 40vw;
-    background-size: cover;
-    background-position: center;
+.swiper-pagination-bullet-active {
+  background: @red-txt-color none repeat scroll 0 0;
+}
+
+// 搜索栏
+.searchbar {
+  background: @red-txt-color none repeat scroll 0 0;
+  opacity: @default-opacity * 2;
+
+  &::after {
+    background-color: @red-txt-color;
+  }
+
+  input[type="search"] {
+    color: #cc3333;
   }
 }
 
-// 貌似没用了。。。
-.footer {
-  padding: 10px 0px 2px;
-  background-color: #f5f5f5;
-  text-align: center;
-  font-family: "Microsoft YaHei";
-  font-size: .2em;
-  p {
-    margin: 0;
-    border: 1px solid #dddddd;
+// 中部的产品内容部分
 
-    a {
-      color: @default-text-color;
+.card {
+  box-shadow: 0 1px 2px rgba(204, 51, 51, 0.5);
+  -webkit-box-shadow: 0 1px 2px rgba(204, 51, 51, 0.5);
+  -moz-box-shadow: 0 1px 2px rgba(204, 51, 51, 0.5);
+}
+
+.card-footer {
+
+  &::before {
+    background-color: @red-txt-color;
+    opacity: @default-opacity;
+  }
+}
+
+.wd-card-header-pic {
+  .card-header {
+    height: 60vw;
+    background-size: cover;
+    background-position: center;
+    
+    span {
+      font-size: 1.5em;
+      font-weight: bold;
+      //方向顺序为右下左上
+      text-shadow: @red-txt-color 1px 0 0,
+                   @red-txt-color 0 1px 0,
+                   @red-txt-color -1px 0 0,
+                   @red-txt-color 0 -1px 0;
+      -webkit-text-shadow: @red-txt-color 1px 0 0,
+                           @red-txt-color 0 1px 0,
+                            @red-txt-color -1px 0 0,
+                            @red-txt-color 0 -1px 0;
+      -moz-text-shadow: @red-txt-color 1px 0 0,
+                        @red-txt-color 0 1px 0,
+                        @red-txt-color -1px 0 0,
+                        @red-txt-color 0 -1px 0;
+      *filter: Glow(@red-txt-color, 2);
     }
   }
 }

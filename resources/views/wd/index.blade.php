@@ -28,7 +28,7 @@
         <ul>
             @foreach($data['menu'] as $menu)
             <li>
-                <a href="{{url('/wd/search/'.$menu->product_category.'?page=1')}}" class="item-link item-content">
+                <a href="javascript:void(0);" data-category="{{$menu->product_category}}" class="item-link item-content">
                     <div class="item-media"><img src="{{asset($menu->icon)}}"> </div>
                     <div class="item-inner">
                         <div class="item-title-row">
@@ -62,7 +62,7 @@
     </div>
 </div>
 <!-- Views -->
-<div class="views toolbar-through theme-m theme-red">
+<div class="views toolbar-through theme-wd">
     <!-- Your main view, should have "view-main" class -->
     <div class="view view-main">
         <!-- Top Navbar-->
@@ -113,36 +113,36 @@
                     <!-- Search bar overlay -->
                     <div class="searchbar-overlay"></div>
                     <div class="content-block-title"></div>
-                    <!-- This block will be displayed if nothing found -->
-                    <div class="list-block searchbar-not-found">
-                        <div class="content-block-inner">{{trans('tip.search.notFound')}}</div>
-                    </div>
                     <div class="list-block cards-list search-here searchbar-found hidden" >
-                        @if (count($data['products']) == 0)
-                           <p>{{trans('tip.search.notFound')}}</p>
-                        @else
-                            <ul>
-                                @foreach($data['products'] as $product)
-                                <li  class="card wd-card-header-pic">
-                                    <div style="background-color: #ff6666" valign="bottom" class="card-header color-white no-border">Journey To Mountains</div>
-                                    <div class="card-content">
-                                        <div class="card-content-inner">
-                                            <p class="color-gray">Posted on January 21, 2015</p>
-                                            <p>Quisque eget vestibulum nulla...</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#" class="link">Like</a>
-                                        <a href="#" class="link">Read more</a>
-                                    </div>
+                        <ul>
+                            @if (count($data['products']) == 0)
+                                <li>
+                                    {{trans('tip.search.notFound')}}
                                 </li>
+                            @else
+                                @foreach($data['products'] as $product)
+                                    <li  class="card wd-card-header-pic">
+                                        <div style="background-image: url('{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}')" valign="bottom" class="card-header color-white no-border"><span>{{$product->name}}</span></div>
+                                        <div class="card-content">
+                                            <div class="card-content-inner">
+                                                <p class="color-gray">{{$product->subtitle}}</p>
+                                                <p>{{$product->description}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="#" class="link"></a>
+                                            <a href="#" class="link">{{trans('tip.pList.detail')}}</a>
+                                        </div>
+                                    </li>
                                 @endforeach
-                            </ul>
-                        @endif
+                            @endif
+                        </ul>
                     </div>
+
                     <!-- 加载提示符 -->
-                    <div class="infinite-scroll-preloader center">
+                    <div class="infinite-scroll-preloader center {{count($data['products']) > 0 ? "" : "hidden"}}">
                         <div class="preloader"></div>
+                    </div>
                     </div>
                 </div>
             </div>
