@@ -1,16 +1,38 @@
 @import "theme";
 
-@wd-txt-color: #ff3b30;
+@red-txt-color: #ff3b30;
+
+.red-background-color {
+  .background-color(@red-txt-color);
+}
 
 // 整个页面的标题
 .wd-title {
-  .app-title(@wd-txt-color);
+  .app-title(whitesmoke);
 }
 
 // 顶部navibar
+
+.navbar {
+
+  .red-background-color;
+
+  .center {
+    line-height: normal;
+  }
+
+  &::after {
+    height: 0;
+  }
+
+  a.icon-only {
+      color: whitesmoke;
+  }
+}
+
 .app-icon-container {
 
-  border: 1px solid @wd-txt-color;
+  border: 1px solid whitesmoke;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
@@ -19,7 +41,6 @@
   .app-icon-txt {
     padding-right: 5px;
   }
-
 }
 
 // 左侧面板
@@ -68,9 +89,9 @@
 
 // 顶部的图片展示区
 .swiper-slide {
-  background: #fff;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
+  //background: #fff;
+  //box-sizing: border-box;
+  //border: 1px solid #ccc;
 
   .img-banner {
     width: 100%;

@@ -58,7 +58,7 @@ class WDController extends Controller
      */
     public function searchByCategory($category)
     {
-        return $this->doSearchByCategory($category);
+        return $this->doSearchByCategory($category)->toJson();
     }
 
     /**

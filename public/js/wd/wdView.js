@@ -11,14 +11,16 @@ require(['app', 'util', 'service'], function(wdApp, util, serivce){
         // slider自动滚动
         var swiper = wdApp.f7App.swiper('.swiper-container', {
             pagination: '.swiper-pagination',
+            loop: true,
             paginationHide: false,
             paginationClickable: true
         });
 
         util.timer.start(function(){
             swiper.slideNext();
-        }, 2000);
-        // 无限下拉初始化
+        }, 4000);
+        // 无限滚动初始化
+
     });
 
     wdApp.init({

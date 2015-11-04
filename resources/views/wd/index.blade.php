@@ -75,7 +75,7 @@
                 </div>
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                 <div class="center sliding app-icon-container">
-                    <img class="app-icon" src="/img/wd/icon_32x32.png">
+                    <img class="app-icon" src="/img/wd/icon_32x32_reverse.png">
                     <span class="wd-title app-icon-txt">{{trans('tip.shopTitle')}}</span>
                 </div>
                 <div class="right">
