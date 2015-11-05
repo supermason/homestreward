@@ -6,15 +6,31 @@
   -moz-box-shadow: 2px 2px 6px gray;
   box-shadow: 2px 2px 6px gray;
 }
+.white-background-color {
+  background: white none repeat scroll 0 0;
+}
 .center {
   text-align: center;
 }
-.app-title {
-  font-weight: bold;
-  color: #007aff;
-}
 .panel {
   background: #fdfdfd;
+}
+.page {
+  background: white none repeat scroll 0 0;
+}
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+.normal-font {
+  font-size: 12px;
+}
+.modal-title {
+  font-size: 14px;
+}
+.modal .preloader {
+  height: 20px;
+  width: 20px;
 }
 /*==login==*/
 .error {
