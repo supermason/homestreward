@@ -23,19 +23,25 @@ define(['app', 'util'], function(app, util) {
             method: param.method ? param.method : "GET",
             url: wdApiRoot + param.url,
             beforeSend: function (xhr) {
+
+                app.showPreloader();
+
                 if (util.isFunction(param.beforeSend)) {
                     param.beforeSend.call(null, xhr);
                 }
             },
-            error: function (xhr) {
+            error: function (xhr, status) {
                 if (util.isFunction(param.onError)) {
-                    param.onError.call(null, xhr);
+                    param.onError.call(null, xhr, status);
                 }
             },
-            success: function (data) {
+            success: function (data, status, xhr) {
                 if (util.isFunction(param.onSuccess)) {
                     param.onSuccess.call(null, data);
                 }
+            },
+            complete: function(xhr, status) {
+                app.hidePreloader();
             }
         });
     };

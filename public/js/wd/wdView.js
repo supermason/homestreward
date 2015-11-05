@@ -61,8 +61,8 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
             //
             serivce.call({
                 url: pageData.getURL(),
-                onError: function(xhr) {
-                    wdApp.alert(xhr.toString());
+                onError: function(xhr, status) {
+                    wdApp.alert(status.toString());
                 },
                 onSuccess: function(data) {
                     updateProductList(data);
@@ -84,14 +84,36 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
     function updateProductList(data) {
         pageData.total = data.last_page;
         var pageCon = $$('.page-content');
-        var container =  pageCon.find('.list-block.cards-list ul');
+        var ul =  pageCon.find('.list-block.cards-list ul');
         // 移除现有数据
         if (data.total == 0) {
             container.html("<li>抱歉，暂时没有您要找的宝贝T_T</li>");
+            // 隐藏无限滚动提示
+            setInfiniteScrollPreloader(pageCon, false);
         } else {
-            ul.html(productListTemplate(data.data));
+            var newContent = productListTemplate(data);
+            ul.html(newContent);
         }
+    }
 
-        // 无限滚动的提示
+    /**
+     * 设置无限滚动提示图片的状态
+     *
+     * @param {Object} container
+     * @param {Boolean} show
+     */
+    function setInfiniteScrollPreloader(container, show) {
+        var preloader = container.find('infinite-scroll-preloader');
+        if (preloader.length > 0) {
+            if (show) {
+                if (preloader.hasClass('hidden')) {
+                    preloader.removeClass('hidden');
+                }
+            } else {
+                if (!preloader.hasClass('hidden')) {
+                    preloader.addClass('hidden');
+                }
+            }
+        }
     }
 });

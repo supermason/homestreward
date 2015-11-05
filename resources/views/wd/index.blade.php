@@ -28,7 +28,7 @@
         <ul>
             @foreach($data['menu'] as $menu)
             <li>
-                <a href="javascript:void(0);" data-category="{{$menu->product_category}}" class="item-link item-content">
+                <a href="#" data-panel="left" data-category="{{$menu->product_category}}" class="item-link item-content close-panel">
                     <div class="item-media"><img src="{{asset($menu->icon)}}"> </div>
                     <div class="item-inner">
                         <div class="item-title-row">
@@ -74,9 +74,8 @@
                     </a>
                 </div>
                 <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="center sliding app-icon-container">
-                    <img class="app-icon" src="/img/wd/icon_32x32_reverse.png">
-                    <span class="wd-title app-icon-txt">{{trans('tip.shopTitle')}}</span>
+                <div class="center sliding">
+                    <span class="wd-title"></span>
                 </div>
                 <div class="right">
                     <a href="#" data-panel="right" class="link icon-only open-panel">
@@ -122,7 +121,7 @@
                             @else
                                 @foreach($data['products'] as $product)
                                     <li  class="card wd-card-header-pic">
-                                        <div style="background-image: url('{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}')" valign="bottom" class="card-header color-white no-border"><span>{{$product->name}}</span></div>
+                                        <div data-background="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" valign="bottom" class="card-header color-white no-border lazy lazy-fadeIn"><span>{{$product->name}}</span></div>
                                         <div class="card-content">
                                             <div class="card-content-inner">
                                                 <p class="color-gray">{{$product->subtitle}}</p>
@@ -142,7 +141,6 @@
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader center {{count($data['products']) > 0 ? "" : "hidden"}}">
                         <div class="preloader"></div>
-                    </div>
                     </div>
                 </div>
             </div>

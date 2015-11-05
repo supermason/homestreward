@@ -5,6 +5,7 @@
 requirejs.config({
     baseUrl: '/js/lib',
     paths: {
+        lang: '../language',
         app: '../app',
         service: '../wd/wdService',
         template: '../wd/template'
