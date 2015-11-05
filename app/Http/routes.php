@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function(){
  */
 Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
     Route::get("/", "WDController@index");
-    Route::get("/search/{category}", "WDController@searchByCategory")->where('category', '[0-9]+');
+    Route::get("/search/{category}/{keyword?}", "WDController@searchByCategory")->where('category', '[0-9]+');
     Route::get("/latest/{category}", "WDController@latestIndex")->where('category', '[0-9]+');
     Route::get("/detail/{id}", "WDController@show")->where('id', '[0-9]+');
 });

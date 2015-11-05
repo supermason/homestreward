@@ -53,23 +53,31 @@ class WDController extends Controller
     /**
      * search products according to the given category
      *
-     * @param $category
+     * @param int $category
+     * @param string $keyword
      * @return Json Response
      */
-    public function searchByCategory($category)
+    public function searchByCategory($category, $keyword=null)
     {
-        return $this->doSearchByCategory($category)->toJson();
+        return $this->doSearchByCategory($category, $keyword)->toJson();
     }
 
     /**
      * search products according to the given category
      *
      * @param $category
+     * @param string $keyword
      * @return Response
      */
-    private function doSearchByCategory($category)
+    private function doSearchByCategory($category, $keyword=null)
     {
-        return Products::where('category_id', '=', $category)
+        $queryObj = Products::where('category_id', '=', $category);
+
+        if (!is_null($keyword)) {
+            $queryObj = $queryObj->where('name', 'like', '%'.$keyword.'%');
+        }
+
+        return $queryObj
             ->orderBy('updated_at', 'desc')
             ->paginate(5);
     }
