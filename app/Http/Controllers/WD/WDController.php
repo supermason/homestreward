@@ -22,7 +22,7 @@ class WDController extends Controller
         //
         return view("wd.index")->withData([
             'menu' => Menu::all(),
-            'products' => $this->doSearchByCategory(1),
+            'products' => $this->doSearchByCategory(WDConfig::PRODUCT_CATEGORY_JIEMIAN),
         ]);
     }
 

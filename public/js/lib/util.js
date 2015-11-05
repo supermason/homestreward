@@ -45,6 +45,7 @@ define([], function() {
 
     /**
      * 判断是否为方法
+     *
      * @param fun {function} 待判断的方法
      * @returns {boolean} 为方法－true｜否则－false
      */
@@ -55,6 +56,51 @@ define([], function() {
             return false;
         }
     };
+
+    /**
+     * 判断一个对象是否为数组
+     *
+     * @param {object} v
+     * @returns {boolean}
+     */
+    util.isArray = function (v) {
+        return toString.apply(v) === '[object Array]';
+    }
+
+    /**
+     * 判断一个对象是否为字符串
+     *
+     * @param {object} v
+     * @returns {boolean}
+     */
+    util.isString = function (v) {
+        return toString.apply(v) === '[object String]';
+    }
+
+    /**
+     * 判断一个对象里是否包含URL节点
+     *
+     * @param {object} obj
+     * @returns {boolean}
+     */
+    util.hasURL = function(obj) {
+        if (!obj) return false;
+        if (this.isArray(obj)) return false;
+
+        if (this.isString(obj) && obj !== '') {
+            return true;
+        } else {
+            for (var k in obj) {
+                if (k.toLocaleLowerCase() === 'url') {
+                    if (this.isString(obj[k]) && obj[k] !== '') {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 
     // 计时器
     var intervalId = 0;

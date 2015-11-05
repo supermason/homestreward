@@ -22,6 +22,6 @@ return [
         'notFound' => '抱歉，暂无您查找的宝贝',
     ],
     'pList' => [
-
+        'detail' => '宝贝详情',
     ],
 ];

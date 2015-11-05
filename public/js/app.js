@@ -4,7 +4,7 @@
  *           $$-Framework7的选择器变体
  *           mv-Framework7的主视图
  */
-define(['framework7'], function () {
+define(['framework7', 'lang'], function (fw7, lang) {
     'use strict';
 
     var myApp = {
@@ -16,23 +16,24 @@ define(['framework7'], function () {
 
         f7App = new Framework7({ // f7应用，默认不初始化
             init: false,
-            modalTitle: "提示",
-            modalButtonOk: '确定',
-            modalButtonCancel: '取消',
+            modalTitle: lang.app.modalTitle,
+            modalButtonOk: lang.app.modalButtonOk,
+            modalButtonCancel: lang.app.modalButtonCancel,
             smartSelectBackOnSelect: true,
             cache: false,
             pushState: true,
-            preloadPreviousPage: false,
-            onAjaxStart: function (xhr) {
-                f7App.showIndicator();
-            },
-            onAjaxComplete: function (xhr) {
-                f7App.showIndicator();
-            }
+            preloadPreviousPage: false
         });
     // 变体
     myApp.$$ = Framework7.$;
-
+    // 显示preloader
+    myApp.showPreloader = function() {
+        f7App.showPreloader(lang.app.preloaderTip);
+    };
+    // 隐藏preloader
+    myApp.hidePreloader = function() {
+        f7App.hidePreloader();
+    }
     // alert
     myApp.alert = function (msg, callback) {
         f7App.alert(msg, callback);
