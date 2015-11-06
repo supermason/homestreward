@@ -46,7 +46,7 @@ define([], function() {
     /**
      * 判断是否为方法
      *
-     * @param fun {function} 待判断的方法
+     * @param {function} fun 待判断的方法
      * @returns {boolean} 为方法－true｜否则－false
      */
     util.isFunction = function (fun) {
@@ -58,6 +58,26 @@ define([], function() {
     };
 
     /**
+     * 触发一个方法的调用
+     *
+     * @param {function} fun
+     * @param params
+     */
+    util.invokeFunction = function (fun) {
+        if (util.isFunction(fun)) {
+            if (arguments.length > 1) {
+                var args = [];
+                for (var i = 1; i < arguments.length; ++i) {
+                    args.push(arguments[i]);
+                }
+                fun.apply(null, args);
+            } else {
+                fun.call()
+            }
+        }
+    }
+
+    /**
      * 判断一个对象是否为数组
      *
      * @param {object} v
@@ -65,7 +85,7 @@ define([], function() {
      */
     util.isArray = function (v) {
         return toString.apply(v) === '[object Array]';
-    }
+    };
 
     /**
      * 判断一个对象是否为字符串
@@ -75,7 +95,7 @@ define([], function() {
      */
     util.isString = function (v) {
         return toString.apply(v) === '[object String]';
-    }
+    };
 
     /**
      * 判断一个对象里是否包含URL节点
@@ -100,7 +120,7 @@ define([], function() {
         }
 
         return false;
-    }
+    };
 
     // 计时器
     var intervalId = 0;
@@ -132,6 +152,27 @@ define([], function() {
                 clearInterval(intervalId);
             }
           }
+
+    };
+
+    /**
+     * 过滤掉字符串中的各种非法字符
+     *
+     * @param {string} s
+     * @returns {string}
+     */
+    util.stripScript = function (s) {
+        var rs = "";
+
+        if (s && s !== "") {
+            var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+
+            for (var i = 0; i < s.length; i++) {
+                rs = rs + s.substr(i, 1).replace(pattern, '');
+            }
+        }
+
+        return rs;
     };
 
     return util;

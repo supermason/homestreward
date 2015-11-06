@@ -20,7 +20,9 @@ define([], function(){
          * 产品相关文字
          */
         product: {
-            view: "查看宝贝"
+            view: "查看宝贝",
+            notFound: "抱歉，暂时没有您要找的宝贝T_T，请看点别的吧~",
+            hasNoMore: "没有更多宝贝了"
         }
     };
 

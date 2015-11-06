@@ -23,9 +23,11 @@ define(['framework7', 'lang'], function (fw7, lang) {
             cache: false,
             pushState: true,
             preloadPreviousPage: false
-        });
+        }),
+
+        $$ = Framework7.$;
     // 变体
-    myApp.$$ = Framework7.$;
+    myApp.$$ = $$;
     // 显示preloader
     myApp.showPreloader = function() {
         f7App.showPreloader(lang.app.preloaderTip);
@@ -65,6 +67,51 @@ define(['framework7', 'lang'], function (fw7, lang) {
             }
         }
     };
+
+    /**
+     * 结束下拉刷新
+     *
+     */
+    myApp.pullToRefreshDone = function() {
+        f7App.pullToRefreshDone();
+    }
+
+    /**
+     * 设置一个组件显示或者隐藏
+     *
+     * @param {string} selector
+     * @param {boolean} show
+     */
+    myApp.setElementShowOrHide = function (selector, show) {
+        var element = $$(selector);
+        if (element.length > 0) {
+            if (show) {
+                if (element.hasClass('hidden')) {
+                    element.removeClass('hidden');
+                }
+            } else {
+                if (!element.hasClass('hidden')) {
+                    element.addClass('hidden');
+                }
+            }
+        }
+    }
+
+    /**
+     * 更新一组列表的高亮状态
+     *
+     * @param {string} selector
+     * @param {dom-element} selected
+     * @param {string} className
+     */
+    myApp.updateHighlight = function(selector, selected, className) {
+        if (selected && selected.length > 0) {
+            var eleName = selected[0].localName;
+            $$(selector).find(eleName).removeClass(className);
+            selected.addClass(className);
+        }
+
+    }
 
     return myApp;
 });
