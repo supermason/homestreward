@@ -20,6 +20,7 @@ return [
     'search' => [
         'keywords' => '请输入关键字',
         'notFound' => '抱歉，暂无您查找的宝贝',
+        'hasNoMore' => '没有更多宝贝了',
     ],
     'pList' => [
         'detail' => '宝贝详情',

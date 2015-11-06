@@ -88,9 +88,24 @@
         <div class="pages navbar-through">
             <!-- Page, "data-page" contains page name -->
             <div data-page="home-page" class="page">
-
+                <!-- Search bar with "searchbar-init" class for auto initialization -->
+                <form class="searchbar searchbar-init" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+                    <div class="searchbar-input">
+                        <input type="search" placeholder="{{trans('tip.search.keywords')}}"  >
+                        <a href="#" class="searchbar-clear"></a>
+                    </div>
+                    <a href="#" class="searchbar-cancel">{{trans('tip.cancel')}}</a>
+                </form>
+                <!-- Search bar overlay -->
+                <div class="searchbar-overlay"></div>
                 <!-- Scrollable page content -->
-                <div class="page-content infinite-scroll" data-distance="100">
+                <div class="page-content pull-to-refresh-content infinite-scroll" data-distance="100">
+                    <!-- default pull layer -->
+                    <div class="pull-to-refresh-layer">
+                        <div class="preloader"></div>
+                        <div class="pull-to-refresh-arrow"></div>
+                    </div>
+
                     <div class="swiper-container swiper-container-horizontal" data-speed="400" data-pagination=".swiper-pagination">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><img class="img-banner" src="{{asset('/img/wd/banner/banner_jie.jpg')}}"></div>
@@ -101,18 +116,8 @@
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
-                    <!-- Search bar with "searchbar-init" class for auto initialization -->
-                    <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
-                        <div class="searchbar-input">
-                            <input type="search" placeholder="{{trans('tip.search.keywords')}}"  >
-                            <a href="#" class="searchbar-clear"></a>
-                        </div>
-                        <a href="#" class="searchbar-cancel">{{trans('tip.cancel')}}</a>
-                    </form>
-                    <!-- Search bar overlay -->
-                    <div class="searchbar-overlay"></div>
-                    <div class="content-block-title"></div>
-                    <div class="list-block cards-list search-here searchbar-found hidden" >
+                    <div class="content-block-title product-list-title"></div>
+                    <div class="list-block cards-list search-here searchbar-found" >
                         <ul>
                             @if (count($data['products']) == 0)
                                 <li>
@@ -121,7 +126,7 @@
                             @else
                                 @foreach($data['products'] as $product)
                                     <li  class="card wd-card-header-pic">
-                                        <div data-background="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" valign="bottom" class="card-header color-white no-border lazy lazy-fadeIn"><span>{{$product->name}}</span></div>
+                                        <div data-background="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" valign="bottom" class="card-header color-white no-border lazy lazy-fadeIn"><h2>{{$product->name}}</h2></div>
                                         <div class="card-content">
                                             <div class="card-content-inner">
                                                 <p class="color-gray">{{$product->subtitle}}</p>
@@ -141,6 +146,10 @@
                     <!-- 加载提示符 -->
                     <div class="infinite-scroll-preloader center {{count($data['products']) > 0 ? "" : "hidden"}}">
                         <div class="preloader"></div>
+                    </div>
+                    {{--没有更多内容的提示--}}
+                    <div class="list-block-label hidden">
+                        <p style="text-align:center;">{{trans('tip.search.hasNoMore')}}</p>
                     </div>
                 </div>
             </div>

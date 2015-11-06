@@ -10,13 +10,13 @@ define(['lang'], function(lang) {
         /**
          * 无查询结果模板
          */
-        notFound: "",
+        notFound: "<li>" + lang.product.notFound + "</li>",
         /**
          * 产品列表模板
          */
         productList:
             "{{#each data}}<li class=\"card wd-card-header-pic\">"
-            + "<div data-background=\"/img/wd/product/{{category_id}}/{{thumbnail}}\" valign=\"bottom\" class=\"card-header color-white no-border lazy lazy-fadein\"><span>{{name}}</span></div>"
+            + "<div data-background=\"/img/wd/product/{{category_id}}/{{thumbnail}}\" valign=\"bottom\" class=\"card-header color-white no-border lazy lazy-fadein\"><h2>{{name}}</h2></div>"
             + "<div class=\"card-content\">"
             +   "<div class=\"card-content-inner\">"
             +      "<p class=\"color-gray\">{{subtitle}}</p>"
