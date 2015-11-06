@@ -72,6 +72,32 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
         }, 10000);
 
         // 搜索栏
+        var bind_name = "input";
+        if (navigator.userAgent.indexOf("MSIE") != -1){
+            bind_name = 'propertychange';
+        }
+        $('div.page form input[type=search]').on(bind_name, function (event) {
+            var eventObj = event || e;
+            if (eventObj.ctrlKey || eventObj.shiftKey || eventObj.altKey) {
+                return;
+            }
+
+            var keyCode = eventObj.keyCode || eventObj.which;
+            var eventType = event.type;
+            // 只能输入数字+字母+空格+回车
+            if (/*(keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (keyCode == 32) || (keyCode == 13)*/eventType === 'input' || eventType === 'propertychange') {
+                var val = util.stripScript($(this).val()).trim();
+                if (val !== '') {
+                    // 么次搜索都相当于从第一页开始
+                    pageData.setData(1, 1, -1);
+                    //
+                    queryProductSimply(val);
+                }
+            }
+        });
+        $('div.page form a.searchbar-cancel').click(function() {
+            queryProductSimply(null);
+        });
 
         // 下拉刷新
         var pullContent = $('.pull-to-refresh-content');
@@ -116,18 +142,7 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
             }
             pageData.setData(1, 1, category);
             //
-            serivce.call({
-                url: pageData.getURL(),
-                onError: function(xhr, status) {
-                    wdApp.alert(status.toString());
-                },
-                onSuccess: function(data) {
-                    // 滚动到最顶部
-                    $(".page-content").scrollTop(0, 10, function(){
-                        updateProductList(data, false);
-                    });
-                }
-            });
+            queryProductSimply(null);
         });
     });
 
@@ -189,7 +204,7 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
         // 查找下一页的数据
         pageData.current++;
         // 获取一下是否有关键字
-        var keyword = util.stripScript($("div.page-content form input[type=search]").val());
+        var keyword = util.stripScript($("div.page form input[type=search]").val());
         serivce.call({
             url: pageData.getURL(keyword),
             onError: function (xhr, status) {
@@ -202,6 +217,26 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
             }
         });
     };
+
+    /**
+     * 简单查找商品（点击分类或者从搜索框中输入关键字）
+     *
+     * @param {string} keyword
+     */
+    function queryProductSimply(keyword) {
+        serivce.call({
+            url: pageData.getURL(keyword),
+            onError: function(xhr, status) {
+                wdApp.alert(status.toString());
+            },
+            onSuccess: function(data) {
+                // 滚动到最顶部
+                //$(".page-content").scrollTop(0, 200, function(){
+                    updateProductList(data, false);
+                //});
+            }
+        });
+    }
 
     /**
      * 更新产品列表的标题

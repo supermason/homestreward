@@ -89,7 +89,7 @@
             <!-- Page, "data-page" contains page name -->
             <div data-page="home-page" class="page">
                 <!-- Search bar with "searchbar-init" class for auto initialization -->
-                <form class="searchbar searchbar-init" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+                <form class="searchbar searchbar-init">
                     <div class="searchbar-input">
                         <input type="search" placeholder="{{trans('tip.search.keywords')}}"  >
                         <a href="#" class="searchbar-clear"></a>
@@ -117,7 +117,7 @@
                         <div class="swiper-pagination"></div>
                     </div>
                     <div class="content-block-title product-list-title"></div>
-                    <div class="list-block cards-list search-here searchbar-found" >
+                    <div class="list-block cards-list searchbar-found" >
                         <ul>
                             @if (count($data['products']) == 0)
                                 <li>
