@@ -120,7 +120,7 @@
                     <div class="list-block cards-list searchbar-found" >
                         <ul>
                             @if (count($data['products']) == 0)
-                                <li>
+                                <li class="not-found">
                                     {{trans('tip.search.notFound')}}
                                 </li>
                             @else
@@ -131,6 +131,7 @@
                                             <div class="card-content-inner">
                                                 <p class="color-gray">{{$product->subtitle}}</p>
                                                 <p>{{$product->description}}</p>
+                                                <p>{{trans('tip.pList.priceTitle')}}<span class="normal-price">300.00</span><span class="discount">220.00</span></p>
                                             </div>
                                         </div>
                                         <div class="card-footer">

@@ -54,7 +54,8 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
             pullToRefresh: 1,
             infiniteScroll: 2
         },
-        curOprType = 2;
+        curOprType = 2,
+        ulEle = $('.list-block.cards-list ul');
 
     // 页面初始化
     wdApp.f7App.onPageInit("home-page", function(page){
@@ -160,23 +161,22 @@ require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, t
     function updateProductList(data, append) {
         loading = false;
         pageData.setData(data.current_page, data.last_page, -1);
-        var pageCon = $('.page-content');
-        var ul =  pageCon.find('.list-block.cards-list ul');
         // 移除现有数据
         if (data.total == 0) {
-            ul.html(template.notFound);
+            ulEle.html(template.notFound);
             // 隐藏无限滚动提示
             wdApp.setElementShowOrHide(".infinite-scroll-preloader", false);
+            wdApp.setElementShowOrHide(".list-block-label", false);
         } else {
             var newContent = productListTemplate(data);
             if (append) {
                 if (curOprType == oprType.infiniteScroll) {
-                    ul.append(newContent);
+                    ulEle.append(newContent);
                 } else {
-                    ul.prepend(newContent);
+                    ulEle.prepend(newContent);
                 }
             } else {
-                ul.html(newContent);
+                ulEle.html(newContent);
             }
 
             var noMore = pageData.hasNoMore();

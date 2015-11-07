@@ -10,7 +10,7 @@ define(['lang'], function(lang) {
         /**
          * 无查询结果模板
          */
-        notFound: "<li>" + lang.product.notFound + "</li>",
+        notFound: "<li class='not-found'>" + lang.product.notFound + "</li>",
         /**
          * 产品列表模板
          */
@@ -21,6 +21,7 @@ define(['lang'], function(lang) {
             +   "<div class=\"card-content-inner\">"
             +      "<p class=\"color-gray\">{{subtitle}}</p>"
             +      "<p>{{description}}</p>"
+            +      "<p>" + lang.product.priceTitle + "<span class=\"normal-price\">300.00</span><span class=\"discount\">220.00</span></p>"
             +   "</div>"
             +   "</div>"
             +   "<div class=\"card-footer\">"

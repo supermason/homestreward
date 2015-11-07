@@ -10,10 +10,15 @@
 
 // 全局样式
 .theme-wd {
-  .theme-m;
+  .theme-m(@red-txt-color);
   a {
     color: @red-txt-color;
   }
+}
+
+.separator-line (@bg-color: @red-txt-color, @bg-opacity: @default-opacity){
+  background-color: @bg-color;
+  opacity: @bg-opacity;
 }
 
 // 整个页面的标题
@@ -40,8 +45,7 @@
 
   &::after {
     height: 0;
-    opacity: 0;
-    background-color: @red-txt-color;
+    .separator-line(@red-txt-color, 0);
   }
 
   a.icon-only {
@@ -67,8 +71,21 @@
 
   .list-block {
 
+    ul {
+      &::before,
+      &::after {
+        .separator-line;
+      }
+    }
+
     .item-after {
       .normal-font;
+    }
+
+    .item-inner {
+      &::after {
+        .separator-line;
+      }
     }
     
     .item-text {
@@ -198,8 +215,7 @@
 .card-footer {
 
   &::before {
-    background-color: @red-txt-color;
-    opacity: @default-opacity;
+    .separator-line;
   }
 }
 
@@ -235,4 +251,30 @@
       //*filter: Glow(@red-txt-color, 2);
     }
   }
+}
+
+.normal-price {
+  padding-right: 10px;
+}
+
+.deleted-price {
+  text-decoration: line-through;
+}
+
+.discount {
+  background-color: @red-txt-color;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+// 没有产品时
+.not-found {
+  font-weight: bold;
+  text-align: center;
+  padding: 40px 20px;
+  color: @red-txt-color;
+  opacity: @default-opacity * 2;
 }
