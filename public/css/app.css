@@ -12,6 +12,9 @@
 .center {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .panel {
   background: #fdfdfd;
 }

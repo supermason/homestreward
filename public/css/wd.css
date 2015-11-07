@@ -9,6 +9,9 @@
 .center {
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .panel {
   background: #fdfdfd;
 }
@@ -51,12 +54,15 @@
 }
 .navbar {
   background: #cc3333 none repeat scroll 0 0;
+  height: 45px;
 }
 .navbar .center {
   line-height: normal;
 }
 .navbar::after {
   height: 0;
+  opacity: 0;
+  background-color: #cc3333;
 }
 .navbar a.icon-only {
   color: whitesmoke;
@@ -68,6 +74,16 @@
   font-size: 12px;
   height: auto;
   line-height: normal;
+}
+.p-category-list .list-block .item-content:hover {
+  background-color: mistyrose;
+}
+.p-category-list .list-block .item-link:active,
+.p-category-list .list-block .item-link.active-state {
+  background-color: mistyrose;
+}
+.p-category-list .list-block .active {
+  background-color: mistyrose;
 }
 .logo-panel .content-block {
   margin: 0;
@@ -107,15 +123,29 @@
 .swiper-pagination-bullet-active {
   background: #cc3333 none repeat scroll 0 0;
 }
-.searchbar {
+.page > .searchbar {
   background: #cc3333 none repeat scroll 0 0;
-  opacity: 0.6;
 }
-.searchbar::after {
+.page > .searchbar::after {
   background-color: #cc3333;
 }
-.searchbar input[type="search"] {
+.page > .searchbar input[type="search"] {
   color: #cc3333;
+}
+.page > .searchbar .searchbar-cancel {
+  color: whitesmoke;
+  font-size: 15px;
+  font-weight: bold;
+}
+.product-list-title {
+  background: #cc3333 none repeat scroll 0 0;
+  opacity: 0.6;
+  font-size: 20px;
+  font-weight: bold;
+  color: whitesmoke;
+  padding: 15px 10px;
+  margin: 0;
+  text-align: center;
 }
 .card {
   box-shadow: 0 1px 2px rgba(204, 51, 51, 0.5);
@@ -132,11 +162,13 @@
   background-size: cover;
   background-position: center;
 }
-.wd-card-header-pic .card-header span {
+.wd-card-header-pic .card-header h2 {
+  background: rgba(204, 51, 51, 0.4) none repeat scroll 0 0;
   font-size: 1.5em;
   font-weight: bold;
-  text-shadow: #cc3333 1px 0 0, #cc3333 0 1px 0, #cc3333 -1px 0 0, #cc3333 0 -1px 0;
-  -webkit-text-shadow: #cc3333 1px 0 0, #cc3333 0 1px 0, #cc3333 -1px 0 0, #cc3333 0 -1px 0;
-  -moz-text-shadow: #cc3333 1px 0 0, #cc3333 0 1px 0, #cc3333 -1px 0 0, #cc3333 0 -1px 0;
-  *filter: Glow(#cc3333, 2);
+  margin: 0 -15px -10px;
+  padding: 10px 15px;
+  width: 100%;
+  max-width: 100%;
+  color: whitesmoke;
 }
