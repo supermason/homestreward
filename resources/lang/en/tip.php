@@ -24,5 +24,6 @@ return [
     ],
     'pList' => [
         'detail' => '宝贝详情',
+        'priceTitle' => '售价：',
     ],
 ];
