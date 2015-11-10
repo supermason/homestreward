@@ -76,8 +76,24 @@ Route::group(['middleware' => 'auth'], function(){
  |--------------------------------------------------------------------------
  */
 Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
+
+    /*
+     |--------------------------------------------------------------------------
+     | 微店产品展示
+     |--------------------------------------------------------------------------
+     */
     Route::get("/", "WDController@index");
     Route::get("/search/{category}/{keyword?}", "WDController@searchByCategory")->where('category', '[0-9]+');
     Route::get("/latest/{category}", "WDController@latestIndex")->where('category', '[0-9]+');
     Route::get("/detail/{id}", "WDController@show")->where('id', '[0-9]+');
+
+    /*
+     |--------------------------------------------------------------------------
+     | 微店管理后台
+     |--------------------------------------------------------------------------
+     */
+    Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth'], function(){
+        Route::get("/", "WDAdminController@index");
+    });
+
 });
