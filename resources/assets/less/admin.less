@@ -1,0 +1,189 @@
+/*
+ * Footer
+ */
+
+@default-background-color: #f9f9f9;
+@default-border-color: #e5e5e5;
+@default-text-color: #999;
+@red-color: #cc3333;
+
+.background-transition (@ease: linear, @duration: 0.5s) {
+  -webkit-transition: background-color @ease @duration;
+  -moz-transition: background-color @ease @duration;
+  -ms-transition: background-color @ease @duration;
+  -o-transition: background-color @ease @duration;
+  transition: background-color @ease @duration;
+}
+
+// 超链接
+a {
+  color: @red-color;
+}
+
+// 导航条
+.admin-navbar {
+
+  border-bottom: 1px solid @default-border-color;
+  //background-color: @default-background-color;
+  background: white none repeat scroll 0 0;
+
+  ul {
+    &.admin-nav {
+
+      padding: 15px;
+
+      li {
+        margin-right: 15px;
+
+        a {
+          padding: 15px 20px;
+
+          &:not(.active) {
+            &:focus,
+            &:hover {
+              background-color: @red-color;
+              color: white;
+              border-radius: 4px;
+
+              .background-transition;
+            }
+          };
+
+          &.active {
+            &:focus,
+            &:hover {
+              .active-selected-with-border;
+              .background-transition;
+            }
+          }
+        }
+
+        ul {
+          &.admin-dropdown-menu  {
+            > li {
+              margin: 0;
+              > a {
+                color: @red-color;
+
+                &:focus,
+                &:hover {
+                  background-image: none;
+                  border-radius: 0;
+                  .active-selected;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 767px) {
+  .admin-navbar {
+    .admin-nav {
+      li {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+.navbar-brand {
+  height: auto;
+}
+
+.active {
+  background-color: transparent;
+  border: 1px solid @red-color;
+  border-radius: 4px;
+
+  font-weight: bold;
+}
+
+.active-selected {
+  background-color: @default-background-color;
+  color: darken(@red-color, 20%);
+}
+
+.active-selected-with-border {
+  border: 1px solid darken(@red-color, 20%);
+  .active-selected;
+}
+
+.navbar-toggle {
+  border: 1px solid @red-color;
+  margin-top: 23px;
+
+  .icon-bar {
+    background: @red-color none repeat scroll 0 0;
+  }
+}
+
+// 大的横幅
+.banner {
+  margin-top: 83px;
+  margin-bottom: 40px;
+  padding: 30px;
+
+  background-color: @red-color;
+  background-image: linear-gradient(to bottom, #563d7c 0px, @red-color 100%);
+  background-repeat: repeat-x;
+  color: lighten(@red-color, 20%);
+  position: relative;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+  h1 {
+    color: #fff;
+    margin-top: 0;
+  }
+
+  p {
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  .container {
+    position: relative;
+  }
+}
+
+@media (min-width:768px) {
+  .banner {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    font-size: 24px;
+    text-align:left;
+
+    h1 {
+      font-size:60px;
+      line-height:1
+    }
+  }
+}
+
+@media (min-width:992px) {
+  .bs-docs-header {
+    h1,
+    p {
+      margin-right:380px
+    }
+  }
+}
+
+
+// 底部信息
+.footer {
+  margin-top: 100px;
+  padding: 40px 0;
+  color: @default-text-color;
+  text-align: center;
+  border-top: 1px solid @default-border-color;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
