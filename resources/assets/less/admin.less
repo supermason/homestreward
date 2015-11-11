@@ -1,18 +1,16 @@
-/*
- * Footer
- */
+
+@import "theme-d";
+@import "transition";
 
 @default-background-color: #f9f9f9;
 @default-border-color: #e5e5e5;
 @default-text-color: #999;
 @red-color: #cc3333;
 
-.background-transition (@ease: linear, @duration: 0.5s) {
-  -webkit-transition: background-color @ease @duration;
-  -moz-transition: background-color @ease @duration;
-  -ms-transition: background-color @ease @duration;
-  -o-transition: background-color @ease @duration;
-  transition: background-color @ease @duration;
+//
+html,
+body {
+  color: @default-text-color;
 }
 
 // 超链接
@@ -24,8 +22,7 @@ a {
 .admin-navbar {
 
   border-bottom: 1px solid @default-border-color;
-  //background-color: @default-background-color;
-  background: white none repeat scroll 0 0;
+  .background-color(white);
 
   ul {
     &.admin-nav {
@@ -42,7 +39,7 @@ a {
             &:focus,
             &:hover {
               background-color: @red-color;
-              color: white;
+              color: lighten(@default-text-color, 30%);
               border-radius: 4px;
 
               .background-transition;
@@ -118,7 +115,7 @@ a {
   margin-top: 23px;
 
   .icon-bar {
-    background: @red-color none repeat scroll 0 0;
+    .background-color(@red-color);
   }
 }
 
@@ -129,7 +126,7 @@ a {
   padding: 30px;
 
   background-color: @red-color;
-  background-image: linear-gradient(to bottom, #563d7c 0px, @red-color 100%);
+  background-image: linear-gradient(to bottom, darken(@red-color, 10%) 0px, @red-color 100%);
   background-repeat: repeat-x;
   color: lighten(@red-color, 20%);
   position: relative;
@@ -154,7 +151,7 @@ a {
 @media (min-width:768px) {
   .banner {
     padding-top: 80px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
     font-size: 24px;
     text-align:left;
 
@@ -174,6 +171,62 @@ a {
   }
 }
 
+// index界面的主要内容部分
+.main-container {
+
+  padding: 50px 0 40px;
+
+  h2 {
+    text-align: center;
+    font-size: 48px;
+    padding: 10px 0 20px;
+    margin-bottom: 40px;
+    color: darken(@default-text-color, 10%);
+  }
+
+  .admin-grid {
+
+    .center;
+
+    padding: 10px 30px;
+
+    a {
+      
+      &::before {
+        content: url("/img/wd/admin/product_admin.png");
+      }
+
+      p {
+        padding: 5px 0 10px;
+        color: @default-text-color;
+      }
+
+      p:first-child {
+        font-size: 20px;
+        font-weight: bold;
+        color: lighten(@red-color, 10%);
+      }
+      
+      p:last-child {
+        text-align: left;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+        color: lighten(@red-color, 10%);
+        outline: none;
+      }
+    }
+
+    &:hover {
+      background-color: @default-background-color;
+      border-radius: 4px;
+      .background-transition;
+    }
+  }
+}
 
 // 底部信息
 .footer {
