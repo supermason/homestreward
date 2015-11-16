@@ -92,8 +92,11 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
      | 微店管理后台
      |--------------------------------------------------------------------------
      */
-    Route::group(['prefix' => 'admin', 'namespace' => 'admin'/*, 'middleware' => 'auth'*/], function(){
+    Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function(){
         Route::get("/", "WDAdminController@index");
+        Route::group(['middleware' => 'auth'], function(){
+
+        });
     });
 
 });
