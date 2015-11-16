@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDiscountInfoTable extends Migration
+class CreateActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDiscountInfoTable extends Migration
     public function up()
     {
         //
-        Schema::create('discount_info', function(Blueprint $table)
+        Schema::create('activities', function(Blueprint $table)
         {
             $table->increments('id')->comment('主键编号');
             $table->double('strength')->comment('打折力度');
@@ -32,6 +32,6 @@ class CreateDiscountInfoTable extends Migration
     public function down()
     {
         //
-        Schema::drop('discount_info');
+        Schema::drop('activities');
     }
 }

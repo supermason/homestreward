@@ -3,9 +3,9 @@
 @import "transition";
 
 @default-background-color: #f9f9f9;
-@default-border-color: #e5e5e5;
 @default-text-color: #999;
-@red-color: #cc3333;
+@red-color: #CA3131;
+@default-border-color: lighten(@red-color, 20%);
 
 //
 html,
@@ -121,7 +121,7 @@ a {
 
 // 大的横幅
 .banner {
-  margin-top: 83px;
+  margin-top: 80px;
   margin-bottom: 40px;
   padding: 30px;
 
@@ -188,12 +188,20 @@ a {
 
     .center;
 
-    padding: 10px 30px;
+    padding: 40px 30px 30px;
 
     a {
-      
-      &::before {
-        content: url("/img/wd/admin/product_admin.png");
+
+      &.product-admin {
+        &::before {
+          content: url("/img/wd/admin/product_admin.png");
+        }
+      }
+
+      &.activity-admin {
+        &::before {
+          content: url("/img/wd/admin/activity_admin.png");
+        }
       }
 
       p {
@@ -205,6 +213,7 @@ a {
         font-size: 20px;
         font-weight: bold;
         color: lighten(@red-color, 10%);
+        margin-top: 10px;
       }
       
       p:last-child {
@@ -221,7 +230,7 @@ a {
     }
 
     &:hover {
-      background-color: @default-background-color;
+      background-color: darken(@default-background-color, 5%);
       border-radius: 4px;
       .background-transition;
     }

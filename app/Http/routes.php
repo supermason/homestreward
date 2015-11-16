@@ -92,8 +92,20 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
      | 微店管理后台
      |--------------------------------------------------------------------------
      */
-    Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth'], function(){
+    Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function(){
+        // 主界面无需登录
         Route::get("/", "WDAdminController@index");
+        // 其他界面必须登陆后才可以访问
+        Route::group(['middleware' => 'auth'], function(){
+            // 产品相关
+            Route::group(['prefix' => 'products'], function(){
+                Route::resource("/", "UserController", ['only' => ['index', 'update']]);
+            });
+            // 活动相关
+            Route::group(['prefix' => 'activities'], function(){
+
+            });
+        });
     });
 
 });

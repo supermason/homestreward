@@ -41,8 +41,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav admin-nav">
-                    <li><a class="active" href="#">{{trans('adminTip.nav.leftNav.product')}}</a> </li>
-                    <li><a href="#">{{trans('adminTip.nav.leftNav.activities')}}</a> </li>
+                    {!! App\UI\Navigation\NavigationCreator::createTopNavContent() !!}
                 </ul>
                 <ul class="nav navbar-nav admin-nav navbar-right">
                     @if (Auth::guest())

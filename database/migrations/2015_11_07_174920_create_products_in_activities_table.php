@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsInDiscountTable extends Migration
+class CreateProductsInActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateProductsInDiscountTable extends Migration
     public function up()
     {
         //
-        Schema::create("products_in_discount", function(Blueprint $table)
+        Schema::create("products_in_activities", function(Blueprint $table)
         {
             $table->increments('id')->comment('主键编号');
-            $table->unsignedInteger('discount_info_id')->comment('打折信息编号');
+            $table->unsignedInteger('activity_id')->comment('打折信息编号');
             $table->unsignedInteger('product_id')->comment('参加折扣活动的商品编号');
             $table->timestamps();
 
-            $table->foreign("discount_info_id")->references("id")->on("discount_info");
+            $table->foreign("activity_id")->references("id")->on("activities");
             $table->foreign("product_id")->references("id")->on("products");
         });
     }
@@ -33,6 +33,6 @@ class CreateProductsInDiscountTable extends Migration
     public function down()
     {
         //
-        Schema::drop('products_in_discount');
+        Schema::drop('products_in_activities');
     }
 }
