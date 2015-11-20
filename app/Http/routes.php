@@ -99,11 +99,11 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
         Route::group(['middleware' => 'auth'], function(){
             // 产品相关
             Route::group(['prefix' => 'products'], function(){
-                Route::resource("/", "UserController", ['only' => ['index', 'update']]);
+                Route::resource("/", "ProductsController");
             });
             // 活动相关
             Route::group(['prefix' => 'activities'], function(){
-
+                Route::resource("/", "ActivitiesController");
             });
         });
     });

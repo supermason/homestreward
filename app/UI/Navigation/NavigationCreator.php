@@ -25,12 +25,16 @@ class NavigationCreator
     public static function createTopNavContent()
     {
         $curURL = Request::url();
-        $nav = "<li><a href=\"#\" " . NavigationCreator::isCurLiEle($curURL, 'products') . ">" . trans('adminTip.nav.leftNav.product') . "</a></li>"
-              . "<li><a href=\"#\" " . NavigationCreator::isCurLiEle($curURL, 'activities') . ">" . trans('adminTip.nav.leftNav.activities') . "</a></li>";
+        $nav = "<li><a href=\"". url('/wd/admin/products/') . "\"" . NavigationCreator::isCurLiEle($curURL, 'products') . ">" . trans('adminTip.nav.leftNav.product') . "</a></li>"
+              . "<li><a href=\"" . url('/wd/admin/activities/') . "\"" . NavigationCreator::isCurLiEle($curURL, 'activities') . ">" . trans('adminTip.nav.leftNav.activities') . "</a></li>";
 
         return $nav;
     }
 
+    public static function createSubNavContent()
+    {
+
+    }
 
     /**
      * 根据是否为当前页面设置高亮类

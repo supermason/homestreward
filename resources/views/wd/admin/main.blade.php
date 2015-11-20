@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="{{asset('/img/wd/admin/wd_admin_logo_reverse.png')}}"></a>
+                <a class="navbar-brand" href="/wd/admin"><img src="{{asset('/img/wd/admin/wd_admin_logo_reverse.png')}}"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav admin-nav">
@@ -62,12 +62,6 @@
             </div>
         </div>
     </nav>
-    <div class="banner">
-        <div class="container">
-            <h1>{{trans('adminTip.banner.title')}}</h1>
-            <p>{{trans('adminTip.banner.content')}}</p>
-        </div>
-    </div>
 
     @yield('content')
 

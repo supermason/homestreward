@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\wd\admin;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,6 +18,9 @@ class ProductsController extends Controller
     public function index()
     {
         //
+        return view("wd.admin.product.index")->withData([
+            'products' => Product::paginate(16),
+        ]);
     }
 
     /**
@@ -27,6 +31,7 @@ class ProductsController extends Controller
     public function create()
     {
         //
+        return view("wd.admin.product.create");
     }
 
     /**
@@ -60,6 +65,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         //
+        return view("wd.admin.product.edit");
     }
 
     /**
