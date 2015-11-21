@@ -1,11 +1,25 @@
-/*
- * Footer
+/**
+ * 桌面端网站的一些通用样式
  */
+.center {
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+/**
+ * 专门负责缓动样式
+ */
+html,
+body {
+  color: #999999;
+  padding-top: 40px;
+}
 a {
-  color: #cc3333;
+  color: #ca3131;
 }
 .admin-navbar {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #eaaaaa;
   background: white none repeat scroll 0 0;
 }
 .admin-navbar ul.admin-nav {
@@ -19,8 +33,8 @@ a {
 }
 .admin-navbar ul.admin-nav li a:not(.active):focus,
 .admin-navbar ul.admin-nav li a:not(.active):hover {
-  background-color: #cc3333;
-  color: white;
+  background-color: #ca3131;
+  color: #e5e5e5;
   border-radius: 4px;
   -webkit-transition: background-color linear 0.5s;
   -moz-transition: background-color linear 0.5s;
@@ -30,9 +44,9 @@ a {
 }
 .admin-navbar ul.admin-nav li a.active:focus,
 .admin-navbar ul.admin-nav li a.active:hover {
-  border: 1px solid #7a1f1f;
+  border: 1px solid #781d1d;
   background-color: #f9f9f9;
-  color: #7a1f1f;
+  color: #781d1d;
   -webkit-transition: background-color linear 0.5s;
   -moz-transition: background-color linear 0.5s;
   -ms-transition: background-color linear 0.5s;
@@ -43,14 +57,14 @@ a {
   margin: 0;
 }
 .admin-navbar ul.admin-nav li ul.admin-dropdown-menu > li > a {
-  color: #cc3333;
+  color: #ca3131;
 }
 .admin-navbar ul.admin-nav li ul.admin-dropdown-menu > li > a:focus,
 .admin-navbar ul.admin-nav li ul.admin-dropdown-menu > li > a:hover {
   background-image: none;
   border-radius: 0;
   background-color: #f9f9f9;
-  color: #7a1f1f;
+  color: #781d1d;
 }
 @media (max-width: 767px) {
   .admin-navbar .admin-nav li {
@@ -62,34 +76,33 @@ a {
 }
 .active {
   background-color: transparent;
-  border: 1px solid #cc3333;
+  border: 1px solid #ca3131;
   border-radius: 4px;
   font-weight: bold;
 }
 .active-selected {
   background-color: #f9f9f9;
-  color: #7a1f1f;
+  color: #781d1d;
 }
 .active-selected-with-border {
-  border: 1px solid #7a1f1f;
+  border: 1px solid #781d1d;
   background-color: #f9f9f9;
-  color: #7a1f1f;
+  color: #781d1d;
 }
 .navbar-toggle {
-  border: 1px solid #cc3333;
+  border: 1px solid #ca3131;
   margin-top: 23px;
 }
 .navbar-toggle .icon-bar {
-  background: #cc3333 none repeat scroll 0 0;
+  background: #ca3131 none repeat scroll 0 0;
 }
 .banner {
-  margin-top: 83px;
   margin-bottom: 40px;
   padding: 30px;
-  background-color: #cc3333;
-  background-image: linear-gradient(to bottom, #563d7c 0px, #cc3333 100%);
+  background-color: #ca3131;
+  background-image: linear-gradient(to bottom, #a12727 0px, #ca3131 100%);
   background-repeat: repeat-x;
-  color: #e08585;
+  color: #e08181;
   position: relative;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
@@ -108,7 +121,7 @@ a {
 @media (min-width: 768px) {
   .banner {
     padding-top: 80px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
     font-size: 24px;
     text-align: left;
   }
@@ -123,12 +136,61 @@ a {
     margin-right: 380px;
   }
 }
+.main-container {
+  padding: 50px 0 40px;
+}
+.main-container h2 {
+  text-align: center;
+  font-size: 48px;
+  padding: 10px 0 20px;
+  margin-bottom: 40px;
+  color: #808080;
+}
+.main-container .admin-grid {
+  text-align: center;
+  padding: 40px 30px 30px;
+}
+.main-container .admin-grid a.product-admin::before {
+  content: url("/img/wd/admin/product_admin.png");
+}
+.main-container .admin-grid a.activity-admin::before {
+  content: url("/img/wd/admin/activity_admin.png");
+}
+.main-container .admin-grid a p {
+  padding: 5px 0 10px;
+  color: #999999;
+}
+.main-container .admin-grid a p:first-child {
+  font-size: 20px;
+  font-weight: bold;
+  color: #d65858;
+  margin-top: 10px;
+}
+.main-container .admin-grid a p:last-child {
+  text-align: left;
+}
+.main-container .admin-grid a:hover,
+.main-container .admin-grid a:active,
+.main-container .admin-grid a:focus {
+  text-decoration: none;
+  color: #d65858;
+  outline: none;
+}
+.main-container .admin-grid:hover {
+  background-color: #ececec;
+  border-radius: 4px;
+  -webkit-transition: background-color linear 0.5s;
+  -moz-transition: background-color linear 0.5s;
+  -ms-transition: background-color linear 0.5s;
+  -o-transition: background-color linear 0.5s;
+  transition: background-color linear 0.5s;
+}
 .footer {
   margin-top: 100px;
   padding: 40px 0;
   color: #999999;
   text-align: center;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #eaaaaa;
 }
 .footer p:last-child {
   margin-bottom: 0;
