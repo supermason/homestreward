@@ -17,6 +17,7 @@ class ActivitiesController extends Controller
     public function index()
     {
         //
+        return view("wd.admin.activity.index");
     }
 
     /**
