@@ -6,12 +6,17 @@
 @default-text-color: #999;
 @red-color: #CA3131;
 @default-border-color: lighten(@red-color, 30%);
+@gray-border-color: #ddd;
 
 //
 html,
 body {
   color: @default-text-color;
   padding-top: 40px;
+}
+
+.top-gap {
+  margin-top: 30px;
 }
 
 // 超链接
@@ -24,6 +29,27 @@ a {
 
   border-bottom: 1px solid @default-border-color;
   .background-color(white);
+  box-shadow: 0 0px 3px rgba(204, 51, 51, 0.5);
+  -webkit-box-shadow: 0 0px 3px rgba(204, 51, 51, 0.5);
+  -moz-box-shadow: 0 0px 3px rgba(204, 51, 51, 0.5);
+
+  .active {
+    background-color: transparent;
+    border: 1px solid @red-color;
+    border-radius: 4px;
+
+    font-weight: bold;
+  }
+
+  .active-selected {
+    background-color: @default-background-color;
+    color: darken(@red-color, 20%);
+  }
+
+  .active-selected-with-border {
+    border: 1px solid darken(@red-color, 20%);
+    .active-selected;
+  }
 
   ul {
     &.admin-nav {
@@ -40,7 +66,7 @@ a {
             &:focus,
             &:hover {
               background-color: @red-color;
-              color: lighten(@default-text-color, 30%);
+              color: white;
               border-radius: 4px;
 
               .background-transition;
@@ -91,24 +117,6 @@ a {
 
 .navbar-brand {
   height: auto;
-}
-
-.active {
-  background-color: transparent;
-  border: 1px solid @red-color;
-  border-radius: 4px;
-
-  font-weight: bold;
-}
-
-.active-selected {
-  background-color: @default-background-color;
-  color: darken(@red-color, 20%);
-}
-
-.active-selected-with-border {
-  border: 1px solid darken(@red-color, 20%);
-  .active-selected;
 }
 
 .navbar-toggle {
@@ -237,13 +245,105 @@ a {
   }
 }
 
+// product和activity页的tab导航样式
+.sub-admin-nav {
+  > li {
+
+    &.active {
+      > a {
+        color: @red-color;
+        &:hover {
+          color: @red-color;
+        }
+      }
+    }
+
+    > a {
+
+      color: @default-text-color;
+
+      &:hover,
+      &:focus {
+        //color: @red-color;
+        //border-color: @default-background-color;
+        //background: @default-background-color;
+        //.background-transition;
+      }
+    }
+  }
+}
+
+// 产品列表容器
+
+.p-container {
+  content: "";
+  display: table;
+}
+
+.product-content {
+  border-left: 1px solid @gray-border-color;
+  border-right: 1px solid @gray-border-color;
+  border-bottom: 1px solid @gray-border-color;
+
+  &:before {
+    .p-container;
+  }
+
+  &:after {
+    .p-container;
+    clear: both;
+  }
+
+  padding: 10px 5px 10px;
+
+  .product-box {
+    padding: 5px;
+    border: 2px solid transparent;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    &:hover {
+      border: 2px solid @default-border-color;
+    }
+
+    .product-box-content {
+      background-color: @default-background-color;
+      margin-top: -20px;
+      padding: 10px 15px;
+      border-radius: 4px;
+
+      .product-box-content-footer {
+        text-align: right;
+
+        > a {
+          text-decoration: none;
+
+          &:hover,
+          &:focus {
+            color: darken(@red-color, 10%);
+          }
+        }
+      }
+    }
+
+    .pagination-container {
+      float: left;
+      width: 100%;
+    }
+  }
+}
+
+.pagination {
+  float: right;
+}
+
 // 底部信息
 .footer {
   margin-top: 100px;
   padding: 40px 0;
   color: @default-text-color;
   text-align: center;
-  border-top: 1px solid @default-border-color;
+  border-top: 1px solid @gray-border-color;
 
   p:last-child {
     margin-bottom: 0;

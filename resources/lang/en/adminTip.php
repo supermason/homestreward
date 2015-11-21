@@ -27,5 +27,17 @@ return [
         'title' => '管理我的小店',
         'productAdminInfo' => '在这里，你可以添加新的产品数据，也可以修改或删除现有产品的数据',
         'activityAdminInfo' => '在这里，你可以添加新的活动数据，也可以修改或删除现有活动的数据'
+    ],
+    'products' => [
+        'productList' => [
+            'title' => '产品列表',
+            'edit' => '修改'
+        ],
+        'addNewProduct' => [
+            'title' => '新增产品'
+        ],
+        'editProduct' => [
+            'title' => '修改产品'
+        ],
     ]
 ];
