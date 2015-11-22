@@ -21,24 +21,47 @@
             </li>
         </ul>
         <div class="product-content">
-            @if (count($data['products']) == 0)
-                no items.
-            @else
-                @foreach ($data['products'] as $product)
-                    <div class="product-box col-md-3">
-                        <img src="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" class="thumbnail img-responsive" />
-                        <div class="product-box-content">
-                            <h2>{{$product->name}}</h2>
-                            <p class="color-gray">{{$product->subtitle}}</p>
-                            <p>{{trans('tip.pList.priceTitle')}}<span class="normal-price">300.00</span><span class="discount">220.00</span></p>
-                            <div class="product-box-content-footer">
-                                <a href="#" class="link">{{trans('adminTip.products.productList.edit')}}</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button">Go!</button>
+                </span>
+            </div>
 
-            @endif
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{trans('adminTip.products.productList.pInfo.thumbnail')}}</th>
+                        <th>{{trans('adminTip.products.productList.pInfo.name')}}</th>
+                        <th>{{trans('adminTip.products.productList.pInfo.subtitle')}}</th>
+                        <th>{{trans('adminTip.products.productList.pInfo.price')}}</th>
+                        <th>{{trans('adminTip.products.productList.pInfo.operation')}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($data['products']) == 0)
+                        <tr>
+                            <td colspan="4">no items</td>
+                        </tr>
+                    @else
+                        @foreach ($data['products'] as $product)
+                            <tr>
+                                <td></td>
+                                <td><img src="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" class="thumbnail product-img"/></td>
+                                <td><h4>{{$product->name}}</h4></td>
+                                <td>{{$product->subtitle}}</td>
+                                <td><span class="normal-price">300.00</span><span class="discount">220.00</span></td>
+                                <td><a href="#" class="btn btn-danger btn-sm">{{trans('adminTip.products.productList.edit')}}</a> </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
+
+            <div class="page-info">
+                <p><code>{{strtr(trans('adminTip.products.pagination'), ['@' => '16', '#' => $data['products']->total()])}}</code></p>
+            </div>
         </div>
         {!! $data['products']->render() !!}
     </div>

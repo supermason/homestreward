@@ -31,7 +31,14 @@ return [
     'products' => [
         'productList' => [
             'title' => '产品列表',
-            'edit' => '修改'
+            'edit' => '修改',
+            'pInfo' => [
+                'thumbnail' => '图片',
+                'name' => '名称',
+                'subtitle' => '描述',
+                'price' => '售价',
+                'operation' => '操作'
+            ],
         ],
         'addNewProduct' => [
             'title' => '新增产品'
@@ -39,5 +46,6 @@ return [
         'editProduct' => [
             'title' => '修改产品'
         ],
+        'pagination' => '每页显示@件，共#件商品',
     ]
 ];
