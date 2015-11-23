@@ -98,13 +98,15 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
         // 其他界面必须登陆后才可以访问
         Route::group(['middleware' => 'auth'], function(){
             // 产品相关
-            Route::group(['prefix' => 'products'], function(){
-                Route::resource("/", "ProductsController");
-            });
+            Route::resource("products", "ProductsController");
+//            Route::group(['prefix' => 'products'], function(){
+//                Route::resource("/", "ProductsController");
+//            });
             // 活动相关
-            Route::group(['prefix' => 'activities'], function(){
-                Route::resource("/", "ActivitiesController");
-            });
+            Route::resource("activities", "ActivitiesController");
+//            Route::group(['prefix' => 'activities'], function(){
+//                Route::resource("/", "ActivitiesController");
+//            });
         });
     });
 
