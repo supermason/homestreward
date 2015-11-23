@@ -49,10 +49,10 @@
                             <tr>
                                 <td></td>
                                 <td><img src="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" class="thumbnail product-img"/></td>
-                                <td><h4>{{$product->name}}</h4></td>
+                                <td><h4><strong>{{$product->name}}</strong></h4></td>
                                 <td>{{$product->subtitle}}</td>
                                 <td><span class="normal-price">300.00</span><span class="discount">220.00</span></td>
-                                <td><a href="#" class="btn btn-danger btn-sm">{{trans('adminTip.products.productList.edit')}}</a> </td>
+                                <td><a href="{{url('/wd/admin/products/'.$product->id.'/edit/')}}" class="btn btn-danger btn-sm">{{trans('adminTip.products.productList.edit')}}</a> </td>
                             </tr>
                         @endforeach
                     @endif

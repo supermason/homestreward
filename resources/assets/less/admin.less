@@ -5,8 +5,11 @@
 @default-background-color: #f9f9f9;
 @default-text-color: #999;
 @red-color: #CA3131;
+@red-dark: darken(@red-color, 20%);
 @default-border-color: lighten(@red-color, 30%);
 @gray-border-color: #ddd;
+@red-tab-border: @red-color @red-color transparent;
+@red-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
 
 //
 html,
@@ -17,6 +20,12 @@ body {
 
 .top-gap {
   margin-top: 30px;
+}
+
+.red-shadow {
+  -webkit-box-shadow: @red-box-shadow;
+  -moz-box-shadow: @red-box-shadow;
+  box-shadow: @red-box-shadow;
 }
 
 // 超链接
@@ -43,11 +52,11 @@ a {
 
   .active-selected {
     background-color: @default-background-color;
-    color: darken(@red-color, 20%);
+    color: @red-dark;
   }
 
   .active-selected-with-border {
-    border: 1px solid darken(@red-color, 20%);
+    border: 1px solid @red-dark;
     .active-selected;
   }
 
@@ -247,13 +256,20 @@ a {
 
 // product和activity页的tab导航样式
 .sub-admin-nav {
+
+  border-color: @red-color;
+
   > li {
 
     &.active {
       > a {
         color: @red-color;
-        &:hover {
+        font-weight: bold;
+        border-color: @red-tab-border;
+        &:hover,
+        &:focus {
           color: @red-color;
+          border-color: @red-tab-border;
         }
       }
     }
@@ -264,6 +280,8 @@ a {
 
       &:hover,
       &:focus {
+        border-color: @red-tab-border;
+        color: @red-dark;
         //color: @red-color;
         //border-color: @default-background-color;
         //background: @default-background-color;
@@ -281,9 +299,9 @@ a {
 }
 
 .product-content {
-  border-left: 1px solid @gray-border-color;
-  border-right: 1px solid @gray-border-color;
-  border-bottom: 1px solid @gray-border-color;
+  border-left: 1px solid @red-color;
+  border-right: 1px solid @red-color;
+  border-bottom: 1px solid @red-color;
 
   //.input-group {
   //  margin: 10px 15px;
@@ -304,19 +322,11 @@ a {
 
     border-color: lighten(@red-color, 20%);
     color: darken(@red-color, 10%);
-
-    &::-moz-placeholder,
-    &:-moz-placeholder,
-    &::-webkit-input-placeholder,
-    &:-ms-input-placeholder {
-      color: darken(@red-color, 10%);
-    }
+    box-shadow: 0 1px 1px rgba(204, 51, 51, 0.075) inset;
 
     &:focus {
       border-color: @red-color;
-      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
-      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
+      .red-shadow;
     }
   }
 
@@ -326,7 +336,7 @@ a {
 
     thead {
       color: whitesmoke;
-      background-color: darken(@red-color, 20%);
+      background-color: @red-dark;
     }
 
     tbody {
@@ -345,12 +355,38 @@ a {
     }
   }
 
+  .table-hover {
+    > tbody {
+      > tr {
+        &:hover {
+          background-color: lighten(@red-color, 45%);
+          color: @red-dark;
+        }
+      }
+    }
+  }
+
   .page-info {
     border-top: 1px solid @gray-border-color;
     margin-top: -20px;
     padding: 15px;
     text-align: center;
   }
+}
+
+.placeholder {
+  color: darken(@red-color, 10%);
+  opacity: 0.6;
+}
+
+.form-control::-moz-placeholder {
+  .placeholder;
+}
+.form-control::-webkit-input-placeholder {
+  .placeholder;
+}
+.form-control:-ms-input-placeholder {
+  .placeholder;
 }
 
 .pagination {
@@ -363,7 +399,8 @@ a {
   padding: 40px 0;
   color: @default-text-color;
   text-align: center;
-  border-top: 1px solid @gray-border-color;
+  background-color: lighten(@red-color, 45%);
+  //border-top: 1px solid @default-border-color;
 
   p:last-child {
     margin-bottom: 0;
