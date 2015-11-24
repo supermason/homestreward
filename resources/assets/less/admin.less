@@ -389,8 +389,41 @@ a {
   .placeholder;
 }
 
+// 页码样式
+
+.page-active {
+  background-color: @red-color;
+  border-color: @red-color;
+}
+
 .pagination {
+
   float: right;
+
+  > .active {
+     > a,
+     > span {
+
+       .page-active;
+
+       &:focus,
+       &:hover {
+         .page-active;
+       }
+     }
+  }
+
+  > li {
+    > a,
+    > span {
+      color: @red-color;
+
+      &:focus,
+      &:hover {
+        color: @red-color;
+      }
+    }
+  }
 }
 
 // 底部信息
