@@ -41,11 +41,37 @@ return [
             ],
         ],
         'addNewProduct' => [
-            'title' => '新增产品'
+            'title' => '新增产品',
+            'form' => [
+                'pName' => '名称',
+                'pNameTip' => '请输入产品名称',
+                'pSubtitle' => '副标题',
+                'pSubtitleTip' => '请输入副标题',
+                'pImg' => '图片',
+                'pCategory' => '类型',
+                'pPrice' => '零售价',
+                'pPriceTip' => '请输入零售价格',
+                'pWholesalePrice' => '代理价',
+                'pWholesalePriceTip' => '请输入代理价格',
+                'pCount' => '数量',
+                'pCountTip' => '请输入数量',
+                'pDescription' => '介绍',
+                'pDescriptionTip' => '请输入简单的产品介绍',
+                'pAdd' => '添加'
+            ],
+            'errors' => [
+                'title' => '填写产品信息有误，以下是错误详情',
+                'addError' => '产品添加失败',
+            ]
         ],
         'editProduct' => [
             'title' => '修改产品'
         ],
         'pagination' => '每页显示@件，共#件商品',
+        'form' => [
+            'mustFill' => '* 必填项',
+            'mustSelect' => '* 必选',
+            'recommend' => '建议填写'
+        ]
     ]
 ];

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\WD;
 use Illuminate\Http\Request;
 
 use App\Menu;
-use App\Products;
+use App\Product;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -71,7 +71,7 @@ class WDController extends Controller
      */
     private function doSearchByCategory($category, $keyword=null)
     {
-        $queryObj = Products::where('category_id', '=', $category);
+        $queryObj = Product::where('category_id', '=', $category);
 
         if (!is_null($keyword)) {
             $queryObj = $queryObj->where('name', 'like', '%'.$keyword.'%');
