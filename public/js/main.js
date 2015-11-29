@@ -6,6 +6,7 @@ requirejs.config({
     baseUrl: 'js/lib',
 
     paths: {
+        lang: '../language',
         bill: '../bill',
         user: '../user',
         app: '../app',

@@ -15,3 +15,17 @@
 .hidden {
   display: none;
 }
+
+.arrow-left (@size: 20px, @color: #CA3131) {
+  width:0;
+  height:0;
+  font-size: 0;
+  vertical-align: middle;
+  border-top: @size solid transparent;
+  border-right: @size * 1.5 solid @color;
+  border-bottom: @size solid transparent;
+}
+
+.btn-fill {
+  width: 100%;
+}

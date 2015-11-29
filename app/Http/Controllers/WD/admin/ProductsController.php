@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\wd\admin;
 
+use App\Menu;
 use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class ProductsController extends Controller
 {
@@ -31,7 +33,9 @@ class ProductsController extends Controller
     public function create()
     {
         //
-        return view("wd.admin.product.create");
+        return view("wd.admin.product.create")->withData([
+            'pCategory' => Menu::all(),
+        ]);
     }
 
     /**
@@ -42,7 +46,33 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 验证一下必填项
+        $this->validate($request, [
+            'name' => 'required',
+            'productImg' => 'required',
+            'price' => 'required',
+            'wholesalePrice' => 'required',
+            'description' => 'required',
+         ]);
+
+        // 图片怎么处理呢？
+
+        $product = new Product([
+            'name' => Input::get('name'),
+            'subtitle' => Input::get('subtitle'),
+            'thumbnail' => 'sdfsdfsdf',
+            'category_id' => Input::get('category'),
+            'retail_price' => Input::get('price'),
+            'wholesale_price' => Input::get('wholesalePrice'),
+            'count' => Input::get('count'),
+            'description' => Input::get('description'),
+        ]);
+
+        if ($product->save()) {
+
+        } else {
+            return Redirect::back()->withInput()->withErrors(trans('products.addNewProduct.errors.addError'));
+        }
     }
 
     /**
