@@ -7,3 +7,6 @@
 .hidden {
   display: none;
 }
+.btn-fill {
+  width: 100%;
+}
