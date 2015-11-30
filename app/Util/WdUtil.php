@@ -6,7 +6,7 @@
  * Time: 13:34
  */
 
-namespace app\Util;
+namespace App\Util;
 
 
 class WdUtil

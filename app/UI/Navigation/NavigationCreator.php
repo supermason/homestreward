@@ -6,7 +6,7 @@
  * Time: 15:09
  */
 
-namespace app\UI\Navigation;
+namespace App\UI\Navigation;
 
 
 use Illuminate\Support\Facades\Request;
@@ -20,13 +20,14 @@ class NavigationCreator
 
     /**
      * 创建顶部导航内容，并根据当前页面做对应的高亮设置
+     *
      * @return string
      */
     public static function createTopNavContent()
     {
         $curURL = Request::url();
-        $nav = "<li><a href=\"". url('/wd/admin/products/') . "\"" . NavigationCreator::isCurLiEle($curURL, 'products') . ">" . trans('adminTip.nav.leftNav.product') . "</a></li>"
-              . "<li><a href=\"" . url('/wd/admin/activities/') . "\"" . NavigationCreator::isCurLiEle($curURL, 'activities') . ">" . trans('adminTip.nav.leftNav.activities') . "</a></li>";
+        $nav = "<li><a href=\"". url('/wd/admin/products/') . "\"" . static::isCurLiEle($curURL, 'products') . ">" . trans('adminTip.nav.leftNav.product') . "</a></li>"
+              . "<li><a href=\"" . url('/wd/admin/activities/') . "\"" . static::isCurLiEle($curURL, 'activities') . ">" . trans('adminTip.nav.leftNav.activities') . "</a></li>";
 
         return $nav;
     }
@@ -38,8 +39,9 @@ class NavigationCreator
 
     /**
      * 根据是否为当前页面设置高亮类
-     * @param $url
-     * @param $liName
+     *
+     * @param string $url
+     * @param string $liName
      * @return string
      */
     static private function isCurLiEle($url, $liName)
@@ -47,7 +49,7 @@ class NavigationCreator
         // strpos和stripos都是indexOf的功能，但是前者区分大小写
         if (stripos($url, $liName))
         {
-            return "class=\"active\"";
+            return " class=\"active\"";
         }
         else
         {

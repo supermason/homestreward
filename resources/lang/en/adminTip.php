@@ -65,7 +65,11 @@ return [
             ]
         ],
         'editProduct' => [
-            'title' => '修改产品'
+            'title' => '修改产品',
+            'form' => [
+                'pCurImg' => '当前图片',
+                'pEdit' => '修改',
+            ],
         ],
         'pagination' => '每页显示@件，共#件商品',
         'form' => [

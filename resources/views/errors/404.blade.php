@@ -44,7 +44,7 @@
                 <div class="title">悟空，你又调皮啦>_<...</div>
             </div>
             <div class="content">
-                <div class="title"><a href="{{URL('/wd/latest/1')}}">返回</a> </div>
+                <div class="title"><a href="javascript:history.go(-1);">返回</a> </div>
             </div>
         </div>
     </body>
