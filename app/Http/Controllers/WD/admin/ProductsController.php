@@ -10,6 +10,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
+use App\UI\Select\SelectCreator;
+
 class ProductsController extends Controller
 {
     /**
@@ -94,8 +96,14 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
+        // 会自动抛出异常，在handler里单独处理一下
+        $product = Product::findOrFail($id);
+
         //
-        return view("wd.admin.product.edit");
+        return view("wd.admin.product.edit")->withData([
+            "product" => $product,
+            "options" => SelectCreator::createOptions(Menu::class, ["product_category", "label"], $product->category_id),
+        ]);
     }
 
     /**

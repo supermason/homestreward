@@ -21,7 +21,7 @@
             </li>
         </ul>
 
-        <div class="add-product">
+        <div class="common-form-container">
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
