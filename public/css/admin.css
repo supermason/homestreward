@@ -242,49 +242,49 @@ a {
   content: "";
   display: table;
 }
-.product-form-control {
+.wd-form-control {
   border-color: #e08181;
   color: #a12727;
   box-shadow: 0 1px 1px rgba(204, 51, 51, 0.075) inset;
   border-radius: 0;
 }
-.product-form-control:focus {
+.wd-form-control:focus {
   border-color: #ca3131;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
 }
-.product-common {
+.wd-common-container {
   border-left: 1px solid #ca3131;
   border-right: 1px solid #ca3131;
   border-bottom: 1px solid #ca3131;
   padding: 20px;
 }
-.product-common:before {
+.wd-common-container:before {
   content: "";
   display: table;
 }
-.product-common:after {
+.wd-common-container:after {
   content: "";
   display: table;
   clear: both;
 }
-.product-common .form-control {
+.wd-common-container .form-control {
   border-color: #e08181;
   color: #a12727;
   box-shadow: 0 1px 1px rgba(204, 51, 51, 0.075) inset;
   border-radius: 0;
 }
-.product-common .form-control:focus {
+.wd-common-container .form-control:focus {
   border-color: #ca3131;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
 }
-.product-common .form-control:not(textarea) {
+.wd-common-container .form-control:not(textarea) {
   height: 44px;
 }
-.product-common textarea {
+.wd-common-container textarea {
   resize: none;
 }
 .product-content {
@@ -345,40 +345,40 @@ a {
   padding: 15px;
   text-align: center;
 }
-.add-product {
+.common-form-container {
   border-left: 1px solid #ca3131;
   border-right: 1px solid #ca3131;
   border-bottom: 1px solid #ca3131;
   padding: 20px;
 }
-.add-product:before {
+.common-form-container:before {
   content: "";
   display: table;
 }
-.add-product:after {
+.common-form-container:after {
   content: "";
   display: table;
   clear: both;
 }
-.add-product .form-control {
+.common-form-container .form-control {
   border-color: #e08181;
   color: #a12727;
   box-shadow: 0 1px 1px rgba(204, 51, 51, 0.075) inset;
   border-radius: 0;
 }
-.add-product .form-control:focus {
+.common-form-container .form-control:focus {
   border-color: #ca3131;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
 }
-.add-product .form-control:not(textarea) {
+.common-form-container .form-control:not(textarea) {
   height: 44px;
 }
-.add-product textarea {
+.common-form-container textarea {
   resize: none;
 }
-.add-product input[type="file"] {
+.common-form-container input[type="file"] {
   width: 100%;
   height: 44px;
   border: 1px solid;
@@ -388,24 +388,24 @@ a {
   box-shadow: 0 1px 1px rgba(204, 51, 51, 0.075) inset;
   border-radius: 0;
 }
-.add-product input[type="file"]:focus {
+.common-form-container input[type="file"]:focus {
   border-color: #ca3131;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 51, 51, 0.6);
 }
-.add-product .form-group .control-label {
+.common-form-container .form-group .control-label {
   color: #781d1d;
 }
-.add-product h3 {
+.common-form-container h3 {
   margin: 5px 0 0;
 }
-.add-product h3 .label {
+.common-form-container h3 .label {
   border-radius: 0;
   height: 44px;
   padding: 0.3em 1em 0.4em;
 }
-.add-product h3 .label-danger {
+.common-form-container h3 .label-danger {
   background-color: #ca3131;
 }
 .placeholder {
@@ -455,7 +455,7 @@ a {
 }
 .footer {
   margin-top: 100px;
-  padding: 40px 0;
+  padding: 60px 0;
   color: #999999;
   text-align: center;
   background-color: #f9e7e7;

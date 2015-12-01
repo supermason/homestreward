@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{url('/wd/admin/products/store')}}">
+            <form class="form-horizontal" action="{{url('/wd/admin/products/store')}}" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pName')}}</label>
                     <div class="col-md-9">

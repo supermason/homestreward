@@ -36,7 +36,8 @@ return [
                 'thumbnail' => '图片',
                 'name' => '名称',
                 'subtitle' => '描述',
-                'price' => '售价',
+                'retailPrice' => '零售价',
+                'wholesalePrice' => '批发价',
                 'operation' => '操作'
             ],
         ],

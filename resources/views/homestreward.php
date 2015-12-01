@@ -230,10 +230,10 @@
                 </a>
             </div>
         </div>
-        <div class="footer">
-            <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;
-            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>
-        </div>
+<!--        <div class="footer">-->
+<!--            <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;-->
+<!--            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>-->
+<!--        </div>-->
     </div>
     <!-- Path to your app js-->
     <script data-main="js/main" src="/js/lib/require.js"></script>
