@@ -57,23 +57,71 @@ class ProductsController extends Controller
             'description' => 'required',
          ]);
 
-        // 图片怎么处理呢？
+        $status = [
+            'ok' => true,
+            'msg' => ''
+        ];
 
-        $product = new Product([
-            'name' => Input::get('name'),
-            'subtitle' => Input::get('subtitle'),
-            'thumbnail' => 'sdfsdfsdf',
-            'category_id' => Input::get('category'),
-            'retail_price' => Input::get('price'),
-            'wholesale_price' => Input::get('wholesalePrice'),
-            'count' => Input::get('count'),
-            'description' => Input::get('description'),
-        ]);
+        $imgPath = '';
 
-        if ($product->save()) {
+        // 单独处理图片
+        if ($request->hasFile('productImg')) {
+
+            $img = $request->file('productImg');
+
+            if ($img->isValid()) {
+
+                $clientName = $img->getClientOriginalName();
+                $tmpName = $img->getFilename();
+                $realPath = $img->getRealPath();
+                $extension = $img->getClientOriginalExtension();
+                $mimeType = $img->getMimeType();
+                $newName = md5(date('ymdhis') . $clientName) . "." . $extension;
+                // 移动图片到指定的文件夹(这里还需要做一个大小的剪裁)
+                $imgPath = '/img/wd/product/' . Input::get('category');
+                // 目录不存在，就创建一个
+                if (!file_exists($imgPath)) {
+                    mkdir($imgPath, 0777, true);
+                }
+                $imgPath = $img->move($imgPath, $newName);
+
+            } else {
+
+                $status['ok'] = false;
+                $status['msg'] = '';
+            }
 
         } else {
-            return Redirect::back()->withInput()->withErrors(trans('products.addNewProduct.errors.addError'));
+
+            $status['ok'] = false;
+            $status['msg'] = '';
+        }
+
+        if ($status['ok']) {
+
+            $product = new Product([
+                'name' => Input::get('name'),
+                'subtitle' => Input::get('subtitle'),
+                'thumbnail' => $imgPath,
+                'category_id' => Input::get('category'),
+                'retail_price' => Input::get('price'),
+                'wholesale_price' => Input::get('wholesalePrice'),
+                'count' => Input::get('count'),
+                'description' => Input::get('description'),
+            ]);
+
+            if (!$product->save()) {
+
+                $status['ok'] = false;
+                $status['msg'] = trans('products.addNewProduct.errors.addError');
+            }
+        }
+
+
+        if ($status['ok']) {
+
+        } else {
+            return Redirect::back()->withInput()->withErrors($status['msg']);
         }
     }
 
