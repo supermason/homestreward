@@ -153,8 +153,16 @@ class ProductsController extends Controller
         $product->count = Input::get('count');
         $product->description = Input::get('description');
         // 单独处理图片
+        $newImg = ImageUtil::saveImgFromRequest($request, 'productImg', 'img/wd/product/' . Input::get('category'));
+        if (!is_null($newImg)) {
+            $product->thumbnail = $newImg;
+        }
 
-
+        if ($product->save()) {
+            return Redirect::back()->withMessage('ok');
+        } else {
+            return Redirect::back()->withInput()->withErrors('error');
+        }
 
     }
 
