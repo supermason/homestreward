@@ -24,7 +24,8 @@
         <div class="common-form-container">
 
             @if (count($errors) > 0)
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Whoops!</strong>{{ trans('products.addNewProduct.errors.title') }}
                     <br/>
                     <br/>
@@ -36,7 +37,8 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{url('/wd/admin/products/update')}}">
+            <form class="form-horizontal" action="{{url('/wd/admin/products/' . $data["product"]->id)}}" method="put" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pName')}}</label>
                     <div class="col-md-9">
@@ -58,16 +60,13 @@
                 <div class="form-group">
                     <label for="curImg" class="col-md-1 control-label">{{trans('adminTip.products.editProduct.form.pCurImg')}}</label>
                     <div class="col-md-9">
-                        <img src="{{1}}"/>
+                        <img src="{{App\Util\WdUtil::getProductImgUrl($data["product"]->category_id, $data["product"]->thumbnail)}}" class="img-responsive editable-img"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="productImg" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pImg')}}</label>
                     <div class="col-md-9">
-                        <input type="file" id="productImg" name="productImg" required accept="image/*">
-                    </div>
-                    <div class="col-md-2">
-                        <h3><span class="danger-left-arrow"></span><span class="label label-danger">{{trans('adminTip.products.form.mustSelect')}}</span></h3>
+                        <input type="file" id="productImg" name="productImg" accept="image/*">
                     </div>
                 </div>
                 <div class="form-group">
@@ -105,7 +104,7 @@
                 <div class="form-group">
                     <label for="description" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pDescription')}}</label>
                     <div class="col-md-9">
-                        <textarea type="text" class="form-control" id="description" name="description" placeholder="{{trans('adminTip.products.addNewProduct.form.pDescriptionTip')}}" rows="4" required value="{{$data["product"]->description}}"></textarea>
+                        <textarea type="text" class="form-control" id="description" name="description" placeholder="{{trans('adminTip.products.addNewProduct.form.pDescriptionTip')}}" rows="4" required>{{$data["product"]->description}}</textarea>
                     </div>
                     <div class="col-md-2">
                         <h3><span class="danger-left-arrow"></span><span class="label label-danger">{{trans('adminTip.products.form.mustFill')}}</span></h3>

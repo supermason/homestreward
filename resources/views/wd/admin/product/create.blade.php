@@ -24,7 +24,8 @@
         <div class="common-form-container">
 
             @if (count($errors) > 0)
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Whoops!</strong>{{ trans('products.addNewProduct.errors.title') }}
                     <br/>
                     <br/>
@@ -36,7 +37,15 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{url('/wd/admin/products/store')}}" method="post" enctype="multipart/form-data">
+            @if (isset($message))
+                <div class="alert alert-success alert-dismissable fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{$message}}</strong>
+                </div>
+            @endif
+
+            <form class="form-horizontal" action="{{url('/wd/admin/products')}}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pName')}}</label>
                     <div class="col-md-9">

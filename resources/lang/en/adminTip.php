@@ -63,6 +63,7 @@ return [
             'errors' => [
                 'title' => '填写产品信息有误，以下是错误详情',
                 'addError' => '产品添加失败',
+                'imgError' => '产品图片保存失败'
             ]
         ],
         'editProduct' => [

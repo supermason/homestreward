@@ -11,6 +11,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
 use App\UI\Select\SelectCreator;
+use App\Util\Graphics\ImageUtil;
+
+use Illuminate\Support\Facades\Redirect;
 
 class ProductsController extends Controller
 {
@@ -23,7 +26,7 @@ class ProductsController extends Controller
     {
         //
         return view("wd.admin.product.index")->withData([
-            'products' => Product::paginate(16),
+            'products' => Product::orderBy('created_at', 'desc')->paginate(16),
         ]);
     }
 
@@ -58,47 +61,13 @@ class ProductsController extends Controller
          ]);
 
         $status = [
-            'ok' => true,
+            'ok' => false,
             'msg' => ''
         ];
 
-        $imgPath = '';
+        $imgPath = ImageUtil::saveImgFromRequest($request, 'productImg', 'img/wd/product/' . Input::get('category'));
 
-        // 单独处理图片
-        if ($request->hasFile('productImg')) {
-
-            $img = $request->file('productImg');
-
-            if ($img->isValid()) {
-
-                $clientName = $img->getClientOriginalName();
-                $tmpName = $img->getFilename();
-                $realPath = $img->getRealPath();
-                $extension = $img->getClientOriginalExtension();
-                $mimeType = $img->getMimeType();
-                $newName = md5(date('ymdhis') . $clientName) . "." . $extension;
-                // 移动图片到指定的文件夹(这里还需要做一个大小的剪裁)
-                $imgPath = '/img/wd/product/' . Input::get('category');
-                // 目录不存在，就创建一个
-                if (!file_exists($imgPath)) {
-                    mkdir($imgPath, 0777, true);
-                }
-                $imgPath = $img->move($imgPath, $newName);
-
-            } else {
-
-                $status['ok'] = false;
-                $status['msg'] = '';
-            }
-
-        } else {
-
-            $status['ok'] = false;
-            $status['msg'] = '';
-        }
-
-        if ($status['ok']) {
-
+        if (!is_null($imgPath)) {
             $product = new Product([
                 'name' => Input::get('name'),
                 'subtitle' => Input::get('subtitle'),
@@ -111,15 +80,17 @@ class ProductsController extends Controller
             ]);
 
             if (!$product->save()) {
-
-                $status['ok'] = false;
                 $status['msg'] = trans('products.addNewProduct.errors.addError');
+            } else {
+                $status['ok'] = true;
             }
+        } else {
+            $status['msg'] = trans('products.addNewProduct.errors.imgError');
         }
 
 
         if ($status['ok']) {
-
+            return Redirect::back()->withMessage('ok');
         } else {
             return Redirect::back()->withInput()->withErrors($status['msg']);
         }
@@ -163,7 +134,28 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // 先验证
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required',
+            'wholesalePrice' => 'required',
+            'description' => 'required',
+        ]);
+
         //
+        $product = Product::findOrFail($id);
+
+        $product->name = Input::get('name');
+        $product->subtitle = Input::get('subtitle');
+        $product->category_id = Input::get('category');
+        $product->retail_price = Input::get('price');
+        $product->wholesale_price = Input::get('wholesalePrice');
+        $product->count = Input::get('count');
+        $product->description = Input::get('description');
+        // 单独处理图片
+
+
+
     }
 
     /**
