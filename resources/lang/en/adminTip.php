@@ -60,6 +60,9 @@ return [
                 'pDescriptionTip' => '请输入简单的产品介绍',
                 'pAdd' => '添加'
             ],
+            'success' => [
+                'added' => '产品添加成功',
+            ],
             'errors' => [
                 'title' => '填写产品信息有误，以下是错误详情',
                 'addError' => '产品添加失败',
