@@ -37,6 +37,12 @@ class Dimension
         $this->setH($h);
     }
 
+    // logic
+    public static function geometgricZoomTo($img, $destW, $destH)
+    {
+
+    }
+
     // getters && setters
 
     /**

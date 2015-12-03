@@ -10,6 +10,8 @@ namespace App\Util\Graphics;
 
 use Illuminate\Http\Request;
 
+use Intervention\Image\ImageManagerStatic as Image;
+
 /**
  * 图片工具类
  *
@@ -20,11 +22,13 @@ class ImageUtil
 {
 
     /**
-     * 保存一个图片到指定目录（本质为移动）
+     * 保存一个图片到指定目录
      *
      * @param \Symfony\Component\HttpFoundation\File\UploadedFile|array $img
      * @param string $folder
      * @return string
+     *
+     * @throws FileException if, for any reason, the dictionary could not be created
      */
     public static function saveImg($img, $folder)
     {
@@ -36,6 +40,17 @@ class ImageUtil
         $newName = md5(date('ymdhis') . $clientName) . "." . $extension;
         // 无需验证folder是否存在，move方法内部会判断
         $finalImg = $img->move($folder, $newName);
+        // 目录不存在，创建之
+        if (!is_dir($folder)) {
+            if (false === @mkdir($folder, 0777, true) && !is_dir($folder)) {
+                throw new FileException(sprintf('Unable to create the "%s" directory', $folder));
+            }
+        } elseif (!is_writable($folder)) {
+            throw new FileException(sprintf('Unable to write in the "%s" directory', $folder));
+        }
+        // resizing an uploaded file
+//        Image::make(Input::file('photo'))->resize(300, 200)->save('foo.jpg');
+        Image::make($img)->fit(300, 230)->save($folder . '/' . $newName);
 
 //        return $finalImg->getPathname();
         return $newName;
@@ -102,8 +117,6 @@ class ImageUtil
             $source_x = 0;
             $source_y = 0;
         }
-
-
 
         switch ($source_mime) {
 
