@@ -90,7 +90,10 @@ class ProductsController extends Controller
 
 
         if ($status['ok']) {
-            return Redirect::back()->withMessage('ok');
+//            return Redirect::back()->withMessage(['ok' => trans('products.addNewProduct.success.added')]);
+            // 暂时跳转到信息列表页面吧
+            return redirect($request->getPathInfo());
+
         } else {
             return Redirect::back()->withInput()->withErrors($status['msg']);
         }

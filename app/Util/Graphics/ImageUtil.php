@@ -38,8 +38,6 @@ class ImageUtil
         $extension = $img->getClientOriginalExtension();
         $mimeType = $img->getMimeType();
         $newName = md5(date('ymdhis') . $clientName) . "." . $extension;
-        // 无需验证folder是否存在，move方法内部会判断
-        $finalImg = $img->move($folder, $newName);
         // 目录不存在，创建之
         if (!is_dir($folder)) {
             if (false === @mkdir($folder, 0777, true) && !is_dir($folder)) {
@@ -48,11 +46,9 @@ class ImageUtil
         } elseif (!is_writable($folder)) {
             throw new FileException(sprintf('Unable to write in the "%s" directory', $folder));
         }
-        // resizing an uploaded file
-//        Image::make(Input::file('photo'))->resize(300, 200)->save('foo.jpg');
-        Image::make($img)->fit(300, 230)->save($folder . '/' . $newName);
+        // resizing an uploaded file，这样会创建一张新的图片
+        Image::make($img)->fit(300, 270)->save($folder . '/' . $newName);
 
-//        return $finalImg->getPathname();
         return $newName;
     }
 

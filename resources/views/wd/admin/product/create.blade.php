@@ -37,10 +37,10 @@
                 </div>
             @endif
 
-            @if (isset($message))
+            @if (session('ok'))
                 <div class="alert alert-success alert-dismissable fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>{{$message}}</strong>
+                    <strong>{{session('ok')}}</strong>
                 </div>
             @endif
 
