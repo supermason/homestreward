@@ -39,10 +39,12 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                         amount: "",
                         categoryId: 0,
                         remark: "",
+                        consumptionDate: "",
                         reset: function() {
                             this.amount = "";
                             this.categoryId = 0;
                             this.remark = "";
+                            this.consumptionDate = "";
                         },
                         updateData: function(data) {
                             //this.categoryId = data.category.id;

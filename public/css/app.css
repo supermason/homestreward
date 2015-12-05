@@ -11,7 +11,7 @@
   display: none;
 }
 .panel {
-  background: #fdfdfd;
+  background: #f2f2f2 none repeat scroll 0 0;
 }
 .page {
   background: white none repeat scroll 0 0;
@@ -72,7 +72,6 @@ i.icon.icon-blank {
   display: none;
 }
 .panel-left-add > .content-block-title {
-  background: #f2f2f2;
   margin: 0;
 }
 .panel-left-add > .content-block-title p {
@@ -104,13 +103,13 @@ i.icon.icon-blank {
   font-size: 12px;
   color: #3395ff;
 }
-.panel-right-profile > .content-block {
+.user-panel > .content-block {
   margin-top: 0;
 }
-.panel-right-profile > .content-block .content-block-inner {
+.user-panel > .content-block .content-block-inner {
   background: #f2f2f2;
 }
-.panel-right-profile > .content-block .content-block-inner div.avatar {
+.user-panel > .content-block .content-block-inner div.avatar {
   text-align: center;
   margin: 0 auto;
   width: 80px;
@@ -119,23 +118,23 @@ i.icon.icon-blank {
   border: 1px solid #ddd;
   overflow: hidden;
 }
-.panel-right-profile > .content-block .content-block-inner div.avatar img {
+.user-panel > .content-block .content-block-inner div.avatar img {
   width: 100%;
 }
-.panel-right-profile > .content-block .content-block-inner p {
+.user-panel > .content-block .content-block-inner p {
   text-align: center;
 }
-.panel-right-profile .links {
+.user-panel .links {
   margin: 10px auto;
   text-align: center;
 }
-.panel-right-profile .links ul li {
+.user-panel .links ul li {
   height: 20px;
   list-style-type: none;
   margin: 4px 0 4px -40px;
   overflow: hidden;
 }
-.panel-right-profile .links ul a {
+.user-panel .links ul a {
   display: block;
   color: #3395ff;
   font-weight: bold;
@@ -148,11 +147,11 @@ i.icon.icon-blank {
   -ms-transition: margin 0.4s ease-in-out;
   transition: margin 0.4s ease-in-out;
 }
-.panel-right-profile .links ul a:nth-of-type(even) {
+.user-panel .links ul a:nth-of-type(even) {
   color: white;
   background-color: #66afff;
 }
-.panel-right-profile .links ul li:hover :first-child {
+.user-panel .links ul li:hover :first-child {
   margin-top: -20px;
 }
 .item-media span {

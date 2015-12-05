@@ -45,24 +45,34 @@
                 });
                 // 日期搜索
                 var selectedDay = "";
-                var myCalendar = f7App.calendar({
+                //var myCalendar = f7App.calendar({
+                //    input: '#calendar-default',
+                //    inputReadOnly: false,
+                //    //value: [new Date()],
+                //    monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                //    dayNames: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
+                //    dayNamesShort: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
+                //    closeOnSelect: true,
+                //    onDayClick: function (p, dayContainer, year, month, day) {
+                //        selectedDay = year + month + day;
+                //        billView.reset();
+                //        billView.date = [year, parseInt(month) + 1, day];
+                //        billView.query();
+                //    },
+                //    onClose: function () {
+                //
+                //    }
+                //});
+                var mySearchCalender = app.createCalendar({
                     input: '#calendar-default',
-                    inputReadOnly: false,
-                    //value: [new Date()],
-                    monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                    dayNames: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
-                    dayNamesShort: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
-                    closeOnSelect: true,
                     onDayClick: function (p, dayContainer, year, month, day) {
                         selectedDay = year + month + day;
                         billView.reset();
                         billView.date = [year, parseInt(month) + 1, day];
                         billView.query();
-                    },
-                    onClose: function () {
-                        
                     }
                 });
+
                 var mySearch = f7App.searchbar(".searchbar", {
                     onDisable: function () {
                         if (selectedDay !== "") {
@@ -70,9 +80,16 @@
                             billView.reset();
                             billView.query();
                         }
-                        
                     }
                 });
+                // 添加消费日期
+                var myConsumptionCalender = app.createCalendar({
+                    input: '#calendar-consumption',
+                    onDayClick: function (p, dayContainer, year, month, day) {
+
+                    }
+                });
+
                 // 新增消费类型的modal
                 $("a[id='addNewCT']").on('click', function () {
                     f7App.prompt('新的消费类型名称', '消费新花样',

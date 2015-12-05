@@ -31,16 +31,29 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-            if (ConsumingRecords::create([
-                'amount' => Input::get('amount'),
-                'category_id' => Input::get('categoryId'),
-                'remark' => Input::get('remark'),
-                'who' => Auth::user()->id,
-            ])) {
-                return response()->json(['success' => true]);
-            } else {
-                return response()->json(['success' => false]);
-            }
+        $billInfo = [
+            'amount' => Input::get('amount'),
+            'category_id' => Input::get('categoryId'),
+            'remark' => Input::get('remark'),
+            'who' => Auth::user()->id,
+        ];
+
+        // 单独判断一下是否有填写消费时间
+        $consumptionDate = Input::get("consumptionDate");
+        if ($consumptionDate !== '') {
+            // 注意格式 'H:i:s'＝24小时制，'h:i:s'＝12小时制
+            $billInfo["consumption_date"] = $consumptionDate . " " . date('H:i:s', time());
+        } else {
+            $billInfo["consumption_date"] = date('y-m-d H:i:s', time());
+        }
+
+        if (ConsumingRecords::create($billInfo)) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+
+//        return response()->json($billInfo);
     }
 
     /**
@@ -60,8 +73,8 @@ class BillController extends Controller
     public function search()
     {
         return $this->getQueryObj()
-            ->whereRaw('date_format(consuming_records.created_at, "%Y%m") = date_format(curDate(), "%Y%m")')
-            ->orderBy('consuming_records.created_at', 'desc')
+            ->whereRaw('date_format(consuming_records.consumption_date, "%Y%m") = date_format(curDate(), "%Y%m")')
+            ->orderBy('consuming_records.consumption_date', 'desc')
             ->paginate(5)->toJson();
 
     }
@@ -97,7 +110,7 @@ class BillController extends Controller
 
         // 按日期查询时，获取全部数据，所以不用给paginate传参
         return $this->getQueryObj()
-            ->whereRaw('date_format(consuming_records.created_at, "%Y%m%d") = date_format("' . $targetDate . '", "%Y%m%d")')
+            ->whereRaw('date_format(consuming_records.consumption_date, "%Y%m%d") = date_format("' . $targetDate . '", "%Y%m%d")')
             ->orderBy('consuming_records.created_at', 'desc')
             ->paginate()->toJson();
     }
@@ -108,7 +121,7 @@ class BillController extends Controller
     public function total()
     {
         return response()->json([
-            'total' => ConsumingRecords::whereRaw('date_format(consuming_records.created_at, "%Y%m") = date_format(curDate(), "%Y%m")')->sum('amount')]);
+            'total' => ConsumingRecords::whereRaw('date_format(consuming_records.consumption_date, "%Y%m") = date_format(curDate(), "%Y%m")')->sum('amount')]);
     }
 
     /**
@@ -117,7 +130,7 @@ class BillController extends Controller
      */
     private function getQueryObj()
     {
-        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consuming_records.created_at AS date', 'u.name AS who')
+        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consuming_records.consumption_date AS date', 'u.name AS who')
             ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
             ->leftJoin('users AS u', 'who', '=', 'u.id');
     }

@@ -4,7 +4,7 @@
  *           $$-Framework7的选择器变体
  *           mv-Framework7的主视图
  */
-define(['framework7', 'lang'], function (fw7, lang) {
+define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
     'use strict';
 
     var myApp = {
@@ -111,6 +111,37 @@ define(['framework7', 'lang'], function (fw7, lang) {
             selected.addClass(className);
         }
 
+    }
+
+    /**
+     * 创建日历
+     *
+     * @param {object} options
+     *               必须包含：{string} input
+     *                        {function} onDayClick
+     *               可选参数：{boolean} inputReadOnly 默认为false
+     *                        {boolean} closeOnSelect 默认为true
+     *                        {function} onClose
+     * @return {object}
+     */
+    myApp.createCalendar = function(options) {
+        if (!options) return null;
+        if (!options['input']) return null;
+        if (options['input'] === '') return null;
+        if (!util.isFunction(options['onDayClick'])) return null;
+
+        var params = util.copyObj({
+            inputReadOnly: false,
+            closeOnSelect: true,
+            monthNames: lang.app.calendar.monthNames,
+            dayNames: lang.app.calendar.dayNames,
+            dayNamesShort: lang.app.calendar.dayNamesShort,
+            onClose: null,
+        }, options);
+
+        var myCalendar = f7App.calendar(params);
+
+        return myCalendar;
     }
 
     return myApp;

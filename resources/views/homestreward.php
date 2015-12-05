@@ -65,6 +65,15 @@
               </div>
             </li>
             <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-input">
+                            <input type="text" id="calendar-consumption" name="consumptionDate" ng-model="newData.bill.consumptionDate" placeholder="消费日期，不填则为当前时间">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
               <div class="item-content">
                 <div class="item-inner">
                   <input type="submit" class="button right" value="添加" ng-disabled="newData.bill.amount==undefined||newData.bill.amount==''||newData.bill.categoryId==0" />
@@ -74,12 +83,12 @@
           </ul>
         </div>
       </form>
-        <div class="content-block">
+      <div class="content-block">
             <p><a href="#" id="addNewCT" class="button button-fill prompt-title-ok-cancel">新增消费类型</a></p>
             <p><a href="#" id="calTotal" class="button button-fill">当月消费总和</a></p>
         </div>
     </div>
-    <div class="panel panel-right-profile panel-right panel-reveal">
+    <div class="panel panel-right panel-reveal user-panel">
       <div class="content-block">
         <div class="content-block-inner">
 
@@ -96,14 +105,14 @@
           <div class="navbar-inner">
             <div class="left sliding">
               <a href="#" data-panel="left" class="link icon-only open-panel">
-                <i class="icon icon-plus">+</i>
+                <i class="icon icon-plus"><strong>+</strong></i>
               </a>
             </div>
             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
             <div class="center sliding"><span class="app-title">记帐吧</span></div>
               <div class="right">
-                  <a href="/auth/logout" class="link icon-only external">
-                      <i class="fa fa-sign-out"></i>
+                  <a href="#" data-panel="right" class="link icon-only open-panel">
+                      <i class="fa fa-user"></i>
                   </a>
               </div>
           </div>

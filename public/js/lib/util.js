@@ -10,7 +10,7 @@ define([], function() {
     /*
      * 对字符串加入各种trim
      */
-    (function(){
+    (function() {
 
         String.prototype.trim = function () {
             return this.replace(/(^\s*)|(\s*$)/g, "");
@@ -174,6 +174,27 @@ define([], function() {
 
         return rs;
     };
+
+    /**
+     * 拷贝对象(暂时只支持object)
+     *
+     * @param {object} src
+     * @param {object} dest
+     * @returns  {object}
+     */
+    util.copyObj = function(src, dest) {
+        if (!src) return dest;
+
+        if (!dest) dest = {};
+
+        for (var key in src) {
+            if (!dest[key]) {
+                dest[key] = src[key];
+            }
+        }
+
+        return dest;
+    }
 
     return util;
 });
