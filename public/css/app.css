@@ -11,7 +11,7 @@
   display: none;
 }
 .panel {
-  background: #f2f2f2 none repeat scroll 0 0;
+  background: white none repeat scroll 0 0;
 }
 .page {
   background: white none repeat scroll 0 0;
@@ -29,6 +29,12 @@
 .modal .preloader {
   height: 20px;
   width: 20px;
+}
+.theme-m {
+  -webkit-box-shadow: 2px 2px 6px gray;
+  -moz-box-shadow: 2px 2px 6px gray;
+  box-shadow: 2px 2px 6px gray;
+  opacity: 1;
 }
 /*==login==*/
 .error {
@@ -71,6 +77,9 @@ i.icon.icon-blank {
 .hidden {
   display: none;
 }
+.panel-left-add {
+  background: #f2f2f2 none repeat scroll 0 0;
+}
 .panel-left-add > .content-block-title {
   margin: 0;
 }
@@ -108,6 +117,7 @@ i.icon.icon-blank {
 }
 .user-panel > .content-block .content-block-inner {
   background: #f2f2f2;
+  padding: 20px 15px 10px;
 }
 .user-panel > .content-block .content-block-inner div.avatar {
   text-align: center;

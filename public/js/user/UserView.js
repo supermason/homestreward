@@ -34,6 +34,7 @@ define(['app'], function (app) {
             },
             updateNickname: function(data) {
                 $("span[id='user-info']").html(data.newName);
+                $("p[id='userName']").text(data.newName);
             }
         };
 

@@ -7,7 +7,9 @@
 @panel-inner-color: #f2f2f2;
 @error-color: #ff2d55;
 
-
+.theme-m {
+  .container-shadow;
+}
 
 /*==login==*/
 .error {
@@ -59,8 +61,12 @@ i.icon.icon-blank {
 }
 
 .panel-left-add {
+
+  background: #f2f2f2 none repeat scroll 0 0;
+
     >.content-block-title {
         margin: 0;
+
        p {
            line-height: 80px;
            text-align: center;
@@ -115,6 +121,7 @@ i.icon.icon-blank {
         margin-top:0;
         .content-block-inner {
             background: @panel-inner-color;
+            padding: 20px 15px 10px;
     
             div.avatar {
             text-align:center;

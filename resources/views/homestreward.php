@@ -91,10 +91,22 @@
     <div class="panel panel-right panel-reveal user-panel">
       <div class="content-block">
         <div class="content-block-inner">
-
+            <div class="avatar">
+                <img src="">
+            </div>
+            <p id="userName"><?php echo Auth::User()->name ?></p>
         </div>
       </div>
-
+        <div class="list-block">
+            <ul>
+                <li>
+                    <a href="#" class="item-link list-button">修改密码</a>
+                </li>
+                <li>
+                    <a href="/auth/logout" class="item-link list-button">退出系统</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- Views -->
     <div class="views tabs toolbar-through theme-m">
