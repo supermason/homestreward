@@ -142,6 +142,8 @@
             this.curPage = 0;
             this.totalPage = 0;
             this.$scope.data.bills = [];
+            // 这里设置为无滚动，否则会有问题
+            $("div.page-content").scrollTop(0);
             $("div.list-block-label > p").text("下拉加载更多内容");
         },
 
