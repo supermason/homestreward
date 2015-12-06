@@ -100,10 +100,7 @@
         <div class="list-block">
             <ul>
                 <li>
-                    <a href="#" class="item-link list-button">修改密码</a>
-                </li>
-                <li>
-                    <a href="/auth/logout" class="item-link list-button">退出系统</a>
+                    <a class="item-link list-button external" href="<?php echo url('/auth/logout') ?>"><strong>退出</strong>系统</a>
                 </li>
             </ul>
         </div>
@@ -189,8 +186,8 @@
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding"><span class="app-title">库存查询</span></div>
                     <div class="right">
-                        <a href="/auth/logout" class="link icon-only external">
-                            <i class="fa fa-sign-out"></i>
+                        <a href="#" data-panel="right" class="link icon-only open-panel">
+                            <i class="fa fa-user"></i>
                         </a>
                     </div>
                 </div>
@@ -206,8 +203,8 @@
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding"><span class="app-title">我的信息</span></div>
                     <div class="right">
-                        <a href="/auth/logout" class="link icon-only external">
-                            <i class="fa fa-sign-out"></i>
+                        <a href="#" data-panel="right" class="link icon-only open-panel">
+                            <i class="fa fa-user"></i>
                         </a>
                     </div>
                 </div>
@@ -226,10 +223,19 @@
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </p>
-
                             </div>
                         </div>
-
+                        <div class="content-block-title">其他操作</div>
+                        <div class="content-block">
+                            <div class="row">
+                                <div class="col-50">
+                                    <a href="#" class="button button-big">修改头像</a>
+                                </div>
+                                <div class="col-50">
+                                    <a href="#" class="button button-big button-green">修改密码</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
