@@ -66,7 +66,11 @@ Route::group(['middleware' => 'auth'], function(){
      */
     Route::group(['prefix' => 'user', 'namespace' => 'User'], function(){
 //        Route::resource("/", "UserController", ['only' => ['update']]);
-        Route::put("/edit", "UserController@update");
+        Route::group(['prefix' => 'edit'], function() {
+            Route::put("/name", "UserController@update");
+            Route::put("/password", "UserController@changePassword");
+            Route::put('/face', 'UserController@changeFace');
+        });
     });
 });
 

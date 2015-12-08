@@ -89,6 +89,45 @@ class UserController extends Controller
     }
 
     /**
+     * 修改密码
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changePassword(Request $request)
+    {
+        $this->validate($request, [
+            'oldPassword' => 'required|min:6',
+            'password' => 'required|confirmed|min:6'
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+
+        if ($user->password != Input::get('oldPassword')) {
+            return response()->json(['success' => false, 'msg' => trans('user.edit.passwordWrong')]);
+        } else {
+            $user->password = Input::get('password');
+            $user->save();
+
+            return response()->json(['success' => true]);
+        }
+
+    }
+
+    /**
+     * 修改头像
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function changeFace(Request $request)
+    {
+        $newFace = '';
+
+        return $newFace;
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

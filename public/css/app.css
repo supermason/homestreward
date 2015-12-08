@@ -196,6 +196,18 @@ i.icon.icon-blank {
 .avatar-container .content-block-inner p span {
   padding: 0 5px;
 }
+.user-picker {
+  background-color: white;
+}
+.user-picker .list-block {
+  margin: 0;
+}
+.change-password-picker {
+  background-color: white;
+}
+.change-password-picker .list-block {
+  margin: 0;
+}
 .footer {
   padding: 10px 0px 2px;
   background-color: #f5f5f5;

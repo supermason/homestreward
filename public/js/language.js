@@ -29,6 +29,16 @@ define([], function(){
             view: "查看宝贝",
             notFound: "抱歉，暂时没有您要找的宝贝T_T，请看点别的吧~",
             hasNoMore: "没有更多宝贝了"
+        },
+        /**
+         * 用户相关文字
+         */
+        user: {
+            changeNickname: {
+                title: '修改昵称',
+                info: '你想叫什么好呢？',
+                emptyError: '请输入新的昵称'
+            }
         }
     };
 

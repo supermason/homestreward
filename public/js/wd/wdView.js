@@ -1,7 +1,9 @@
 /**
  * Created by mason.ding on 2015/10/30.
  */
-require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, template){
+require(['app', 'util', 'service', 'template'], function(wdApp, util, serivce, template) {
+
+    'use strict';
 
     var $ = wdApp.$$,
         loading = false,

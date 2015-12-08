@@ -1,5 +1,5 @@
 ﻿
-define(['app'], function (app) {
+define(['app', 'lang'], function (app, lang) {
     'use strict';
 
     var f7App = app.f7App,
@@ -17,9 +17,13 @@ define(['app'], function (app) {
                 f7App.onPageInit("personal-page", function(page) {
                     var pageCon = $(page.container);
                     pageCon.find("a.icon-only.prompt-title-ok-cancel").click(function(){
-                        f7App.prompt('你想叫什么好呢？', '修改昵称',
+                        f7App.prompt(lang.user.changeNickname.info, lang.user.changeNickname.title,
                             function (value) {
-                                userView.service.changeNickname(value);
+                                if (value.trim() === '') {
+                                    app.alert(lang.user.changeNickname.emptyError);
+                                } else {
+                                    userView.service.changeNickname(value);
+                                }
                             },
                             function (value) {
 
@@ -32,9 +36,14 @@ define(['app'], function (app) {
 
                 return this;
             },
+
             updateNickname: function(data) {
                 $("span[id='user-info']").html(data.newName);
                 $("p[id='userName']").text(data.newName);
+            },
+
+            alert: function(msg, callback) {
+                app.alert(msg, callback);
             }
         };
 

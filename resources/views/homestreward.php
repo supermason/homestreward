@@ -229,10 +229,10 @@
                         <div class="content-block">
                             <div class="row">
                                 <div class="col-50">
-                                    <a href="#" class="button button-big">修改头像</a>
+                                    <a href="#" class="button button-big open-picker" data-picker=".change-password-picker">修改密码</a>
                                 </div>
                                 <div class="col-50">
-                                    <a href="#" class="button button-big button-green">修改密码</a>
+                                    <a href="#" class="button button-big open-picker" data-picker=".change-face-picker">修改头像</a>
                                 </div>
                             </div>
                         </div>
@@ -261,6 +261,70 @@
 <!--            <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;-->
 <!--            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>-->
 <!--        </div>-->
+    </div>
+    <!-- Picker -->
+    <div class="picker-modal change-password-picker">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left"></div>
+                <div class="right">
+                    <a href="#" class="close-picker">关闭</a>
+                </div>
+            </div>
+        </div>
+        <div class="picker-modal-inner">
+            <form id="changeName" name="changeName" ng-controller="UserChangePasswordController" ng-submit="password.changePassword()" >
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" name="oldPassword" placeholder="请输入旧密码" required title="请输入旧密码" ng-model="password.old_password">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" name="oldPassword" placeholder="请输入新密码" required title="请输入新密码" ng-model="password.new_password">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" name="oldPassword" placeholder="请确认新密码" required title="请确认新密码" ng-model="password.new_password_confirmation">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <input type="submit" class="button" value="修改" ng-disabled="password.old_password==''||password.new_password==''||password.new_password_confirmation==''||password.new_password!=password.new_password_confirmation" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="picker-modal change-face-picker">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left"></div>
+                <div class="right">
+                    <a href="#" class="close-picker">关闭</a>
+                </div>
+            </div>
+        </div>
+        <div class="picker-modal-inner"></div>
     </div>
     <!-- Path to your app js-->
     <script data-main="js/main" src="/js/lib/require.js"></script>

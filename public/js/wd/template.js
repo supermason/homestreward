@@ -6,6 +6,8 @@
 
 define(['lang'], function(lang) {
 
+    'use strict';
+
     var wdTemplate = {
         /**
          * 无查询结果模板
