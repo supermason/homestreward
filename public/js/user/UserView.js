@@ -42,6 +42,11 @@ define(['app', 'lang'], function (app, lang) {
                 $("p[id='userName']").text(data.newName);
             },
 
+            updateFace: function(data) {
+                $("div[id='view-temp'] .avatar-container .avatar>img").attr('src', data.newFace);
+                $("div.user-panel .avatar>img").attr('src', data.newFace);
+            },
+
             alert: function(msg, callback) {
                 app.alert(msg, callback);
             }

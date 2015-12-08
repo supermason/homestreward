@@ -4,19 +4,9 @@
 
     <div class="container top-gap">
         <ul class="nav nav-tabs sub-admin-nav" role="tablist">
-            <li role="presentation">
-                <a href="{{url('/wd/admin/products/')}}" aria-controls="index" role="tab" >
-                    {{trans('adminTip.products.productList.title')}}
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="{{url('/wd/admin/products/create')}}" aria-controls="create" role="tab" >
-                    {{trans('adminTip.products.addNewProduct.title')}}
-                </a>
-            </li>
             <li role="presentation" class="active">
                 <a href="javascript:void(0);" aria-controls="edit" role="tab" >
-                    {{trans('adminTip.products.editProduct.title')}}
+                    {{trans('adminTip.wdInfo.editInfo.title')}}
                 </a>
             </li>
         </ul>
@@ -26,7 +16,7 @@
             @if (count($errors) > 0)
                 <div class="alert alert-danger alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Whoops!</strong>{{ trans('adminTip.products.addNewProduct.errors.title') }}
+                    <strong>Whoops!</strong>{{ trans('adminTip.wdInfo.editInfo.errors.title') }}
                     <br/>
                     <br/>
                     <ul>

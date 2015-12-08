@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Menu;
 use App\Product;
+use App\WdInfo;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,7 @@ class WDController extends Controller
         return view("wd.index")->withData([
             'menu' => Menu::all(),
             'products' => $this->doSearchByCategory(WDConfig::PRODUCT_CATEGORY_JIEMIAN),
+//            'wdInfo' => WdInfo::all(),
         ]);
     }
 

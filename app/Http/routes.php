@@ -111,6 +111,8 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
 //            Route::group(['prefix' => 'activities'], function(){
 //                Route::resource("/", "ActivitiesController");
 //            });
+            // 店铺信息相关
+            Route::resource("info", 'WdInfoController')->only();
         });
     });
 

@@ -45,6 +45,11 @@ define(['ngmodule', 'user/UserView'], function(ngmodule, view) {
 
         changeFaceController: function($scope, UserService) {
             $scope.face = {
+                new_face: null,
+
+                reset: function() {
+                    this.new_face = null;
+                },
 
                 changeFace: function() {
                     UserService.changeFace($scope.face).then(function(response) {

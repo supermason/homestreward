@@ -12,6 +12,7 @@ return [
       'leftNav' => [
           'product' => '产品管理',
           'activities' => '活动管理',
+          'info' => '店铺管理'
       ],
       'rightNav' => [
           'login' => '登　录',
@@ -82,5 +83,14 @@ return [
             'mustSelect' => '* 必选',
             'recommend' => '建议填写'
         ]
-    ]
+    ],
+    'activities' => [],
+    'wdInfo' => [
+        'editInfo' => [
+            'title' => '修改信息'
+        ],
+        'errors' => [
+            'title' => '店铺信息填写错误'
+        ],
+    ],
 ];

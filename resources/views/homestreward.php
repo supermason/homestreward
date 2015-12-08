@@ -273,11 +273,15 @@
             </div>
         </div>
         <div class="picker-modal-inner">
-            <form id="changeName" name="changeName" ng-controller="UserChangePasswordController" ng-submit="password.changePassword()" >
+            <form id="changeNameForm" name="changeNameForm" ng-controller="UserChangePasswordController" ng-submit="password.changePassword()" >
+                <div class="content-block-title">
+                    修改密码
+                </div>
                 <div class="list-block">
                     <ul>
                         <li>
                             <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-password"></i></div>
                                 <div class="item-inner">
                                     <div class="item-input">
                                         <input type="password" name="oldPassword" placeholder="请输入旧密码" required title="请输入旧密码" ng-model="password.old_password">
@@ -287,6 +291,7 @@
                         </li>
                         <li>
                             <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-password"></i></div>
                                 <div class="item-inner">
                                     <div class="item-input">
                                         <input type="password" name="oldPassword" placeholder="请输入新密码" required title="请输入新密码" ng-model="password.new_password">
@@ -296,6 +301,7 @@
                         </li>
                         <li>
                             <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-password"></i></div>
                                 <div class="item-inner">
                                     <div class="item-input">
                                         <input type="password" name="oldPassword" placeholder="请确认新密码" required title="请确认新密码" ng-model="password.new_password_confirmation">
@@ -324,7 +330,30 @@
                 </div>
             </div>
         </div>
-        <div class="picker-modal-inner"></div>
+        <div class="picker-modal-inner">
+            <form id="changeFaceForm" name="changeFaceForm" ng-controller="UserChangeFaceController" ng-submit="face.changeFace()">
+                <div class="content-block-title">更换头像</div>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-url"></i></div>
+                                <div class="item-inner">
+                                    <input type="file" name="newFace" placeholder="请选择头像" required title="请选择头像" ng-model="face.new_face">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <input type="submit" class="button" value="更换" ng-disabled="face.new_face==''" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
     </div>
     <!-- Path to your app js-->
     <script data-main="js/main" src="/js/lib/require.js"></script>

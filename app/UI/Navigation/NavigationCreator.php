@@ -27,7 +27,8 @@ class NavigationCreator
     {
         $curURL = Request::url();
         $nav = "<li><a href=\"". url('/wd/admin/products/') . "\"" . static::isCurLiEle($curURL, 'products') . ">" . trans('adminTip.nav.leftNav.product') . "</a></li>"
-              . "<li><a href=\"" . url('/wd/admin/activities/') . "\"" . static::isCurLiEle($curURL, 'activities') . ">" . trans('adminTip.nav.leftNav.activities') . "</a></li>";
+              . "<li><a href=\"" . url('/wd/admin/activities/') . "\"" . static::isCurLiEle($curURL, 'activities') . ">" . trans('adminTip.nav.leftNav.activities') . "</a></li>"
+              . "<li><a href=\"" . url('/wd/admin/info/') . "\"" . static::isCurlLiEle($curURL, 'info') . ">" . trans('adminTip.nav.leftNav.info') . "</a></li>";
 
         return $nav;
     }

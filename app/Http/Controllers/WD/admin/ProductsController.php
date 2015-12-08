@@ -166,7 +166,6 @@ class ProductsController extends Controller
         } else {
             return Redirect::back()->withInput()->withErrors('error');
         }
-
     }
 
     /**
@@ -177,6 +176,12 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+        $response = redirect('/wd/admin/products');
         //
+        if (Product::destroy($id)) {
+            return $response;
+        } else {
+            return $response->withErrors([]);
+        }
     }
 }
