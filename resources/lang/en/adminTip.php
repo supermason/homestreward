@@ -33,6 +33,7 @@ return [
         'productList' => [
             'title' => '产品列表',
             'edit' => '修改',
+            'noItem' => '没有找到相关产品...',
             'pInfo' => [
                 'thumbnail' => '图片',
                 'name' => '名称',
@@ -87,7 +88,22 @@ return [
     'activities' => [],
     'wdInfo' => [
         'editInfo' => [
-            'title' => '修改信息'
+            'title' => '修改信息',
+            'form' => [
+                'iTitle' => '标题',
+                'iTitleTip' => '请输入新标题',
+                'iContent' => '内容',
+                'iContentTip' => '请输入新的介绍文字',
+                'iCurLogo' => '当前图标',
+                'iLogo' => '新图标',
+                'iLogoTip' => '请选择新图片',
+                'iCurQrImg' => '旧二维码',
+                'iQrImg' => '新二维码',
+                'iQrImgTip' => '请选择新二维码',
+            ],
+            'success' => [
+                'edit' => '微店介绍信息修改成功！'
+            ],
         ],
         'errors' => [
             'title' => '店铺信息填写错误'

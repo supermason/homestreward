@@ -21,12 +21,15 @@
             </li>
         </ul>
         <div class="product-content">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                    <button class="btn btn-danger" type="button">Go!</button>
-                </span>
-            </div>
+            <form method="get" action="{{url('/wd/admin/products')}}" enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="input-group">
+                    <input type="text" name="keywords" class="form-control" placeholder="Search for..." value="{{$data["keywords"]}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
 
             <table class="table table-striped table-hover">
                 <thead>
@@ -43,7 +46,7 @@
                 <tbody>
                     @if (count($data['products']) == 0)
                         <tr>
-                            <td colspan="4">no items</td>
+                            <td colspan="7" style="text-align: center">{{trans('adminTip.products.productList.noItem')}}</td>
                         </tr>
                     @else
                         @foreach ($data['products'] as $product)

@@ -47,18 +47,18 @@
     <div class="content-block">
         <div class="content-block-inner">
             <div class="logo">
-                <img src="{{asset('img/wd/bb_miya_logo.jpg')}}">
+                <img src="{{asset('img/wd/' . $data['wdInfo']->logo . '')}}" />
             </div>
         </div>
     </div>
     <div class="content-block-title">
-        {{trans('tip.rightPanel.title')}}
+        {{$data['wdInfo']->title}}
     </div>
     <div class="content-block">
-       <p>{{trans('tip.rightPanel.content1')}}</p>
+       <p>{{$data['wdInfo']->content}}</p>
     </div>
     <div class="content-block">
-        <img class="img-responsive" src="{{asset('/img/wd/code.jpg')}}" />
+        <img class="img-responsive" src="{{asset('/img/wd/' . $data['wdInfo']->qr_img . '')}}" />
     </div>
 </div>
 <!-- Views -->

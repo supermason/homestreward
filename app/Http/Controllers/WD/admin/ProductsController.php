@@ -25,9 +25,24 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        return view("wd.admin.product.index")->withData([
-            'products' => Product::orderBy('created_at', 'desc')->paginate(16),
-        ]);
+//        return view("wd.admin.product.index")->withData([
+//            'products' => Product::orderBy('created_at', 'desc')->paginate(16),
+//            'keywords' => '',
+//        ]);
+
+        $keywords = Input::get('keywords');
+
+        if (is_null($keywords) || $keywords == '') {
+            return view("wd.admin.product.index")->withData([
+                'products' => Product::orderBy('created_at', 'desc')->paginate(16),
+                'keywords' => '',
+            ]);
+        } else {
+            return view("wd.admin.product.index")->withData([
+                'products' => Product::where('name', 'like', '%' . $keywords . '%')->orderBy('created_at', 'desc')->paginate(16),
+                'keywords' => $keywords,
+            ]);
+        }
     }
 
     /**

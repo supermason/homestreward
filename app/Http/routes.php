@@ -103,16 +103,13 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
         Route::group(['middleware' => 'auth'], function(){
             // 产品相关
             Route::resource("products", "ProductsController");
-//            Route::group(['prefix' => 'products'], function(){
-//                Route::resource("/", "ProductsController");
-//            });
             // 活动相关
             Route::resource("activities", "ActivitiesController");
 //            Route::group(['prefix' => 'activities'], function(){
 //                Route::resource("/", "ActivitiesController");
 //            });
             // 店铺信息相关
-            Route::resource("info", 'WdInfoController')->only();
+            Route::resource("info", 'WdInfoController', ['only' => ['edit', 'update']]);
         });
     });
 
