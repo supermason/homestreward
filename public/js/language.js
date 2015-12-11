@@ -38,7 +38,31 @@ define([], function(){
                 title: '修改昵称',
                 info: '你想叫什么好呢？',
                 emptyError: '请输入新的昵称'
+            },
+            changePassword: {
+                userNameWrong: '输入的用户名错误！',
+                notLongEnough: '密码长度需要最少6位',
+                notConfirmed: '两次输入的密码不一致',
+                ok: '密码修改成功！'
             }
+        },
+
+        /**
+         * 根据所属分组获取错误提示
+         *
+         * @param group
+         * @param subGroup
+         * @param tag
+         * @returns {*}
+         */
+        getErrByTag: function(group, subGroup, tag) {
+            var msg = this[group][subGroup][tag];
+
+            if (!msg) {
+                msg = '未知错误！';
+            }
+
+            return msg;
         }
     };
 

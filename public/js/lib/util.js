@@ -36,6 +36,16 @@ define([], function() {
             var reg = new RegExp(str + "$");
             return reg.test(this);
         };
+
+        /**
+         * 字符串是否够长度
+         *
+         * @param len
+         */
+        String.prototype.isLongEnough = function(len) {
+            return this.length >= len;
+        }
+
     })();
 
     //==========================================

@@ -2,7 +2,7 @@
  * Created by mac on 15/9/12.
  */
 
-define(['ngmodule', 'user/UserView'], function(ngmodule, view) {
+define(['ngmodule', 'user/UserView'], function(ngmodule, view, lang) {
     'use strict';
 
     var userCtrl = {
@@ -22,22 +22,23 @@ define(['ngmodule', 'user/UserView'], function(ngmodule, view) {
 
         changePasswordController: function($scope, UserService) {
             $scope.password = {
-                old_password: '',
+                email: '',
                 new_password: '',
                 new_password_confirmation: '',
 
                 reset: function() {
-                    this.old_password = "";
+                    this.email = "";
                     this.new_password = "";
                     this.new_password_confirmation = "";
                 },
 
                 changePassword: function() {
+
                     UserService.changePassword($scope.password).then(function(response) {
                         $scope.password.reset();
-                        view.alert('密码修改成功！');
+                        view.passwordChanged(response.data);
                     }, function(response) {
-                        view.alert(response.data);
+                        view.passwordChanged(response.data);
                     });
                 }
             };

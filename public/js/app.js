@@ -144,6 +144,23 @@ define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
         return myCalendar;
     }
 
+    /**
+     * 打开pickerModal
+     *
+     * @param {string} selector
+     */
+    myApp.openPickerModal = function(selector) {
+        f7App.pickerModal(selector);
+    },
+
+    /**
+     * 关闭pickerModal
+     *
+     */
+    myApp.closePickerModal = function() {
+        f7App.closeModal('.picker-modal.modal-in');
+    }
+
     return myApp;
 });
 

@@ -50,7 +50,7 @@
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="text" name="amount" placeholder="今天花了多少票票" required ng-pattern="/^\d+$/" title="请输入数字" ng-model="newData.bill.amount">
+                    <input type="text" name="amount" placeholder="今天花了多少票票" required ng-pattern="/^\d+(\.\d+)?$/" title="请输入数字" ng-model="newData.bill.amount">
                   </div>
                 </div>
               </div>
@@ -281,10 +281,10 @@
                     <ul>
                         <li>
                             <div class="item-content">
-                                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                                <div class="item-media"><i class="icon icon-form-email"></i></div>
                                 <div class="item-inner">
                                     <div class="item-input">
-                                        <input type="password" name="oldPassword" placeholder="请输入旧密码" required title="请输入旧密码" ng-model="password.old_password">
+                                        <input type="email" name="email" placeholder="请输入用户名" required title="请输入用户名" ng-model="password.email">
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +294,7 @@
                                 <div class="item-media"><i class="icon icon-form-password"></i></div>
                                 <div class="item-inner">
                                     <div class="item-input">
-                                        <input type="password" name="oldPassword" placeholder="请输入新密码" required title="请输入新密码" ng-model="password.new_password">
+                                        <input type="password" name="new_password" placeholder="请输入新密码，最少6位" required title="请输入新密码，最少6位" ng-model="password.new_password" ng-minlength="6">
                                     </div>
                                 </div>
                             </div>
@@ -304,7 +304,7 @@
                                 <div class="item-media"><i class="icon icon-form-password"></i></div>
                                 <div class="item-inner">
                                     <div class="item-input">
-                                        <input type="password" name="oldPassword" placeholder="请确认新密码" required title="请确认新密码" ng-model="password.new_password_confirmation">
+                                        <input type="password" name="new_password_confirmation" placeholder="请确认新密码，最少6位" required title="请确认新密码，最少6位" ng-model="password.new_password_confirmation" ng-minlength="6">
                                     </div>
                                 </div>
                             </div>

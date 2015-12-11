@@ -97,21 +97,20 @@ class UserController extends Controller
     public function changePassword(Request $request)
     {
         $this->validate($request, [
-            'oldPassword' => 'required|min:6',
-            'password' => 'required|confirmed|min:6'
+            'email' => 'required|email',
+            'new_password' => 'required|confirmed|min:6'
         ]);
 
         $user = User::findOrFail(Auth::user()->id);
 
-        if ($user->password != Input::get('oldPassword')) {
-            return response()->json(['success' => false, 'msg' => trans('user.edit.passwordWrong')]);
+        if ($user->email != Input::get('email')) {
+            return response()->json(['success' => false, 'msgTag' => 'userNameWrong']);
         } else {
             $user->password = Input::get('password');
             $user->save();
 
             return response()->json(['success' => true]);
         }
-
     }
 
     /**

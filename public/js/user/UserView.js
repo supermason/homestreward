@@ -42,7 +42,22 @@ define(['app', 'lang'], function (app, lang) {
                 $("p[id='userName']").text(data.newName);
             },
 
+            passwordChanged: function(data) {
+                // 必须先关闭界面，因为picker也属于modal的一种
+                app.closePickerModal();
+                if (data.success) {
+                    this.alert(lang.user.changePassword.ok);
+                } else {
+                    this.alert(lang.getErrByTag('user', 'changePassword', data.msgTag), function() {
+                        app.openPickerModal('.picker-modal.change-password-picker');
+                    });
+                }
+            },
+
             updateFace: function(data) {
+                // 关闭界面
+                app.closePickerModal();
+
                 $("div[id='view-temp'] .avatar-container .avatar>img").attr('src', data.newFace);
                 $("div.user-panel .avatar>img").attr('src', data.newFace);
             },

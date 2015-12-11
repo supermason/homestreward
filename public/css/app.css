@@ -198,12 +198,14 @@ i.icon.icon-blank {
 }
 .user-picker {
   background-color: white;
+  height: 300px;
 }
 .user-picker .list-block {
   margin: 0;
 }
 .change-password-picker {
   background-color: white;
+  height: 300px;
 }
 .change-password-picker .list-block {
   margin: 0;

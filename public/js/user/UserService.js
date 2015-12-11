@@ -31,13 +31,13 @@ define(["ngmodule", "app"], function (ngmodule, app) {
                 return $http.get(baseApi);
             },
             changeNickname: function(user) {
-                return createRequest('PUT', 'changeName', user);
+                return createRequest('PUT', 'edit/name', user);
             },
             changePassword: function(password) {
-                return createRequest('PUT', 'changePassword', password);
+                return createRequest('PUT', 'edit/password', password);
             },
             changeFace: function(face) {
-                return createRequest('PUT', 'changeFace', face);
+                return createRequest('PUT', 'edit/face', face);
             }
         };
     }]);
