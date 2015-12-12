@@ -6,14 +6,10 @@ require(['app', 'util'], function (app, util) {
 
     require(['../services', '../controllers'], function () {
         // angular 应用
-        app.angularApp = angular.module(app.name, [app.name + ".controllers", app.name + ".services"]/*, function($interpolateProvider){
-            $interpolateProvider.startSymbol('<%');
-            $interpolateProvider.endSymbol('%>');
-        }*/);
-        // 手动初始化angular
-        angular.bootstrap(document, [app.name]);
+        var angularApp = angular.module(app.name, [app.name + ".controllers", app.name + ".services"]);
+
         // 配置一下$http拦截器，实现自动调用f7 ajax提示的功能
-        app.angularApp.factory('wdInterceptor', ['$q', function($q) {
+        angularApp.factory('wdInterceptor', ['$q', function($q) {
             return {
                 'request': function(config) {
                     app.showPreloader();
@@ -34,9 +30,14 @@ require(['app', 'util'], function (app, util) {
                     return $q.reject(rejection);
                 }
             };
-        }]).config(['$httpProvider'], function($httpProvider) {
+        }]);
+        angularApp.config(['$httpProvider', function($httpProvider) {
             $httpProvider.interceptors.push('wdInterceptor');
-        });
+        }]);
+        // 手动初始化angular
+        angular.bootstrap(document, [app.name]);
+        // 保存一下对象
+        app.angularApp = angularApp;
         // 最后初始化f7App
         app.init({
             hasInit:false,

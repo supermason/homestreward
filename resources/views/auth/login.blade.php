@@ -11,6 +11,9 @@
                 <div class="login-screen-title">
                     欢迎登录JM的小管家
                 </div>
+                <div class="content-block center">
+                    <img src="{{asset('/img/h/logo.png')}}">
+                </div>
                 @if (count($errors) > 0)
                     <div class="content-block error">
                         <strong>登录失败！</strong>
@@ -24,9 +27,6 @@
                         </ul>
                     </div>
                 @endif
-                <div class="content-block center">
-                    <img src="{{asset('/img/h/logo.png')}}">
-                </div>
                 <form role="form" method="POST" action="{{ url('/auth/login') }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="list-block inset">

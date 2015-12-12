@@ -106,7 +106,7 @@ class UserController extends Controller
         if ($user->email != Input::get('email')) {
             return response()->json(['success' => false, 'msgTag' => 'userNameWrong']);
         } else {
-            $user->password = Input::get('password');
+            $user->password = bcrypt(Input::get('new_password'));
             $user->save();
 
             return response()->json(['success' => true]);

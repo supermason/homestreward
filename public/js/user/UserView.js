@@ -30,7 +30,10 @@ define(['app', 'lang'], function (app, lang) {
                             }
                         );
                     });
-                    // 从页面获取昵称，反向绑定$scope.user.name
+                    // 本页面点击右上角小人图标时，关闭可能的pickerModal
+                    $("div[id='view-temp'] div.right > a").click(function() {
+                        app.closePickerModal();
+                    });
 
                 });
 

@@ -14,7 +14,7 @@ define([], function(){
             modalTitle: "提示",
             modalButtonOk: '确定',
             modalButtonCancel: '取消',
-            preloaderTip: "宝贝努力加载中...",
+            preloaderTip: "努力加载中...",
             calendar: {
                 monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
                 dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
