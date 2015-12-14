@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::group(['prefix' => 'edit'], function() {
             Route::put("/name", "UserController@update");
             Route::put("/password", "UserController@changePassword");
-            Route::put('/face', 'UserController@changeFace');
+            Route::post('/face', 'UserController@changeFace');
         });
     });
 });

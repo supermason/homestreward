@@ -45,6 +45,7 @@ define(['ngmodule', 'user/UserView'], function(ngmodule, view, lang) {
         },
 
         changeFaceController: function($scope, UserService) {
+
             $scope.face = {
                 new_face: null,
 
@@ -53,13 +54,22 @@ define(['ngmodule', 'user/UserView'], function(ngmodule, view, lang) {
                 },
 
                 changeFace: function() {
-                    UserService.changeFace($scope.face).then(function(response) {
-
+                    var fd = new FormData();
+                    fd.append('new_face', $scope.face.new_face);
+                    UserService.changeFace(fd).then(function(response) {
+                        //view.updateFace(response.data);
+                        $scope.face.reset();
                     }, function(response) {
                         view.alert(response.data);
                     });
                 }
-            }
+            };
+
+            $scope.createFormData = function(file) {
+                //var fd = new FormData();
+                //fd.append('face', file);
+                this.face.new_face = file;
+            };
         }
 
     };

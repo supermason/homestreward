@@ -6,8 +6,24 @@ require(['app', 'util'], function (app, util) {
 
     require(['../services', '../controllers'], function () {
         // angular 应用
-        var angularApp = angular.module(app.name, [app.name + ".controllers", app.name + ".services"]);
+        var angularApp = angular.module(app.name, [app.name + ".controllers", app.name + ".services"])
+            // 定一个directive用户文件上传
+            .directive('fileModel', ['$parse', function($parse) {
+                return {
+                    restrict: 'A',
+                    link: function(scope, element, attrs) {
+                        var model = $parse(attrs.fileModel);
+                        var modelSetter = model.assign;
+                        element.bind('change', function(event) {
+                            //scope.$apply(function() {
+                            //    modelSetter(scope, element[0].files[0]);
+                            //});
 
+                            scope.createFormData(event.target.files[0]);
+                        });
+                    }
+                };
+            }]);
         // 配置一下$http拦截器，实现自动调用f7 ajax提示的功能
         angularApp.factory('wdInterceptor', ['$q', function($q) {
             return {

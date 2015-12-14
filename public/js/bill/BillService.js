@@ -9,6 +9,25 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
 
             var baseAPI = app.config.apiRoot + 'bill/';
 
+            /**
+             * 常见一个请求对象
+             *
+             * @param {string} method 方法
+             * @param {string} url
+             * @param {object} data
+             * @returns {*}
+             */
+            function createRequest(method, url, data) {
+                return $http({
+                    method: method,
+                    url: baseAPI + url + "/",
+                    dataType: 'json',
+                    //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    //headers: {'Content-Type': 'application/json'},
+                    data: data
+                });
+            }
+
             return {
                 get: function (args) {
                     //Arguments是一个类似数组但不是数组的对象，
@@ -32,14 +51,7 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                     return $http.get(baseAPI + 'total/');
                 },
                 add: function (bill) {
-                    return $http({
-                        method: 'POST',
-                        url: baseAPI + "new",
-                        dataType: 'json',
-                        //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        //headers: {'Content-Type': 'application/json'},
-                        data: bill
-                    });
+                    return createRequest('POST', 'new', bill);
                 },
                 destroy: function (id) {
                     return $http.delete(baseAPI + id);
@@ -56,14 +68,7 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                 },
 
                 add: function (setting) {
-                    return $http({
-                            method: 'POST',
-                            url: baseAPI + "new",
-                            dataType: 'json',
-                            //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                            data: setting
-                        }
-                    );
+                    return createRequest('POST', 'new', setting);
                 }
             };
         }]);

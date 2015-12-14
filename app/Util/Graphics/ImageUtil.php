@@ -26,11 +26,13 @@ class ImageUtil
      *
      * @param \Symfony\Component\HttpFoundation\File\UploadedFile|array $img
      * @param string $folder
+     * @param int $width
+     * @param int $height
      * @return string
      *
      * @throws FileException if, for any reason, the dictionary could not be created
      */
-    public static function saveImg($img, $folder)
+    public static function saveImg($img, $folder, $width=300, $height=270)
     {
         $clientName = $img->getClientOriginalName();
         $tmpName = $img->getFilename();
@@ -47,7 +49,7 @@ class ImageUtil
             throw new FileException(sprintf('Unable to write in the "%s" directory', $folder));
         }
         // resizing an uploaded file，这样会创建一张新的图片
-        Image::make($img)->fit(300, 270)->save($folder . '/' . $newName);
+        Image::make($img)->fit($width, $height)->save($folder . '/' . $newName);
 
         return $newName;
     }
@@ -58,14 +60,16 @@ class ImageUtil
      * @param Request $request
      * @param string $imgName
      * @param string $folder
+     * @param int $width
+     * @param int $height
      * @return mixed
      */
-    public static function saveImgFromRequest(Request $request, $imgName, $folder)
+    public static function saveImgFromRequest(Request $request, $imgName, $folder, $width=300, $height=270)
     {
         if ($request->hasFile($imgName)) {
             $img = $request->file($imgName);
             if ($img->isValid()) {
-                return static::saveImg($img, $folder);
+                return static::saveImg($img, $folder, $width, $height);
             }
         }
 

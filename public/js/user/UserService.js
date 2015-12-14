@@ -37,7 +37,19 @@ define(["ngmodule", "app"], function (ngmodule, app) {
                 return createRequest('PUT', 'edit/password', password);
             },
             changeFace: function(face) {
-                return createRequest('PUT', 'edit/face', face);
+                //return createRequest('PUT', 'edit/face', face);
+                /*return $http({
+                    method: 'PUT',
+                    url: baseAPI + "edit/face",
+                    data: face,
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                });*/
+                return $http.post(baseAPI + 'edit/face', face, {
+                    withCredentials: true,
+                    headers: {'Content-Type': undefined },
+                    transformRequest: angular.identity
+                });
             }
         };
     }]);

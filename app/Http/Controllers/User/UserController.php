@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Util\Graphics\ImageUtil;
+
 use Redirect, Input;
 
 class UserController extends Controller
@@ -121,9 +123,24 @@ class UserController extends Controller
      */
     public function changeFace(Request $request)
     {
-        $newFace = '';
+        $newFace = '123';
 
-        return $newFace;
+        $imgPath = ImageUtil::saveImgFromRequest($request, 'new_face', 'img/wd/face/', 80, 80);
+
+        if ($request->hasFile('new_face')) {
+            $img = $request->file('new_face');
+            if ($img->isValid()) {
+                $newFace = 'ok';
+            } else {
+                $newFace = 'not uploaded';
+            }
+        } else {
+            $newFace = 'no img in request';
+        }
+
+        $newFace = Input::get('new_Face');
+
+        return response()->json(['face' => $_FILES['new_face']]);
     }
 
     /**

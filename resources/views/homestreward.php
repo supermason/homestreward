@@ -331,15 +331,15 @@
             </div>
         </div>
         <div class="picker-modal-inner">
-            <form id="changeFaceForm" name="changeFaceForm" ng-controller="UserChangeFaceController" ng-submit="face.changeFace()">
+            <form id="changeFaceForm" name="changeFaceForm" ng-controller="UserChangeFaceController" ng-submit="face.changeFace()" enctype="multipart/form-data">
                 <div class="content-block-title">更换头像</div>
                 <div class="list-block">
                     <ul>
                         <li>
                             <div class="item-content">
-                                <div class="item-media"><i class="icon icon-form-url"></i></div>
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
                                 <div class="item-inner">
-                                    <input type="file" name="newFace" placeholder="请选择头像" required title="请选择头像" ng-model="face.new_face">
+                                    <input type="file" name="new_face" placeholder="请选择头像" required title="请选择头像" file-model="new_face" accept="image/*">
                                 </div>
                             </div>
                         </li>

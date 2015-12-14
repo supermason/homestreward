@@ -16,7 +16,10 @@ define(['app', 'lang'], function (app, lang) {
 
                 f7App.onPageInit("personal-page", function(page) {
                     var pageCon = $(page.container);
-                    pageCon.find("a.icon-only.prompt-title-ok-cancel").click(function(){
+                    pageCon.find("a.icon-only.prompt-title-ok-cancel").click(function() {
+                        // 关闭可能打开的pickerModal
+                        app.closePickerModal();
+                        //
                         f7App.prompt(lang.user.changeNickname.info, lang.user.changeNickname.title,
                             function (value) {
                                 if (value.trim() === '') {
