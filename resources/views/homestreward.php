@@ -92,7 +92,7 @@
       <div class="content-block">
         <div class="content-block-inner">
             <div class="avatar">
-                <img src="">
+                <img src="<?php echo '/img/wd/face/' . Auth::user()->headImg ?>">
             </div>
             <p id="userName"><?php echo Auth::User()->name ?></p>
         </div>
@@ -214,7 +214,7 @@
                     <div class="page-content">
                         <div class="content-block avatar-container">
                             <div class="content-block-inner">
-                                <div class="avatar"><img  /></div>
+                                <div class="avatar"><img src="<?php echo '/img/wd/face/' . Auth::user()->headImg ?>"  /></div>
                                 <p>
                                     <span id="user-info">
                                         <?php echo Auth::User()->name ?>

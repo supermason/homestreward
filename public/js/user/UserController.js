@@ -57,7 +57,7 @@ define(['ngmodule', 'user/UserView'], function(ngmodule, view, lang) {
                     var fd = new FormData();
                     fd.append('new_face', $scope.face.new_face);
                     UserService.changeFace(fd).then(function(response) {
-                        //view.updateFace(response.data);
+                        view.updateFace(response.data);
                         $scope.face.reset();
                     }, function(response) {
                         view.alert(response.data);

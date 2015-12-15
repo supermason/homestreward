@@ -123,27 +123,24 @@ class UserController extends Controller
      */
     public function changeFace(Request $request)
     {
-        //array('request' => object(Request), 'newFace' => 'ok', 'imgPath' => '7ec794fd2a264fbdc342694d7ff37dfa.png', 'img' => object(UploadedFile)))
+        // 作为FormData上传的数据，用all来接受整个数据然后在通过key获取对应的value
+        // 用Input::get(key)的方式是取不到数据的
+        $data = Input::all();
+        $img = $data['new_face'];
 
-        $newFace = Input::get('newFace');
-        $imgPath = Input::get('imgPath');
+        $imgPath = ImageUtil::saveImg($img, 'img/wd/face/', 80, 80);
 
-//        $imgPath = ImageUtil::saveImgFromRequest($request, 'img', 'img/wd/face/', 80, 80);
-
-//        if ($request->hasFile('new_face')) {
-//            $img = $request->file('new_face');
-//            if ($img->isValid()) {
-//                $newFace = 'ok';
-//            } else {
-//                $newFace = 'not uploaded';
-//            }
-//        } else {
-//            $newFace = 'no img in request';
-//        }
-
-//        $newFace = Input::get('new_Face');
-
-        return response()->json(['face' => $_FILES['img']]);
+        if (!is_null($imgPath)) {
+            $user = User::find(Auth::user()->id);
+            $user->headImg = $imgPath;
+            if ($user->save()) {
+                return response()->json(['success' => true, 'facePath' => 'img/wd/face/' . $imgPath]);
+            } else {
+                return response()->json(['success' => false, 'msgTag' => 'faceSaveFailed']);
+            }
+        } else {
+            return response()->json(['success' => false, 'msgTag' => 'uploadFailed']);
+        }
     }
 
     /**

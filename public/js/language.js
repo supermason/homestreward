@@ -44,6 +44,11 @@ define([], function(){
                 notLongEnough: '密码长度需要最少6位',
                 notConfirmed: '两次输入的密码不一致',
                 ok: '密码修改成功！'
+            },
+            changeFace: {
+                ok: '头像修改成功！',
+                faceSaveFailed: '头像保存失败！',
+                uploadFailed: '头像上传失败！'
             }
         },
 

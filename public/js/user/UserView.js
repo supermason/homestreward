@@ -64,8 +64,16 @@ define(['app', 'lang'], function (app, lang) {
                 // 关闭界面
                 app.closePickerModal();
 
-                $("div[id='view-temp'] .avatar-container .avatar>img").attr('src', data.newFace);
-                $("div.user-panel .avatar>img").attr('src', data.newFace);
+                if (data.success) {
+                    $("div[id='view-temp'] .avatar-container .avatar>img").attr('src', data.facePath);
+                    $("div.user-panel .avatar>img").attr('src', data.facePath);
+                    this.alert(lang.user.changeFace.ok);
+                } else {
+                    this.alert(lang.getErrByTag('user', 'changeFace', data.msgTag), function() {
+                        app.openPickerModal('.picker-modal.change-face-picker');
+                    });
+                }
+
             },
 
             alert: function(msg, callback) {
