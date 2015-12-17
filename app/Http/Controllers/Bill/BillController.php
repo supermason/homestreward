@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
+
 use Redirect, Input;
 
 class BillController extends Controller
@@ -116,12 +118,49 @@ class BillController extends Controller
     }
 
     /**
-     * 获取当月消费总和
+     * 获取指定日期的消费总和
+     *
+     * @param string $year
+     * @param string $month
+     * @return response
      */
-    public function total()
+    public function total($year, $month=null)
     {
+        $hasMonth = !is_null($month);
+
+        // 做个判断，年份不能超过当前年
+        $curYear = intval(date('Y'));
+        if (intval($year) > $curYear) {
+            $year = strval($curYear);
+        }
+
+        if ($hasMonth) {
+            if (intval($month <= 0)) {
+                $month = null;
+            } else if (intval($month) > 12) {
+                $month = '12';
+            } else {
+                if (intval($month) < 10) {
+                    $month = '0' . $month;
+                }
+            }
+        }
+
+        $condition = '';
+        if ($hasMonth) {
+            $condition = 'date_format(consuming_records.consumption_date, "%Y%m") = "' . $year . $month . '"';
+        } else {
+            $condition = 'date_format(consuming_records.consumption_date, "%Y") = "' . $year .'"';
+        }
+
         return response()->json([
-            'total' => ConsumingRecords::whereRaw('date_format(consuming_records.consumption_date, "%Y%m") = date_format(curDate(), "%Y%m")')->sum('amount')]);
+            'total' => ConsumingRecords::whereRaw($condition)->sum('amount'),
+            'date' => $hasMonth ?
+                            Lang::get('global.date.ym', ['year' => $year, 'month' => $month]) :
+                            Lang::get('global.date.y', ['year' => $year]),
+        ]);
+
+//        return response()->json(['r' => $condition]);
     }
 
     /**

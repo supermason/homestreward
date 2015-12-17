@@ -1,4 +1,4 @@
-﻿define(['app'], function (app) {
+﻿define(['app', 'lang'], function (app, lang) {
     'use strict';
 
     var f7App = app.f7App,
@@ -45,24 +45,6 @@
                 });
                 // 日期搜索
                 var selectedDay = "";
-                //var myCalendar = f7App.calendar({
-                //    input: '#calendar-default',
-                //    inputReadOnly: false,
-                //    //value: [new Date()],
-                //    monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                //    dayNames: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
-                //    dayNamesShort: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
-                //    closeOnSelect: true,
-                //    onDayClick: function (p, dayContainer, year, month, day) {
-                //        selectedDay = year + month + day;
-                //        billView.reset();
-                //        billView.date = [year, parseInt(month) + 1, day];
-                //        billView.query();
-                //    },
-                //    onClose: function () {
-                //
-                //    }
-                //});
                 var mySearchCalender = app.createCalendar({
                     input: '#calendar-default',
                     onDayClick: function (p, dayContainer, year, month, day) {
@@ -101,9 +83,26 @@
                         }
                     );
                 });
-                // 当月消费总和
-                $("a[id='calTotal']").on('click', function(){
-                    billView.service.getTotalExpense();
+                // 计算某个日期下的消费总和
+                var dateTimePicker = app.createDateTimePicker({
+                    input: "#dateTime-picker"
+                });
+                $("a[id='calTotal']").on('click', function() {
+                    var queryDate = $("input[id='dateTime-picker']").val().split('-'),
+                        year = null,
+                        month = null;
+                    if (queryDate.length > 1) {
+                        year = queryDate[0];
+                        month = queryDate[1]
+                    } else if (queryDate.length == 1) {
+                        if (queryDate[0].trim() === '') {
+                            year = new Date().getFullYear();
+                        } else {
+                            year = queryDate[0];
+                        }
+                    }
+
+                    billView.service.getTotalExpense(year, month);
                 });
             });
 
@@ -130,6 +129,19 @@
             }
 
             resetUI();
+        },
+
+        addNewRecords: function(response) {
+            var data = response.data;
+            if (data.success) {
+                this.alert(lang.bill.addRecords.ok, function() {
+                    this.$scope.newData.bill.reset();
+                    this.reset();
+                    this.query();
+                });
+            } else {
+                this.alert(lang.bill.addRecords.fail);
+            }
         },
 
         error: function (response) {

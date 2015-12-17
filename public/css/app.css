@@ -112,6 +112,13 @@ i.icon.icon-blank {
   font-size: 12px;
   color: #3395ff;
 }
+.panel-left-add .bill-total-title {
+  font-size: 16px;
+  color: lightgray;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
 .user-panel > .content-block {
   margin-top: 0;
 }

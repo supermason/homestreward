@@ -84,9 +84,37 @@
         </div>
       </form>
       <div class="content-block">
-            <p><a href="#" id="addNewCT" class="button button-fill prompt-title-ok-cancel">新增消费类型</a></p>
-            <p><a href="#" id="calTotal" class="button button-fill">当月消费总和</a></p>
-        </div>
+          <p><a href="#" id="addNewCT" class="button button-fill prompt-title-ok-cancel">新增消费类型</a></p>
+      </div>
+      <div class="list-block">
+          <ul>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <p class="bill-total-title">查询消费总和</p>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <div class="item-input">
+                              <input type="text" placeholder="请选择要计算的日期，不选择为当月数据" name="dateTime" id="dateTime-picker">
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <div class="item-input">
+                              <a href="#" id="calTotal" class="button">查询</a>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </div>
     </div>
     <div class="panel panel-right panel-reveal user-panel">
       <div class="content-block">

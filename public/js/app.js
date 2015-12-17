@@ -144,6 +144,61 @@ define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
         return myCalendar;
     }
 
+
+    /**
+     * 创建一个日期选择器
+     *
+     * @param {object} options
+     *                 必须包含: {string} input
+     * @returns {picker}
+     */
+    myApp.createDateTimePicker = function(options) {
+        if (!options) return null;
+        if (!options['input']) return null;
+        if (options['input'] === '') return null;
+
+        var params = util.copyObj({
+            rotateEffect: true,
+            toolbarTemplate:
+                '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                        '<div class="left">' +
+                            '<p style="font-size: 10px;">' + lang.app.dateTimePickerTip + '</p>' +
+                        '</div>' +
+                        '<div class="right">' +
+                            '<a href="#" class="link close-picker">' + lang.app.modalButtonOk + '</a>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>',
+            cols: [{
+                    values: (function() {
+                        var yearArray = [],
+                            curYear = new Date().getFullYear();
+
+                        for (var i = 0; i < 10; ++i) {
+                            yearArray[i] = curYear - i;
+                        }
+
+                        return yearArray;
+                    })()
+                }, {
+                    values: ('0 1 2 3 4 5 6 7 8 9 10 11 12').split(' '),
+                    displayValues: ['----'].concat(lang.app.calendar.monthNames)
+                }
+            ],
+            onChange: function(picker, values, displayValues) {
+
+            },
+            formatValue: function(p, values, displayValues) {
+                return values[0] + (values[1] === '0' ? "" : "-" + values[1]);
+            }
+        }, options);
+
+        var dateTimePicker = f7App.picker(params);
+
+        return dateTimePicker;
+    }
+
     /**
      * 打开pickerModal
      *
