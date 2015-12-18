@@ -140,10 +140,9 @@
         addNewRecords: function(response) {
             var data = response.data;
             if (data.success) {
-                this.alert(lang.bill.addRecords.ok, function() {
-                    this.$scope.newData.bill.reset();
-                    this.reset();
-                    this.query();
+                f7App.alert(lang.bill.addRecords.ok, function() {
+                    billView.reset();
+                    billView.query();
                 });
             } else {
                 this.alert(lang.bill.addRecords.fail);
