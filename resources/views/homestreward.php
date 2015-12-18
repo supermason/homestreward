@@ -184,7 +184,7 @@
                 <div class="card" ng-repeat="bill in data.bills">
                   <div class="card-content">
                     <div class="card-header">
-                        {{$index+1}}、{{bill.who}} <span class="date">[{{bill.date}}]</span>
+                        {{$index+1}}、{{bill.who}} <span class="date">{{bill.date}}</span>
                     </div>
                     <div class="card-content">
                       <div class="card-content-inner">{{bill.category}}: {{bill.amount}}</div>
