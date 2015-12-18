@@ -63,7 +63,7 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                             //alert($scope.newData.bill.categoryId);
                             //return;
                             BillService.add($scope.newData.bill).then(function(response) {
-
+                                view.addNewRecords(response);
                             }, function(response){
                                 view.alert(response.data);
                             });

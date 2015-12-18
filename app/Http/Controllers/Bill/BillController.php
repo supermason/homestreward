@@ -176,7 +176,7 @@ class BillController extends Controller
 //            ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
 //            ->leftJoin('users AS u', 'who', '=', 'u.id');
 
-        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'date_format(consuming_records.consumption_date, "%Y-%m-%d") AS date', 'u.name AS who')
+        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consumption_date AS date', 'u.name AS who')
             ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
             ->leftJoin('users AS u', 'who', '=', 'u.id');
     }
