@@ -30,6 +30,8 @@ define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
     myApp.$$ = $$;
     // 显示preloader
     myApp.showPreloader = function() {
+        // 在显示提示前，不管有什么modal，都一并关闭了
+        f7App.closeModal();
         f7App.showPreloader(lang.app.preloaderTip);
     };
     // 隐藏preloader
@@ -214,6 +216,15 @@ define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
      */
     myApp.closePickerModal = function() {
         f7App.closeModal('.picker-modal.modal-in');
+    }
+
+    /**
+     * 关闭手风琴布局／可折叠布局
+     *
+     * @param {string} element 想要操作的条目的CSS选择器
+     */
+    myApp.closeAccordion = function(element) {
+        f7App.accordionClose(element);
     }
 
     return myApp;

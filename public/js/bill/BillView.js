@@ -131,6 +131,12 @@
             resetUI();
         },
 
+        closeAccordion: function(data) {
+            $('li.accordion-item a.item-link div.item-inner > p').text(data.name);
+            // 顺便收起界面
+            app.closeAccordion("li.accordion-item");
+        },
+
         addNewRecords: function(response) {
             var data = response.data;
             if (data.success) {

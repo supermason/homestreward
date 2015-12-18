@@ -50,7 +50,8 @@ define(['app', 'lang'], function (app, lang) {
 
             passwordChanged: function(data) {
                 // 必须先关闭界面，因为picker也属于modal的一种
-                app.closePickerModal();
+                // 这个操作已经移动到app的showpreloader方法内
+                //app.closePickerModal();
                 if (data.success) {
                     this.alert(lang.user.changePassword.ok);
                 } else {
@@ -61,9 +62,6 @@ define(['app', 'lang'], function (app, lang) {
             },
 
             updateFace: function(data) {
-                // 关闭界面
-                app.closePickerModal();
-
                 if (data.success) {
                     $("div[id='view-temp'] .avatar-container .avatar>img").attr('src', data.facePath);
                     $("div.user-panel .avatar>img").attr('src', data.facePath);

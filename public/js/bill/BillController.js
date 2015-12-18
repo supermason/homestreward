@@ -50,6 +50,7 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                             //this.categoryId = data.category.id;
                             //alert("In Scope: " + this.categoryId);
                             this.categoryId = data.category.id;
+                            view.closeAccordion(data.category);
                         }
                     },
                     categories: [],

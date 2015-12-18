@@ -127,20 +127,23 @@ class BillController extends Controller
     public function total($year, $month=null)
     {
         $hasMonth = !is_null($month);
+        $temp = intval($year);
 
         // 做个判断，年份不能超过当前年
         $curYear = intval(date('Y'));
-        if (intval($year) > $curYear) {
+        if ($temp > $curYear) {
             $year = strval($curYear);
         }
 
         if ($hasMonth) {
-            if (intval($month <= 0)) {
+            $temp = intval($month);
+            if ($temp <= 0) {
                 $month = null;
-            } else if (intval($month) > 12) {
+                $hasMonth = false;
+            } else if ($temp > 12) {
                 $month = '12';
             } else {
-                if (intval($month) < 10) {
+                if ($temp < 10) {
                     $month = '0' . $month;
                 }
             }

@@ -203,6 +203,16 @@ i.icon.icon-blank {
 .avatar-container .content-block-inner p span {
   padding: 0 5px;
 }
+.card-header {
+  background-color: #cce4ff;
+}
+.card-header .date {
+  font-size: 10px;
+  color: white;
+  background-color: #66afff;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
 .user-picker {
   background-color: white;
   height: 300px;
