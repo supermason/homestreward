@@ -40,7 +40,8 @@ return [
                 'subtitle' => '描述',
                 'retailPrice' => '零售价',
                 'wholesalePrice' => '批发价',
-                'operation' => '操作'
+                'operation' => '操作',
+                'inventory' => '库存'
             ],
         ],
         'addNewProduct' => [

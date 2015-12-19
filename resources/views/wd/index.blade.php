@@ -135,7 +135,9 @@
                                             </div>
                                         </div>
                                         <div class="card-footer">
-                                            <a href="#" class="link"></a>
+                                            @if (!Auth::guest())
+                                                <a href="{{url('/wd/admin/products/'.$product->id.'/edit/')}}" class="link external">{{trans('adminTip.products.productList.edit')}}</a>
+                                            @endif
                                             <a href="#" class="link">{{trans('tip.pList.detail')}}</a>
                                         </div>
                                     </li>

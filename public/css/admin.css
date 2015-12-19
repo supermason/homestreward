@@ -10,6 +10,13 @@
 .btn-fill {
   width: 100%;
 }
+.zero {
+  color: red;
+  font-weight: bold;
+}
+.has-inventory {
+  color: green;
+}
 /**
  * 专门负责缓动样式
  */

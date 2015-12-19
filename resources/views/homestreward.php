@@ -128,6 +128,12 @@
         <div class="list-block">
             <ul>
                 <li>
+                    <a class="item-link list-button external" href="<?php echo url('/wd')?>"><strong>微店</strong>逛逛</a>
+                </li>
+                <li>
+                    <a class="item-link list-button external" href="<?php echo url('/wd/admin') ?>"><strong>宝贝</strong>管理</a>
+                </li>
+                <li>
                     <a class="item-link list-button external" href="<?php echo url('/auth/logout') ?>"><strong>退出</strong>系统</a>
                 </li>
             </ul>
