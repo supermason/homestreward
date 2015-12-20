@@ -107,8 +107,13 @@ class ProductsController extends Controller
         if ($status['ok']) {
 //            return Redirect::back()->withMessage(['ok' => trans('products.addNewProduct.success.added')]);
             // 暂时跳转到信息列表页面吧
-            return redirect($request->getPathInfo());
+//            return redirect($request->getPathInfo());
 
+//            return redirect($request->getPathInfo() . '/create')->withMessages(
+//                ['ok' => trans('products.addNewProduct.success.added')]
+//            );
+
+            return redirect($request->getPathInfo())->withOk(trans('products.addNewProduct.success.added'));
         } else {
             return Redirect::back()->withInput()->withErrors($status['msg']);
         }
@@ -150,7 +155,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function save(Request $request, $id)
     {
         // 先验证
         $this->validate($request, [
@@ -177,7 +182,10 @@ class ProductsController extends Controller
         }
 
         if ($product->save()) {
-            return Redirect::back()->withMessage('ok');
+//            return redirect($request->getPathInfo() . $id . '/edit' )->withMessage([
+//                'ok' => 'new info saved!'
+//            ]);
+            return redirect($request->getPathInfo() . $id . '/edit')->withInput()->withOk('new info saved!');
         } else {
             return Redirect::back()->withInput()->withErrors('error');
         }

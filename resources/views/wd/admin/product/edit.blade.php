@@ -37,7 +37,14 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{url('/wd/admin/products/' . $data["product"]->id)}}" method="put" enctype="multipart/form-data">
+            @if (session('ok'))
+                <div class="alert alert-success alert-dismissable fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>{{session('ok')}}</strong>
+                </div>
+            @endif
+
+            <form method="put" class="form-horizontal" action="{{url('/wd/admin/products/' . $data["product"]->id)}}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pName')}}</label>
