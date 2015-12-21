@@ -31,7 +31,7 @@ Route::controllers([
  |--------------------------------------------------------------------------
  */
 Route::group(['prefix' => 'test', 'namespace' => 'Test'], function(){
-    Route::resource("test", "TestController");
+    Route::resource("tests", "TestController");
 });
 
 Route::group(['middleware' => 'auth'], function() {
