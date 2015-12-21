@@ -80,15 +80,23 @@ i.icon.icon-blank {
 .panel-left-add {
   background: #f2f2f2 none repeat scroll 0 0;
 }
+.panel-left-add .content-block {
+  margin: 0;
+}
 .panel-left-add > .content-block-title {
   margin: 0;
 }
 .panel-left-add > .content-block-title p {
-  line-height: 80px;
+  line-height: 40px;
   text-align: center;
+  font-size: 16px;
 }
 .panel-left-add .list-block {
   margin: 0;
+}
+.panel-left-add .list-block .item-inner {
+  padding-bottom: 0;
+  padding-top: 0;
 }
 .panel-left-add .list-block input[type="text"] {
   font-size: 12px;
@@ -104,13 +112,17 @@ i.icon.icon-blank {
 }
 .panel-left-add li.accordion-item .item-inner p {
   text-align: center;
-  margin: 0;
   color: #3395ff;
   font-weight: bold;
+  font-size: 14px;
 }
 .panel-left-add li.accordion-item .accordion-item-content .label-radio.item-content .item-inner > small {
   font-size: 12px;
   color: #3395ff;
+}
+.panel-left-add li.accordion-item .accordion-item-content .label-radio input[type="checkbox"] ~ .item-inner,
+.panel-left-add li.accordion-item .accordion-item-content .label-radio input[type="radio"] ~ .item-inner {
+  padding-top: 7px;
 }
 .panel-left-add .bill-total-title {
   font-size: 16px;
