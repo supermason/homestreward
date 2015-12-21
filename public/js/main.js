@@ -17,6 +17,9 @@ requirejs.config({
     shim: {
         'angular': {
             exports: 'angular'
+        },
+        'chart.min': {
+            exports: 'chart'
         }
         //'angular-resource': {
         //    deps: ['angular'],

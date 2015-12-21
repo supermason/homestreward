@@ -91,7 +91,7 @@
               <li>
                   <div class="item-content">
                       <div class="item-inner">
-                          <p class="bill-total-title">查询消费总和</p>
+                          <p class="bill-total-title">查询消费总和或报表</p>
                       </div>
                   </div>
               </li>
@@ -108,7 +108,16 @@
                   <div class="item-content">
                       <div class="item-inner">
                           <div class="item-input">
-                              <a href="#" id="calTotal" class="button">查询</a>
+                              <a href="#" id="calTotal" class="button">查询总和</a>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <div class="item-input">
+                              <a href="#" id="drawChart" class="button open-popup" data-popup=".popup-chart">查看报表</a>
                           </div>
                       </div>
                   </div>
@@ -389,6 +398,32 @@
                     </ul>
                 </div>
             </form>
+        </div>
+    </div>
+    <!-- Chart Popup -->
+    <div class="popup popup-chart">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left sliding">
+
+                </div>
+                <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                <div class="center sliding"><span class="app-title">消费报表</span></div>
+                <div class="right">
+                    <a href="#" class="link icon-only close-popup">
+                        <i class="fa fa-close"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pages navbar-through">
+            <div class="page" data-page="personal-page" ng-controller="UserController">
+                <div class="page-content">
+                    <div class="content-block">
+                        <canvas id="canvas" height="100%" width="100%"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Path to your app js-->
