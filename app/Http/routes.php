@@ -30,8 +30,8 @@ Route::controllers([
  | 测试路由
  |--------------------------------------------------------------------------
  */
-Route::get('test', function() {
-
+Route::group(['prefix' => 'test', 'namespace' => 'Test'], function(){
+    Route::resource("test", "TestController");
 });
 
 Route::group(['middleware' => 'auth'], function() {
