@@ -47,18 +47,18 @@
     <div class="content-block">
         <div class="content-block-inner">
             <div class="logo">
-                <img src="{{asset('img/wd/bb_miya_logo.jpg')}}">
+                <img src="{{asset('img/wd/' . $data['wdInfo']->logo . '')}}" />
             </div>
         </div>
     </div>
     <div class="content-block-title">
-        {{trans('tip.rightPanel.title')}}
+        {{$data['wdInfo']->title}}
     </div>
     <div class="content-block">
-       <p>{{trans('tip.rightPanel.content1')}}</p>
+       <p>{{$data['wdInfo']->content}}</p>
     </div>
     <div class="content-block">
-        <img class="img-responsive" src="{{asset('/img/wd/code.jpg')}}" />
+        <img class="img-responsive" src="{{asset('/img/wd/' . $data['wdInfo']->qr_img . '')}}" />
     </div>
 </div>
 <!-- Views -->
@@ -135,7 +135,11 @@
                                             </div>
                                         </div>
                                         <div class="card-footer">
-                                            <a href="#" class="link"></a>
+                                            @if (!Auth::guest())
+                                                <a href="{{url('/wd/admin/products/'.$product->id.'/edit/')}}" class="link external">{{trans('adminTip.products.productList.edit')}}</a>
+                                            @else
+                                                <a href="javascript:void(0);"></a>
+                                            @endif
                                             <a href="#" class="link">{{trans('tip.pList.detail')}}</a>
                                         </div>
                                     </li>

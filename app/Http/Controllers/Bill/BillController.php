@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
+
 use Redirect, Input;
 
 class BillController extends Controller
@@ -31,16 +33,29 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-            if (ConsumingRecords::create([
-                'amount' => Input::get('amount'),
-                'category_id' => Input::get('categoryId'),
-                'remark' => Input::get('remark'),
-                'who' => Auth::user()->id,
-            ])) {
-                return response()->json(['success' => true]);
-            } else {
-                return response()->json(['success' => false]);
-            }
+        $billInfo = [
+            'amount' => Input::get('amount'),
+            'category_id' => Input::get('categoryId'),
+            'remark' => Input::get('remark'),
+            'who' => Auth::user()->id,
+        ];
+
+        // 单独判断一下是否有填写消费时间
+        $consumptionDate = Input::get("consumptionDate");
+        if ($consumptionDate !== '') {
+            // 注意格式 'H:i:s'＝24小时制，'h:i:s'＝12小时制
+            $billInfo["consumption_date"] = $consumptionDate . " " . date('H:i:s', time());
+        } else {
+            $billInfo["consumption_date"] = date('y-m-d H:i:s', time());
+        }
+
+        if (ConsumingRecords::create($billInfo)) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+
+//        return response()->json($billInfo);
     }
 
     /**
@@ -60,8 +75,8 @@ class BillController extends Controller
     public function search()
     {
         return $this->getQueryObj()
-            ->whereRaw('date_format(consuming_records.created_at, "%Y%m") = date_format(curDate(), "%Y%m")')
-            ->orderBy('consuming_records.created_at', 'desc')
+            ->whereRaw('date_format(consuming_records.consumption_date, "%Y%m") = date_format(curDate(), "%Y%m")')
+            ->orderBy('consuming_records.consumption_date', 'desc')
             ->paginate(5)->toJson();
 
     }
@@ -97,18 +112,58 @@ class BillController extends Controller
 
         // 按日期查询时，获取全部数据，所以不用给paginate传参
         return $this->getQueryObj()
-            ->whereRaw('date_format(consuming_records.created_at, "%Y%m%d") = date_format("' . $targetDate . '", "%Y%m%d")')
+            ->whereRaw('date_format(consuming_records.consumption_date, "%Y%m%d") = date_format("' . $targetDate . '", "%Y%m%d")')
             ->orderBy('consuming_records.created_at', 'desc')
             ->paginate()->toJson();
     }
 
     /**
-     * 获取当月消费总和
+     * 获取指定日期的消费总和
+     *
+     * @param string $year
+     * @param string $month
+     * @return response
      */
-    public function total()
+    public function total($year, $month=null)
     {
+        $hasMonth = !is_null($month);
+        $temp = intval($year);
+
+        // 做个判断，年份不能超过当前年
+        $curYear = intval(date('Y'));
+        if ($temp > $curYear) {
+            $year = strval($curYear);
+        }
+
+        if ($hasMonth) {
+            $temp = intval($month);
+            if ($temp <= 0) {
+                $month = null;
+                $hasMonth = false;
+            } else if ($temp > 12) {
+                $month = '12';
+            } else {
+                if ($temp < 10) {
+                    $month = '0' . $month;
+                }
+            }
+        }
+
+        $condition = '';
+        if ($hasMonth) {
+            $condition = 'date_format(consuming_records.consumption_date, "%Y%m") = "' . $year . $month . '"';
+        } else {
+            $condition = 'date_format(consuming_records.consumption_date, "%Y") = "' . $year .'"';
+        }
+
         return response()->json([
-            'total' => ConsumingRecords::whereRaw('date_format(consuming_records.created_at, "%Y%m") = date_format(curDate(), "%Y%m")')->sum('amount')]);
+            'total' => ConsumingRecords::whereRaw($condition)->sum('amount'),
+            'date' => $hasMonth ?
+                            Lang::get('global.date.ym', ['year' => $year, 'month' => $month]) :
+                            Lang::get('global.date.y', ['year' => $year]),
+        ]);
+
+//        return response()->json(['r' => $condition]);
     }
 
     /**
@@ -117,7 +172,11 @@ class BillController extends Controller
      */
     private function getQueryObj()
     {
-        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consuming_records.created_at AS date', 'u.name AS who')
+//        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consuming_records.consumption_date AS date', 'u.name AS who')
+//            ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
+//            ->leftJoin('users AS u', 'who', '=', 'u.id');
+
+        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consumption_date AS date', 'u.name AS who')
             ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
             ->leftJoin('users AS u', 'who', '=', 'u.id');
     }

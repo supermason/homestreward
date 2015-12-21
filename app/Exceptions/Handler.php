@@ -40,8 +40,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof ModelNotFoundException)
-        {
+        // 判断是否为ajax请求
+        if ($request->ajax()) {
+            // 将错误信息转化为json格式
+            return response()->json(['exception' => true, 'msg' => $e->getMessage()]);
+        }
+
+        if ($e instanceof ModelNotFoundException) {
             // Custom logic for model not found...
             return view("wd.admin.error")->with("exception", $e->getMessage());
         }

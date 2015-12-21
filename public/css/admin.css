@@ -10,13 +10,19 @@
 .btn-fill {
   width: 100%;
 }
+.zero {
+  color: red;
+  font-weight: bold;
+}
+.has-inventory {
+  color: green;
+}
 /**
  * 专门负责缓动样式
  */
 html,
 body {
   color: #999999;
-  padding-top: 40px;
 }
 .top-gap {
   margin-top: 30px;
@@ -83,22 +89,22 @@ a {
   background-color: #ca3131;
   color: white;
   border-radius: 4px;
-  -webkit-transition: background-color linear 0.5s;
-  -moz-transition: background-color linear 0.5s;
-  -ms-transition: background-color linear 0.5s;
-  -o-transition: background-color linear 0.5s;
-  transition: background-color linear 0.5s;
+  -webkit-transition: background-color linear 1.5s;
+  -moz-transition: background-color linear 1.5s;
+  -ms-transition: background-color linear 1.5s;
+  -o-transition: background-color linear 1.5s;
+  transition: background-color linear 1.5s;
 }
 .admin-navbar ul.admin-nav li a.active:focus,
 .admin-navbar ul.admin-nav li a.active:hover {
   border: 1px solid #781d1d;
   background-color: #f9f9f9;
   color: #781d1d;
-  -webkit-transition: background-color linear 0.5s;
-  -moz-transition: background-color linear 0.5s;
-  -ms-transition: background-color linear 0.5s;
-  -o-transition: background-color linear 0.5s;
-  transition: background-color linear 0.5s;
+  -webkit-transition: background-color linear 1.5s;
+  -moz-transition: background-color linear 1.5s;
+  -ms-transition: background-color linear 1.5s;
+  -o-transition: background-color linear 1.5s;
+  transition: background-color linear 1.5s;
 }
 .admin-navbar ul.admin-nav li ul.admin-dropdown-menu > li {
   margin: 0;
@@ -211,11 +217,11 @@ a {
 .main-container .admin-grid:hover {
   background-color: #ececec;
   border-radius: 4px;
-  -webkit-transition: background-color linear 0.5s;
-  -moz-transition: background-color linear 0.5s;
-  -ms-transition: background-color linear 0.5s;
-  -o-transition: background-color linear 0.5s;
-  transition: background-color linear 0.5s;
+  -webkit-transition: background-color linear 1.5s;
+  -moz-transition: background-color linear 1.5s;
+  -ms-transition: background-color linear 1.5s;
+  -o-transition: background-color linear 1.5s;
+  transition: background-color linear 1.5s;
 }
 .sub-admin-nav {
   border-color: #ca3131;

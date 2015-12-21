@@ -23,6 +23,6 @@ use Illuminate\Database\Eloquent\Model;
 class ConsumingRecords extends Model {
 
     //
-    protected $fillable = ['amount', 'category_id', 'remark', 'who'];
+    protected $fillable = ['amount', 'category_id', 'remark', 'who', 'consumption_date'];
 
 }

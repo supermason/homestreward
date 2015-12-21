@@ -23,18 +23,20 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                         case 1:
                             return $http.get(baseAPI + "search?page=" + arg[0]);
                         case 2:
-                            return $http.get(baseAPI + arg[1][0] + "/" + arg[1][1] + "/" + arg[1][2]);
+                            return $http.get(baseAPI + "search/" + arg[1][0] + "/" + arg[1][1] + "/" + arg[1][2]);
                         default:
                             return $http.get(baseAPI);
                     }
                 },
-                getTotalExpense: function () {
-                    return $http.get(baseAPI + 'total/');
+                getTotalExpense: function (year, month) {
+                    return $http.get(baseAPI + 'total/' + year + (month ? "/" + month : ""));
                 },
                 add: function (bill) {
+                    //return createRequest('POST', 'new', bill);
+
                     return $http({
                         method: 'POST',
-                        url: baseAPI + "new",
+                        url: baseAPI + 'new',
                         dataType: 'json',
                         //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         //headers: {'Content-Type': 'application/json'},
@@ -56,14 +58,13 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                 },
 
                 add: function (setting) {
+
                     return $http({
-                            method: 'POST',
-                            url: baseAPI + "new",
-                            dataType: 'json',
-                            //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                            data: setting
-                        }
-                    );
+                        method: 'POST',
+                        url: baseAPI + 'new',
+                        dataType: 'json',
+                        data: setting
+                    });
                 }
             };
         }]);

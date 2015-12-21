@@ -11,7 +11,7 @@
   display: none;
 }
 .panel {
-  background: #fdfdfd;
+  background: white none repeat scroll 0 0;
 }
 .page {
   background: white none repeat scroll 0 0;
@@ -29,6 +29,12 @@
 .modal .preloader {
   height: 20px;
   width: 20px;
+}
+.theme-m {
+  -webkit-box-shadow: 2px 2px 6px gray;
+  -moz-box-shadow: 2px 2px 6px gray;
+  box-shadow: 2px 2px 6px gray;
+  opacity: 1;
 }
 /*==login==*/
 .error {
@@ -71,8 +77,10 @@ i.icon.icon-blank {
 .hidden {
   display: none;
 }
+.panel-left-add {
+  background: #f2f2f2 none repeat scroll 0 0;
+}
 .panel-left-add > .content-block-title {
-  background: #f2f2f2;
   margin: 0;
 }
 .panel-left-add > .content-block-title p {
@@ -104,13 +112,21 @@ i.icon.icon-blank {
   font-size: 12px;
   color: #3395ff;
 }
-.panel-right-profile > .content-block {
+.panel-left-add .bill-total-title {
+  font-size: 16px;
+  color: lightgray;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+.user-panel > .content-block {
   margin-top: 0;
 }
-.panel-right-profile > .content-block .content-block-inner {
+.user-panel > .content-block .content-block-inner {
   background: #f2f2f2;
+  padding: 20px 15px 10px;
 }
-.panel-right-profile > .content-block .content-block-inner div.avatar {
+.user-panel > .content-block .content-block-inner div.avatar {
   text-align: center;
   margin: 0 auto;
   width: 80px;
@@ -119,23 +135,23 @@ i.icon.icon-blank {
   border: 1px solid #ddd;
   overflow: hidden;
 }
-.panel-right-profile > .content-block .content-block-inner div.avatar img {
+.user-panel > .content-block .content-block-inner div.avatar img {
   width: 100%;
 }
-.panel-right-profile > .content-block .content-block-inner p {
+.user-panel > .content-block .content-block-inner p {
   text-align: center;
 }
-.panel-right-profile .links {
+.user-panel .links {
   margin: 10px auto;
   text-align: center;
 }
-.panel-right-profile .links ul li {
+.user-panel .links ul li {
   height: 20px;
   list-style-type: none;
   margin: 4px 0 4px -40px;
   overflow: hidden;
 }
-.panel-right-profile .links ul a {
+.user-panel .links ul a {
   display: block;
   color: #3395ff;
   font-weight: bold;
@@ -148,11 +164,11 @@ i.icon.icon-blank {
   -ms-transition: margin 0.4s ease-in-out;
   transition: margin 0.4s ease-in-out;
 }
-.panel-right-profile .links ul a:nth-of-type(even) {
+.user-panel .links ul a:nth-of-type(even) {
   color: white;
   background-color: #66afff;
 }
-.panel-right-profile .links ul li:hover :first-child {
+.user-panel .links ul li:hover :first-child {
   margin-top: -20px;
 }
 .item-media span {
@@ -186,6 +202,37 @@ i.icon.icon-blank {
 }
 .avatar-container .content-block-inner p span {
   padding: 0 5px;
+}
+.card-header {
+  background-color: #cce4ff;
+}
+.card-header .date {
+  font-size: 10px;
+  color: #66afff;
+  background-color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+.user-picker {
+  background-color: white;
+  height: 300px;
+}
+.user-picker .list-block {
+  margin: 0;
+}
+.change-password-picker {
+  background-color: white;
+  height: 300px;
+}
+.change-password-picker .list-block {
+  margin: 0;
+}
+.change-face-picker {
+  background-color: white;
+  height: 300px;
+}
+.change-face-picker .list-block {
+  margin: 0;
 }
 .footer {
   padding: 10px 0px 2px;

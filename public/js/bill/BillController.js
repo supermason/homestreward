@@ -22,10 +22,10 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                         BillService.get(view.curPage+1, view.date)
                             .then(view.update, view.error);
                     })
-                    .addService("getTotalExpense", function(){
-                        BillService.getTotalExpense()
+                    .addService("getTotalExpense", function(year, month) {
+                        BillService.getTotalExpense(year, month)
                             .then(function(response){
-                                view.alert("本月消费总额：" + response.data.total);
+                                view.alert("[" + response.data.date + "]消费总和：" + response.data.total);
                             }, function(response){
 
                             });
@@ -39,15 +39,18 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                         amount: "",
                         categoryId: 0,
                         remark: "",
+                        consumptionDate: "",
                         reset: function() {
                             this.amount = "";
                             this.categoryId = 0;
                             this.remark = "";
+                            this.consumptionDate = "";
                         },
                         updateData: function(data) {
                             //this.categoryId = data.category.id;
                             //alert("In Scope: " + this.categoryId);
                             this.categoryId = data.category.id;
+                            view.closeAccordion(data.category);
                         }
                     },
                     categories: [],
@@ -59,12 +62,9 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                         } else {
                             //alert($scope.newData.bill.categoryId);
                             //return;
-                            BillService.add($scope.newData.bill).then(function(response){
-                                view.alert("记录添加成功！", function() {
-                                    $scope.newData.bill.reset();
-                                    view.reset();
-                                    view.query();
-                                });
+                            BillService.add($scope.newData.bill).then(function(response) {
+                                $scope.newData.bill.reset();
+                                view.addNewRecords(response);
                             }, function(response){
                                 view.alert(response.data);
                             });
@@ -85,8 +85,9 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                 view.addService("addCT", function(value) {
                     if (value && value !== "") {
                         BillCTService.add({name: value}).then(function(response) {
-                            view.alert("新消费类型添加成功！");
-                            getCT();
+                            view.alert("新消费类型添加成功！", function() {
+                                getCT();
+                            });
                         }, function(response) {
                             view.alert(response.data);
                         });

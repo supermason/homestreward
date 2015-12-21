@@ -4,7 +4,7 @@
  *           $$-Framework7的选择器变体
  *           mv-Framework7的主视图
  */
-define(['framework7', 'lang'], function (fw7, lang) {
+define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
     'use strict';
 
     var myApp = {
@@ -30,6 +30,8 @@ define(['framework7', 'lang'], function (fw7, lang) {
     myApp.$$ = $$;
     // 显示preloader
     myApp.showPreloader = function() {
+        // 在显示提示前，不管有什么modal，都一并关闭了
+        f7App.closeModal();
         f7App.showPreloader(lang.app.preloaderTip);
     };
     // 隐藏preloader
@@ -111,6 +113,118 @@ define(['framework7', 'lang'], function (fw7, lang) {
             selected.addClass(className);
         }
 
+    }
+
+    /**
+     * 创建日历
+     *
+     * @param {object} options
+     *               必须包含：{string} input
+     *                        {function} onDayClick
+     *               可选参数：{boolean} inputReadOnly 默认为false
+     *                        {boolean} closeOnSelect 默认为true
+     *                        {function} onClose
+     * @return {object}
+     */
+    myApp.createCalendar = function(options) {
+        if (!options) return null;
+        if (!options['input']) return null;
+        if (options['input'] === '') return null;
+        if (!util.isFunction(options['onDayClick'])) return null;
+
+        var params = util.copyObj({
+            inputReadOnly: false,
+            closeOnSelect: true,
+            monthNames: lang.app.calendar.monthNames,
+            dayNames: lang.app.calendar.dayNames,
+            dayNamesShort: lang.app.calendar.dayNamesShort,
+            onClose: null,
+        }, options);
+
+        var myCalendar = f7App.calendar(params);
+
+        return myCalendar;
+    }
+
+
+    /**
+     * 创建一个日期选择器
+     *
+     * @param {object} options
+     *                 必须包含: {string} input
+     * @returns {picker}
+     */
+    myApp.createDateTimePicker = function(options) {
+        if (!options) return null;
+        if (!options['input']) return null;
+        if (options['input'] === '') return null;
+
+        var params = util.copyObj({
+            rotateEffect: true,
+            toolbarTemplate:
+                '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                        '<div class="left">' +
+                            '<p style="font-size: 10px;">' + lang.app.dateTimePickerTip + '</p>' +
+                        '</div>' +
+                        '<div class="right">' +
+                            '<a href="#" class="link close-picker">' + lang.app.modalButtonOk + '</a>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>',
+            cols: [{
+                    values: (function() {
+                        var yearArray = [],
+                            curYear = new Date().getFullYear();
+
+                        for (var i = 0; i < 10; ++i) {
+                            yearArray[i] = curYear - i;
+                        }
+
+                        return yearArray;
+                    })()
+                }, {
+                    values: ('0 1 2 3 4 5 6 7 8 9 10 11 12').split(' '),
+                    displayValues: ['----'].concat(lang.app.calendar.monthNames)
+                }
+            ],
+            onChange: function(picker, values, displayValues) {
+
+            },
+            formatValue: function(p, values, displayValues) {
+                return values[0] + (values[1] === '0' ? "" : "-" + values[1]);
+            }
+        }, options);
+
+        var dateTimePicker = f7App.picker(params);
+
+        return dateTimePicker;
+    }
+
+    /**
+     * 打开pickerModal
+     *
+     * @param {string} selector
+     */
+    myApp.openPickerModal = function(selector) {
+        f7App.pickerModal(selector);
+    },
+
+    /**
+     * 关闭pickerModal
+     *
+     */
+    myApp.closePickerModal = function() {
+        f7App.closeModal('.picker-modal.modal-in');
+    }
+
+    /**
+     * 关闭手风琴布局／可折叠布局
+     *
+     * @param {string} element 想要操作的条目的CSS选择器
+     */
+    myApp.closeAccordion = function(element) {
+        f7App.accordionClose(element);
     }
 
     return myApp;

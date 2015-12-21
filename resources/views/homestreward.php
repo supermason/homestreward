@@ -50,7 +50,7 @@
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="text" name="amount" placeholder="今天花了多少票票" required ng-pattern="/^\d+$/" title="请输入数字" ng-model="newData.bill.amount">
+                    <input type="text" name="amount" placeholder="今天花了多少票票" required ng-pattern="/^\d+(\.\d+)?$/" title="请输入数字" ng-model="newData.bill.amount">
                   </div>
                 </div>
               </div>
@@ -65,6 +65,15 @@
               </div>
             </li>
             <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-input">
+                            <input type="text" id="calendar-consumption" name="consumptionDate" ng-model="newData.bill.consumptionDate" placeholder="消费日期，不填则为当前时间">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
               <div class="item-content">
                 <div class="item-inner">
                   <input type="submit" class="button right" value="添加" ng-disabled="newData.bill.amount==undefined||newData.bill.amount==''||newData.bill.categoryId==0" />
@@ -74,18 +83,61 @@
           </ul>
         </div>
       </form>
-        <div class="content-block">
-            <p><a href="#" id="addNewCT" class="button button-fill prompt-title-ok-cancel">新增消费类型</a></p>
-            <p><a href="#" id="calTotal" class="button button-fill">当月消费总和</a></p>
-        </div>
+      <div class="content-block">
+          <p><a href="#" id="addNewCT" class="button button-fill prompt-title-ok-cancel">新增消费类型</a></p>
+      </div>
+      <div class="list-block">
+          <ul>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <p class="bill-total-title">查询消费总和</p>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <div class="item-input">
+                              <input type="text" placeholder="请选择要计算的日期，不选择为当月数据" name="dateTime" id="dateTime-picker">
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="item-content">
+                      <div class="item-inner">
+                          <div class="item-input">
+                              <a href="#" id="calTotal" class="button">查询</a>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+      </div>
     </div>
-    <div class="panel panel-right-profile panel-right panel-reveal">
+    <div class="panel panel-right panel-reveal user-panel">
       <div class="content-block">
         <div class="content-block-inner">
-
+            <div class="avatar">
+                <img src="<?php echo '/img/wd/face/' . Auth::user()->headImg ?>">
+            </div>
+            <p id="userName"><?php echo Auth::User()->name ?></p>
         </div>
       </div>
-
+        <div class="list-block">
+            <ul>
+                <li>
+                    <a class="item-link list-button external" href="<?php echo url('/wd')?>"><strong>微店</strong>逛逛</a>
+                </li>
+                <li>
+                    <a class="item-link list-button external" href="<?php echo url('/wd/admin') ?>"><strong>宝贝</strong>管理</a>
+                </li>
+                <li>
+                    <a class="item-link list-button external" href="<?php echo url('/auth/logout') ?>"><strong>退出</strong>系统</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- Views -->
     <div class="views tabs toolbar-through theme-m">
@@ -96,14 +148,14 @@
           <div class="navbar-inner">
             <div class="left sliding">
               <a href="#" data-panel="left" class="link icon-only open-panel">
-                <i class="icon icon-plus">+</i>
+                <i class="icon icon-plus"><strong>+</strong></i>
               </a>
             </div>
             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
             <div class="center sliding"><span class="app-title">记帐吧</span></div>
               <div class="right">
-                  <a href="/auth/logout" class="link icon-only external">
-                      <i class="fa fa-sign-out"></i>
+                  <a href="#" data-panel="right" class="link icon-only open-panel">
+                      <i class="fa fa-user"></i>
                   </a>
               </div>
           </div>
@@ -137,7 +189,9 @@
               <div class="list-block media-list search-here searchbar-found hidden">
                 <div class="card" ng-repeat="bill in data.bills">
                   <div class="card-content">
-                    <div class="card-header">{{$index+1}}、{{bill.who}} [{{bill.date}}]</div>
+                    <div class="card-header">
+                        {{$index+1}}、{{bill.who}} <span class="date">{{bill.date}}</span>
+                    </div>
                     <div class="card-content">
                       <div class="card-content-inner">{{bill.category}}: {{bill.amount}}</div>
                     </div>
@@ -168,8 +222,8 @@
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding"><span class="app-title">库存查询</span></div>
                     <div class="right">
-                        <a href="/auth/logout" class="link icon-only external">
-                            <i class="fa fa-sign-out"></i>
+                        <a href="#" data-panel="right" class="link icon-only open-panel">
+                            <i class="fa fa-user"></i>
                         </a>
                     </div>
                 </div>
@@ -185,8 +239,8 @@
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding"><span class="app-title">我的信息</span></div>
                     <div class="right">
-                        <a href="/auth/logout" class="link icon-only external">
-                            <i class="fa fa-sign-out"></i>
+                        <a href="#" data-panel="right" class="link icon-only open-panel">
+                            <i class="fa fa-user"></i>
                         </a>
                     </div>
                 </div>
@@ -196,7 +250,7 @@
                     <div class="page-content">
                         <div class="content-block avatar-container">
                             <div class="content-block-inner">
-                                <div class="avatar"><img  /></div>
+                                <div class="avatar"><img src="<?php echo '/img/wd/face/' . Auth::user()->headImg ?>"  /></div>
                                 <p>
                                     <span id="user-info">
                                         <?php echo Auth::User()->name ?>
@@ -205,10 +259,19 @@
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </p>
-
                             </div>
                         </div>
-
+                        <div class="content-block-title">其他操作</div>
+                        <div class="content-block">
+                            <div class="row">
+                                <div class="col-50">
+                                    <a href="#" class="button button-big open-picker" data-picker=".change-password-picker">修改密码</a>
+                                </div>
+                                <div class="col-50">
+                                    <a href="#" class="button button-big open-picker" data-picker=".change-face-picker">修改头像</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -234,6 +297,99 @@
 <!--            <p>@2015 <a href="mailto:jijiiscoming@hotmial.com">Mason</a>. All Rights Reserved.&nbsp;&nbsp;-->
 <!--            <a href="http://www.miitbeian.gov.cn/">鲁ICP备15023821</a></p>-->
 <!--        </div>-->
+    </div>
+    <!-- Picker -->
+    <div class="picker-modal change-password-picker">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left"></div>
+                <div class="right">
+                    <a href="#" class="close-picker">关闭</a>
+                </div>
+            </div>
+        </div>
+        <div class="picker-modal-inner">
+            <form id="changeNameForm" name="changeNameForm" ng-controller="UserChangePasswordController" ng-submit="password.changePassword()" >
+                <div class="content-block-title">
+                    修改密码
+                </div>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-email"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="email" name="email" placeholder="请输入用户名" required title="请输入用户名" ng-model="password.email">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" name="new_password" placeholder="请输入新密码，最少6位" required title="请输入新密码，最少6位" ng-model="password.new_password" ng-minlength="6">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" name="new_password_confirmation" placeholder="请确认新密码，最少6位" required title="请确认新密码，最少6位" ng-model="password.new_password_confirmation" ng-minlength="6">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <input type="submit" class="button" value="修改" ng-disabled="password.old_password==''||password.new_password==''||password.new_password_confirmation==''||password.new_password!=password.new_password_confirmation" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="picker-modal change-face-picker">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left"></div>
+                <div class="right">
+                    <a href="#" class="close-picker">关闭</a>
+                </div>
+            </div>
+        </div>
+        <div class="picker-modal-inner">
+            <form id="changeFaceForm" name="changeFaceForm" ng-controller="UserChangeFaceController" ng-submit="face.changeFace()" enctype="multipart/form-data">
+                <div class="content-block-title">更换头像</div>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                                <div class="item-inner">
+                                    <input type="file" name="new_face" placeholder="请选择头像" required title="请选择头像" file-model="new_face" accept="image/*">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <input type="submit" class="button" value="更换" />
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
     </div>
     <!-- Path to your app js-->
     <script data-main="js/main" src="/js/lib/require.js"></script>

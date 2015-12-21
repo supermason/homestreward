@@ -10,3 +10,10 @@
 .btn-fill {
   width: 100%;
 }
+.zero {
+  color: red;
+  font-weight: bold;
+}
+.has-inventory {
+  color: green;
+}

@@ -30,24 +30,24 @@ Route::controllers([
  | 测试路由
  |--------------------------------------------------------------------------
  */
-Route::get('test', function(){
+Route::get('test', function() {
 
 });
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function() {
 
     /*
      |--------------------------------------------------------------------------
      | 记帐总路由
      |--------------------------------------------------------------------------
      */
-    Route::group(['prefix' => 'bill', 'namespace' => 'Bill'], function(){
+    Route::group(['prefix' => 'bill', 'namespace' => 'Bill'], function() {
 
         Route::get('/', 'BillController@index');
         Route::get('/search', 'BillController@search');
-        Route::get('/{year}/{month}/{day}', 'BillController@searchByDate')->where(['year', 'month', 'day'], '[0-9]+');
+        Route::get('/search/{year}/{month}/{day}', 'BillController@searchByDate')->where(['year', 'month', 'day'], '[0-9]+');
+        Route::get('/total/{year}/{month?}', 'BillController@total');
         Route::post('/new', 'BillController@store');
-        Route::get('/total', 'BillController@total');
 
         // 消费配置相关
         Route::group(['prefix' => 'setting'], function(){
@@ -64,9 +64,13 @@ Route::group(['middleware' => 'auth'], function(){
      | 用户总路由
      |--------------------------------------------------------------------------
      */
-    Route::group(['prefix' => 'user', 'namespace' => 'User'], function(){
+    Route::group(['prefix' => 'user', 'namespace' => 'User'], function() {
 //        Route::resource("/", "UserController", ['only' => ['update']]);
-        Route::put("/edit", "UserController@update");
+        Route::group(['prefix' => 'edit'], function() {
+            Route::put("/name", "UserController@update");
+            Route::put("/password", "UserController@changePassword");
+            Route::post('/face', 'UserController@changeFace');
+        });
     });
 });
 
@@ -75,7 +79,7 @@ Route::group(['middleware' => 'auth'], function(){
  | 微店总路由
  |--------------------------------------------------------------------------
  */
-Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
+Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function() {
 
     /*
      |--------------------------------------------------------------------------
@@ -92,21 +96,20 @@ Route::group(['prefix' => 'wd', 'namespace' => 'WD'], function(){
      | 微店管理后台
      |--------------------------------------------------------------------------
      */
-    Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function(){
+    Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function() {
         // 主界面无需登录
         Route::get("/", "WDAdminController@index");
         // 其他界面必须登陆后才可以访问
         Route::group(['middleware' => 'auth'], function(){
             // 产品相关
             Route::resource("products", "ProductsController");
-//            Route::group(['prefix' => 'products'], function(){
-//                Route::resource("/", "ProductsController");
-//            });
             // 活动相关
             Route::resource("activities", "ActivitiesController");
 //            Route::group(['prefix' => 'activities'], function(){
 //                Route::resource("/", "ActivitiesController");
 //            });
+            // 店铺信息相关
+            Route::resource("info", 'WdInfoController', ['only' => ['edit', 'update']]);
         });
     });
 

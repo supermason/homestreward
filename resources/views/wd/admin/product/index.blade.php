@@ -20,21 +20,24 @@
                 </a>
             </li>
         </ul>
-        <div class="product-content">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
-                <span class="input-group-btn">
-                    <button class="btn btn-danger" type="button">Go!</button>
-                </span>
-            </div>
+        <div class="product-content table-responsive">
+            <form method="get" action="{{url('/wd/admin/products')}}" enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="input-group">
+                    <input type="text" name="keywords" class="form-control" placeholder="Search for..." value="{{$data["keywords"]}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
 
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover ">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>{{trans('adminTip.products.productList.pInfo.thumbnail')}}</th>
                         <th>{{trans('adminTip.products.productList.pInfo.name')}}</th>
-                        <th>{{trans('adminTip.products.productList.pInfo.subtitle')}}</th>
+                        {{--<th>{{trans('adminTip.products.productList.pInfo.subtitle')}}</th>--}}
+                        <th>{{trans('adminTip.products.productList.pInfo.inventory')}}</th>
                         <th>{{trans('adminTip.products.productList.pInfo.retailPrice')}}</th>
                         <th>{{trans('adminTip.products.productList.pInfo.wholesalePrice')}}</th>
                         <th>{{trans('adminTip.products.productList.pInfo.operation')}}</th>
@@ -43,16 +46,16 @@
                 <tbody>
                     @if (count($data['products']) == 0)
                         <tr>
-                            <td colspan="4">no items</td>
+                            <td colspan="7" style="text-align: center">{{trans('adminTip.products.productList.noItem')}}</td>
                         </tr>
                     @else
                         @foreach ($data['products'] as $product)
                             <tr>
-                                <td></td>
                                 <td><img src="{{App\Util\WdUtil::getProductImgUrl($product->category_id, $product->thumbnail)}}" class="thumbnail product-img"/></td>
-                                <td><h4><strong>{{$product->name}}</strong></h4></td>
-                                <td>{{$product->subtitle}}</td>
-                                <td><span class="normal-price">{{$product->retail_price}}</span><span class="discount">220.00</span></td>
+                                <td><strong>{{$product->name}}</strong></td>
+                                {{--<td>{{$product->subtitle}}</td>--}}
+                                <td><span {{App\UI\UITool::hasEnough($product->count)}}>{{$product->count}}</span></td>
+                                <td><span class="normal-price">{{$product->retail_price}}</span></td>
                                 <td>{{$product->wholesale_price}}</td>
                                 <td><a href="{{url('/wd/admin/products/'.$product->id.'/edit/')}}" class="btn btn-danger btn-sm">{{trans('adminTip.products.productList.edit')}}</a> </td>
                             </tr>

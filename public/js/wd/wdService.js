@@ -4,6 +4,8 @@
 
 define(['app', 'util'], function(app, util) {
 
+    'use strict';
+
     // 该模块的api地址
     var wdApiRoot = createSubServiceApiRoot();
     // 该模块的服务对象
