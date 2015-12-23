@@ -18,7 +18,7 @@ requirejs.config({
         'angular': {
             exports: 'angular'
         },
-        'Chart': {
+        'Chart.min': {
             exports: 'Chart'
         }
         //'angular-resource': {

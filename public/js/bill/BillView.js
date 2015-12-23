@@ -1,10 +1,17 @@
-﻿define(['app', 'lang', 'Chart'], function (app, lang, Chart) {
+﻿define(['app', 'lang', 'Chart.min'], function (app, lang, Chart) {
     'use strict';
 
     var f7App = app.f7App,
         $ = app.$$,
         loading = false,
-        myChart = null,
+        queryDate = {
+            year: null,
+            month: null,
+            reset: function() {
+                this.year = this.month = null;
+            }
+        },
+        barChart = null,
         billView = {
             // this是包含它的函数作为方法被调用时所属的对象
             curPage: 0,
@@ -12,14 +19,31 @@
             date: null, // 用于搜索的日期
             $scope: null,
             service: {},
+            /**
+             * 为视图添加服务
+             *
+             * @param key
+             * @param func
+             * @returns {billView}
+             */
             addService: function(key, func) {
                 this.service[key] = func;
                 return this;
             },
+            /**
+             * 是否还有更多页数
+             *
+             * @returns {boolean}
+             */
             hasNoMore: function () {
                 return this.curPage >= this.totalPage && this.totalPage != 0;
             },
-
+            /**
+             * 初始化视图
+             *
+             * @param $scope
+             * @returns {billView}
+             */
             init: function ($scope) {
 
                 this.$scope = $scope;
@@ -89,89 +113,30 @@
                         input: "#dateTime-picker"
                     });
                     $("a[id='calTotal']").on('click', function() {
-                        var queryDate = $("input[id='dateTime-picker']").val().split('-'),
-                            year = null,
-                            month = null;
-                        if (queryDate.length > 1) {
-                            year = queryDate[0];
-                            month = queryDate[1]
-                        } else if (queryDate.length == 1) {
-                            if (queryDate[0].trim() === '') {
-                                year = new Date().getFullYear();
-                            } else {
-                                year = queryDate[0];
-                            }
-                        }
-
-                        billView.service.getTotalExpense(year, month);
+                        adjustQueryDate();
+                        billView.service.getTotalExpense(queryDate.year, queryDate.month);
                     });
 
-                    var data = {
-                        labels: ["January", "February", "March", "April", "May", "June", "July"],
-                        datasets: [
-                            {
-                                label: "My First dataset",
-
-                                // The properties below allow an array to be specified to change the value of the item at the given index
-                                // String  or array - the bar color
-                                backgroundColor: "rgba(220,220,220,0.2)",
-
-                                // String or array - bar stroke color
-                                borderColor: "rgba(220,220,220,1)",
-
-                                // Number or array - bar border width
-                                borderWidth: 1,
-
-                                // String or array - fill color when hovered
-                                //hoverBackgroundColor: "rgba(220,220,220,0.2)",
-                                //
-                                //// String or array - border color when hovered
-                                //hoverBorderColor: "rgba(220,220,220,1)",
-
-                                // The actual data
-                                data: [65, 59, 80, 81, 56, 55, 40],
-
-                                // String - If specified, binds the dataset to a certain y-axis. If not specified, the first y-axis is used.
-                                yAxisID: "y-axis-1",
-                            },
-                            {
-                                label: "My Second dataset",
-                                backgroundColor: "rgba(220,220,220,0.2)",
-                                borderColor: "rgba(220,220,220,1)",
-                                borderWidth: 1,
-                                //hoverBackgroundColor: "rgba(220,220,220,0.2)",
-                                //hoverBorderColor: "rgba(220,220,220,1)",
-                                data: [28, 48, 40, 19, 86, 27, 90]
-                            }
-                        ]
-                    };
-
-                    $('.popup-chart').on('opened', function () {
-                        var ctx = $("canvas")[0].getContext("2d");
-                        var myBarChart = new Chart(ctx,{
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        stacked: true,
-                                    }],
-                                    yAxes: [{
-                                        stacked: true
-                                    }]
-                                }
-                            }
-                        });
+                    $("a[id='getChartData']").on("click", function() {
+                        adjustQueryDate();
+                        billView.service.getExpenseChartData(queryDate.year, queryDate.month);
                     });
                 });
 
                 return this;
             },
-
+            /**
+             * 查询账单
+             *
+             */
             query: function () {
                 this.service.getBill();
             },
-
+            /**
+             * 更加账单查询结果更新视图
+             *
+             * @param response
+             */
             update: function (response) {
 
                 var data = response.data;
@@ -190,12 +155,94 @@
                 resetUI();
             },
 
+            /**
+             * 打开图表所在的popover
+             *
+             * @param data
+             */
+            openChart: function(data) {
+                var data = {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [
+                        {
+                            label: "My First dataset",
+
+                            // The properties below allow an array to be specified to change the value of the item at the given index
+                            // String  or array - the bar color
+                            backgroundColor: "rgba(220,220,220,0.2)",
+
+                            // String or array - bar stroke color
+                            borderColor: "rgba(220,220,220,1)",
+
+                            // Number or array - bar border width
+                            borderWidth: 1,
+
+                            // String or array - fill color when hovered
+                            hoverBackgroundColor: "rgba(220,220,220,0.2)",
+
+                            // String or array - border color when hovered
+                            hoverBorderColor: "rgba(220,220,220,1)",
+
+                            // The actual data
+                            data: [65, 59, 80, 81, 56, 55, 40]
+                        },
+                        {
+                            label: "My Second dataset",
+                            backgroundColor: "rgba(220,220,220,0.2)",
+                            borderColor: "rgba(220,220,220,1)",
+                            borderWidth: 1,
+                            hoverBackgroundColor: "rgba(220,220,220,0.2)",
+                            hoverBorderColor: "rgba(220,220,220,1)",
+                            data: [28, 48, 40, 19, 86, 27, 90]
+                        }
+                    ]
+                };
+
+                $('.popup-chart').on('opened', function () {
+
+                    if (!barChart) {
+                        var ctx = $("canvas")[0].getContext("2d");
+                        var myBarChart = new Chart(ctx,{
+                            type: 'bar',
+                            data: data,
+                            options: {
+                                //scales: {
+                                //    xAxes: [{
+                                //        stacked: true,
+                                //    }],
+                                //    yAxes: [{
+                                //        stacked: true
+                                //    }]
+                                //},
+                                responsive: true
+                            }
+                        });
+                    } else {
+
+                    }
+
+                });
+
+                // 后动打开图表所在的popupover
+                app.openPopUp(".popup-chart");
+            },
+
+            /**
+             * 关闭视图内的 手风琴视图
+             *
+             * @param data
+             */
             closeAccordion: function(data) {
                 $('li.accordion-item a.item-link div.item-inner > p').text(data.name);
                 // 顺便收起界面
                 app.closeAccordion("li.accordion-item");
             },
 
+            /**
+             * 添加新的账单信息
+             *
+             * @param response
+             */
             addNewRecords: function(response) {
                 var data = response.data;
                 if (data.success) {
@@ -208,11 +255,20 @@
                 }
             },
 
+            /**
+             * 处理报错信息
+             *
+             * @param response
+             */
             error: function (response) {
                 alert("status: " + response.status + ", statusText: " + response.statusText);
                 f7App.pullToRefreshDone();
             },
 
+            /**
+             * 充值视图
+             *
+             */
             reset: function () {
                 this.date = null,
                 this.curPage = 0;
@@ -231,6 +287,24 @@
                 });
             }
     };
+
+    /**
+     * 校准费用汇总或者图标查询的日期
+     *
+     */
+    function adjustQueryDate() {
+        var date = $("input[id='dateTime-picker']").val().split('-');
+        if (date.length > 1) {
+            queryDate.year = date[0];
+            queryDate.month = date[1]
+        } else if (date.length == 1) {
+            if (date[0].trim() === '') {
+                queryDate.year = new Date().getFullYear();
+            } else {
+                queryDate.year = date[0];
+            }
+        }
+    }
 
     function resetUI() {
         // 加载完毕需要重置

@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/search', 'BillController@search');
         Route::get('/search/{year}/{month}/{day}', 'BillController@searchByDate')->where(['year', 'month', 'day'], '[0-9]+');
         Route::get('/total/{year}/{month?}', 'BillController@total');
+        Route::get('/chart/{year}/{month?}', 'BillController@chart');
         Route::post('/new', 'BillController@store');
 
         // 消费配置相关

@@ -27,7 +27,15 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                             .then(function(response){
                                 view.alert("[" + response.data.date + "]消费总和：" + response.data.total);
                             }, function(response){
-
+                                view.error(response);
+                            });
+                    })
+                    .addService("getExpenseChartData", function(year, month) {
+                        BillService.getExpenseChartData(year, month)
+                            .then(function(response) {
+                                view.openChart(response.data);
+                            }, function(response) {
+                                view.error(response);
                             });
                     })
                     .query();
@@ -66,7 +74,7 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                                 $scope.newData.bill.reset();
                                 view.addNewRecords(response);
                             }, function(response){
-                                view.alert(response.data);
+                                view.error(response);
                             });
                         }
                     }
@@ -78,7 +86,7 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                         function(response){
                             $scope.newData.categories = response.data.cc;
                         }, function(response) {
-
+                            view.error(response);
                         });
                 }
 
@@ -89,7 +97,7 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                                 getCT();
                             });
                         }, function(response) {
-                            view.alert(response.data);
+                            view.error(response);
                         });
                     } else {
                         view.alert("请填写新的消费类型！");
