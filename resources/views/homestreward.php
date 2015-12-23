@@ -117,7 +117,7 @@
                   <div class="item-content">
                       <div class="item-inner">
                           <div class="item-input">
-                              <a href="#" id="drawChart" class="button open-popup" data-popup=".popup-chart">查看报表</a>
+                              <a href="#" id="getChartData" class="button">查看报表</a>
                           </div>
                       </div>
                   </div>
@@ -416,7 +416,7 @@
             </div>
         </div>
         <div class="pages navbar-through">
-            <div class="page" data-page="personal-page" ng-controller="UserController">
+            <div class="page">
                 <div class="page-content">
                     <div class="content-block">
                         <canvas id="canvas" height="100%" width="100%"></canvas>

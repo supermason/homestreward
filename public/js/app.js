@@ -225,6 +225,14 @@ define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
      */
     myApp.closeAccordion = function(element) {
         f7App.accordionClose(element);
+    },
+
+    /**
+     *  打开一个popup
+     *
+     */
+    myApp.openPopUp = function(selector) {
+        f7App.popup(selector);
     }
 
     return myApp;

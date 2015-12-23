@@ -126,6 +126,48 @@ class BillController extends Controller
      */
     public function total($year, $month=null)
     {
+        $date = $this->validateDate($year, $month);
+
+        $condition = '';
+        if ($date['hasMonth']) {
+            $condition = 'date_format(consuming_records.consumption_date, "%Y%m") = "' . $date['year'] . $date['month'] . '"';
+        } else {
+            $condition = 'date_format(consuming_records.consumption_date, "%Y") = "' . $date['year'] .'"';
+        }
+
+        return response()->json([
+            'total' => ConsumingRecords::whereRaw($condition)->sum('amount'),
+            'date' => $date['hasMonth'] ?
+                            Lang::get('global.date.ym', ['year' => $date['year'], 'month' => $date['month']]) :
+                            Lang::get('global.date.y', ['year' => $date['year']]),
+        ]);
+
+//        return response()->json(['r' => $date['year'] . $date['month']]);
+    }
+
+    /**
+     * 获取指定日期内的图表数据
+     *
+     * @param string $year
+     * @param null $month
+     * @return response
+     */
+    public function chart($year, $month=null)
+    {
+        $date = $this->validateDate($year, $month);
+
+        return response()->json(['success' => 1]);
+    }
+
+    /**
+     * 日期检测
+     *
+     * @param string $year
+     * @param null $month
+     * @return array
+     */
+    private function validateDate($year, $month=null)
+    {
         $hasMonth = !is_null($month);
         $temp = intval($year);
 
@@ -149,21 +191,11 @@ class BillController extends Controller
             }
         }
 
-        $condition = '';
-        if ($hasMonth) {
-            $condition = 'date_format(consuming_records.consumption_date, "%Y%m") = "' . $year . $month . '"';
-        } else {
-            $condition = 'date_format(consuming_records.consumption_date, "%Y") = "' . $year .'"';
-        }
-
-        return response()->json([
-            'total' => ConsumingRecords::whereRaw($condition)->sum('amount'),
-            'date' => $hasMonth ?
-                            Lang::get('global.date.ym', ['year' => $year, 'month' => $month]) :
-                            Lang::get('global.date.y', ['year' => $year]),
-        ]);
-
-//        return response()->json(['r' => $condition]);
+        return [
+            'year' => $year,
+            'month' => $month,
+            'hasMonth' => $hasMonth
+        ];
     }
 
     /**
