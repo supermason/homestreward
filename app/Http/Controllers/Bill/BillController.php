@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
 
 use Redirect, Input;
@@ -155,8 +156,32 @@ class BillController extends Controller
     public function chart($year, $month=null)
     {
         $date = $this->validateDate($year, $month);
+        $select = '';
+        $condition = '';
+        $groupBy = '';
 
-        return response()->json(['success' => 1]);
+//        $users = DB::table('users')
+//            ->select(DB::raw('count(*) as user_count, status'))
+//            ->where('status', '<>', 1)
+//            ->groupBy('status')
+//            ->get();
+
+        // 查询某年某月的日汇总
+        if ($date['hasMonth']) {
+            $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%d") AS Day, SUM(amount) AS Amount');
+            $condition = 'DATE_FORMAT(consuming_records.consumption_date, "%Y%m") = "' . $date['year'] . $date['month'] . '"';
+            $groupBy = 'Day';
+            // 查询某年的月汇总
+        } else {
+            $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%m") AS Month, SUM(amount) AS Amount');
+            $condition = 'DATE_FORMAT(consuming_records.consumption_date, "%Y") = "' . $date['year'] . '"';
+            $groupBy = 'Month';
+        }
+
+//        return ConsumingRecords::select($select)->whereRaw($condition)->groupBy($groupBy)->get()->toJson();
+        return response()->json([
+            ConsumingRecords::select($select)->whereRaw($condition)->groupBy($groupBy)->get()
+        ]);
     }
 
     /**
