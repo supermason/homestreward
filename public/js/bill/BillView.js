@@ -1,4 +1,4 @@
-﻿define(['app', 'lang', 'Chart.min'], function (app, lang, Chart) {
+﻿define(['app', 'lang', 'MyBarChart', 'util'], function (app, lang, myChart, util) {
     'use strict';
 
     var f7App = app.f7App,
@@ -11,7 +11,6 @@
                 this.year = this.month = null;
             }
         },
-        barChart = null,
         billView = {
             // this是包含它的函数作为方法被调用时所属的对象
             curPage: 0,
@@ -133,7 +132,7 @@
                 this.service.getBill();
             },
             /**
-             * 更加账单查询结果更新视图
+             * 账单查询结果更新视图
              *
              * @param response
              */
@@ -161,69 +160,13 @@
              * @param data
              */
             openChart: function(data) {
-                var data = {
-                    labels: ["January", "February", "March", "April", "May", "June", "July"],
-                    datasets: [
-                        {
-                            label: "My First dataset",
+                // 修改popup-over的标题
+                $('.popup-chart .navbar .navbar-inner .center > span.app-title').text(data.title + lang.bill.chart.title);
+                // 创建图表
+                data.maxDay = util.getMaxDayInGivenMonth(queryDate.year, queryDate.month);
+                myChart.update(data);
 
-                            // The properties below allow an array to be specified to change the value of the item at the given index
-                            // String  or array - the bar color
-                            backgroundColor: "rgba(220,220,220,0.2)",
-
-                            // String or array - bar stroke color
-                            borderColor: "rgba(220,220,220,1)",
-
-                            // Number or array - bar border width
-                            borderWidth: 1,
-
-                            // String or array - fill color when hovered
-                            hoverBackgroundColor: "rgba(220,220,220,0.2)",
-
-                            // String or array - border color when hovered
-                            hoverBorderColor: "rgba(220,220,220,1)",
-
-                            // The actual data
-                            data: [65, 59, 80, 81, 56, 55, 40]
-                        },
-                        {
-                            label: "My Second dataset",
-                            backgroundColor: "rgba(220,220,220,0.2)",
-                            borderColor: "rgba(220,220,220,1)",
-                            borderWidth: 1,
-                            hoverBackgroundColor: "rgba(220,220,220,0.2)",
-                            hoverBorderColor: "rgba(220,220,220,1)",
-                            data: [28, 48, 40, 19, 86, 27, 90]
-                        }
-                    ]
-                };
-
-                $('.popup-chart').on('opened', function () {
-
-                    if (!barChart) {
-                        var ctx = $("canvas")[0].getContext("2d");
-                        var myBarChart = new Chart(ctx,{
-                            type: 'bar',
-                            data: data,
-                            options: {
-                                //scales: {
-                                //    xAxes: [{
-                                //        stacked: true,
-                                //    }],
-                                //    yAxes: [{
-                                //        stacked: true
-                                //    }]
-                                //},
-                                responsive: true
-                            }
-                        });
-                    } else {
-
-                    }
-
-                });
-
-                // 后动打开图表所在的popupover
+                // 打开图表所在的popupover
                 app.openPopUp(".popup-chart");
             },
 
@@ -266,7 +209,7 @@
             },
 
             /**
-             * 充值视图
+             * 重置视图
              *
              */
             reset: function () {
@@ -293,6 +236,9 @@
      *
      */
     function adjustQueryDate() {
+        // 先清理一下数据
+        queryDate.reset();
+
         var date = $("input[id='dateTime-picker']").val().split('-');
         if (date.length > 1) {
             queryDate.year = date[0];

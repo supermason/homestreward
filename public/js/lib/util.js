@@ -204,6 +204,21 @@ define([], function() {
         }
 
         return dest;
+    };
+
+    /**
+     * 获取某年某月的天数
+     *
+     * @param {int} year
+     * @param {int} month
+     * @returns {number}
+     */
+    util.getMaxDayInGivenMonth = function(year, month) {
+        if (month < 1)       month = 1;
+        else if (month > 12) month = 12;
+
+        var temp = new Date(year, month, 0);
+        return temp.getDate();
     }
 
     return util;
