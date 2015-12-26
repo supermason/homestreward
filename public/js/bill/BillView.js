@@ -165,7 +165,9 @@
                 // 修改popup-over的标题
                 $('.popup-chart .navbar .navbar-inner .center > span.app-title').text(data.title + lang.bill.chart.title);
                 // 创建图表
-                data.maxDay = util.getMaxDayInGivenMonth(queryDate.year, queryDate.month);
+                if (data.type == myChart.type.WITH_MONTH) {
+                    data.maxDay = util.getMaxDayInGivenMonth(queryDate.year, queryDate.month);
+                }
                 myChart.update(data);
 
                 // 打开图表所在的popupover
@@ -253,9 +255,7 @@
             }
         }
         // 是否根据消费类型
-        var byCC = $("input[name='byCC']").prop("checked");
-
-        alert(byCC);
+        queryDate.byCC = $("input[name='byCC']").prop("checked");
     }
 
     function resetUI() {

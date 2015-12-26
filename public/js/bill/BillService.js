@@ -31,8 +31,8 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                 getTotalExpense: function (year, month) {
                     return $http.get(baseAPI + 'total/' + year + (month ? "/" + month : ""));
                 },
-                getExpenseChartData: function (year, month) {
-                    return $http.get(baseAPI + 'chart/' + year + (month ? "/" + month : ""));
+                getExpenseChartData: function (year, month, byCC) {
+                    return $http.get(baseAPI + 'chart/' + year + (month ? "/" + month : "") + "?byCC=" + byCC);
                 },
                 add: function (bill) {
                     //return createRequest('POST', 'new', bill);

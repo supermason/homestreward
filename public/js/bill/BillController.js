@@ -30,8 +30,8 @@ define(['ngmodule', 'bill/BillView'], function (ngmodule, view) {
                                 view.error(response);
                             });
                     })
-                    .addService("getExpenseChartData", function(year, month) {
-                        BillService.getExpenseChartData(year, month)
+                    .addService("getExpenseChartData", function(year, month, byCC) {
+                        BillService.getExpenseChartData(year, month, byCC)
                             .then(function(response) {
                                 view.openChart(response.data);
                             }, function(response) {

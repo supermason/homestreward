@@ -4,7 +4,7 @@
  *           $$-Framework7的选择器变体
  *           mv-Framework7的主视图
  */
-define(['framework7', 'util', 'lang'], function (fw7, util, lang) {
+define(['framework7.min', 'util', 'lang'], function (fw7, util, lang) {
     'use strict';
 
     var myApp = {
