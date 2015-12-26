@@ -7,8 +7,10 @@
         queryDate = {
             year: null,
             month: null,
+            byCC: false,
             reset: function() {
                 this.year = this.month = null;
+                this.byCC = false;
             }
         },
         billView = {
@@ -113,12 +115,12 @@
                     });
                     $("a[id='calTotal']").on('click', function() {
                         adjustQueryDate();
-                        billView.service.getTotalExpense(queryDate.year, queryDate.month);
+                        billView.service.getTotalExpense(queryDate.year, queryDate.month, queryDate.byCC);
                     });
 
                     $("a[id='getChartData']").on("click", function() {
                         adjustQueryDate();
-                        billView.service.getExpenseChartData(queryDate.year, queryDate.month);
+                        billView.service.getExpenseChartData(queryDate.year, queryDate.month, queryDate.byCC);
                     });
                 });
 
@@ -238,7 +240,7 @@
     function adjustQueryDate() {
         // 先清理一下数据
         queryDate.reset();
-
+        // 年月
         var date = $("input[id='dateTime-picker']").val().split('-');
         if (date.length > 1) {
             queryDate.year = date[0];
@@ -250,6 +252,10 @@
                 queryDate.year = date[0];
             }
         }
+        // 是否根据消费类型
+        var byCC = $("input[name='byCC']").prop("checked");
+
+        alert(byCC);
     }
 
     function resetUI() {
