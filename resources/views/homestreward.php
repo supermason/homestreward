@@ -404,10 +404,8 @@
     <div class="popup popup-chart">
         <div class="navbar">
             <div class="navbar-inner">
-                <div class="left sliding">&nbsp;
-                </div>
-                <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                <div class="center sliding"><span class="app-title">消费报表</span></div>
+                <div class="left sliding">&nbsp;</div>
+                <div class="center sliding"><span class="app-title"></span></div>
                 <div class="right">
                     <a href="#" class="link icon-only close-popup">
                         <i class="fa fa-close"></i>

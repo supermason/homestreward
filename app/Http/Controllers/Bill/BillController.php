@@ -9,12 +9,22 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
 
 use Redirect, Input;
 
 class BillController extends Controller
 {
+    /**
+     *  汇总图表时有月份数据 - 1
+     */
+    const BAR_DATA_WITH_MONTH = 1;
+    /**
+     * 汇总图表时没有月份数据 - 2
+     */
+    const BAR_DATA_WITHOUT_MONTH = 2;
+
     /**
      * Display a listing of the resource.
      *
@@ -155,8 +165,40 @@ class BillController extends Controller
     public function chart($year, $month=null)
     {
         $date = $this->validateDate($year, $month);
+        $select = '';
+        $condition = '';
+        $groupBy = '';
 
-        return response()->json(['success' => 1]);
+//        $users = DB::table('users')
+//            ->select(DB::raw('count(*) as user_count, status'))
+//            ->where('status', '<>', 1)
+//            ->groupBy('status')
+//            ->get();
+
+        // 查询某年某月的日汇总
+        if ($date['hasMonth']) {
+            $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%e") AS Day, SUM(amount) AS Amount');
+            $condition = 'DATE_FORMAT(consuming_records.consumption_date, "%Y%m") = "' . $date['year'] . $date['month'] . '"';
+            $groupBy = 'Day';
+            // 查询某年的月汇总
+        } else {
+            $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%c") AS Month, SUM(amount) AS Amount');
+            $condition = 'DATE_FORMAT(consuming_records.consumption_date, "%Y") = "' . $date['year'] . '"';
+            $groupBy = 'Month';
+        }
+
+//        return ConsumingRecords::select($select)->whereRaw($condition)->groupBy($groupBy)->get()->toJson();
+        return response()->json([
+            'type' => $date['hasMonth'] ? BillController::BAR_DATA_WITH_MONTH : BillController::BAR_DATA_WITHOUT_MONTH,
+            'title' => $date['hasMonth'] ?
+                Lang::get('global.date.ym', ['year' => $date['year'], 'month' => $date['month']]) :
+                Lang::get('global.date.y', ['year' => $date['year']]),
+            'sum' => ConsumingRecords::select($select)
+                ->whereRaw($condition)
+                ->groupBy($groupBy)
+                ->orderBy('consuming_records.consumption_date')
+                ->get(),
+        ]);
     }
 
     /**
@@ -208,7 +250,7 @@ class BillController extends Controller
 //            ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
 //            ->leftJoin('users AS u', 'who', '=', 'u.id');
 
-        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', 'consumption_date AS date', 'u.name AS who')
+        return ConsumingRecords::select('amount', 'cc.name AS category', 'remark', DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%Y-%m-%d") AS date'), 'u.name AS who')
             ->join('consumption_categories AS cc', 'category_id', '=', 'cc.id')
             ->leftJoin('users AS u', 'who', '=', 'u.id');
     }

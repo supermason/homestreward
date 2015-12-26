@@ -29,6 +29,10 @@ define([], function(){
             addRecords: {
                 ok: '记录添加成功！',
                 fail: '记录添加失败！'
+            },
+            chart: {
+                title: '消费汇总表',
+                toolTipTitle: '消费总数'
             }
         },
         /**
