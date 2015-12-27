@@ -168,6 +168,7 @@
                 if (data.type == myChart.type.WITH_MONTH) {
                     data.maxDay = util.getMaxDayInGivenMonth(queryDate.year, queryDate.month);
                 }
+                data.byCC = queryDate.byCC;
                 myChart.update(data);
 
                 // 打开图表所在的popupover
@@ -255,7 +256,7 @@
             }
         }
         // 是否根据消费类型
-        queryDate.byCC = $("input[name='byCC']").prop("checked");
+        queryDate.byCC = $("input[name='byCC']").prop("checked") ? 1: 0;
     }
 
     function resetUI() {
