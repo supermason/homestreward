@@ -22,8 +22,8 @@ define(['framework7.min', 'util', 'lang'], function (fw7, util, lang) {
             smartSelectBackOnSelect: true,
             cache: false,
             pushState: true,
-            preloadPreviousPage: false,
-            swipePanel: 'left'
+            preloadPreviousPage: false
+            //swipePanel: 'left'
         }),
 
         $$ = Framework7.$;
