@@ -243,11 +243,42 @@
 
                             </div>
                             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                            <div class="center sliding"><span class="app-title">库存查询</span></div>
+                            <div class="center sliding"><span class="app-title">库存管理</span></div>
                             <div class="right">
                                 <a href="#" data-panel="right" class="link icon-only open-panel">
                                     <i class="fa fa-user"></i>
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pages navbar-through">
+                        <div class="page" data-page="inventory-page">
+                            <div class="page-content">
+                                <div class="content-block">
+                                    <!-- tabs控制面板 -->
+                                    <div class="buttons-row">
+                                        <a href="#tab1" class="tab-link active button">Tab 1</a>
+                                        <a href="#tab2" class="tab-link button">Tab 2</a>
+                                        <a href="#tab3" class="tab-link button">Tab 3</a>
+                                    </div>
+                                </div>
+                                <div class="tabs-animated-wrap">
+                                    <!-- Tabs -->
+                                    <div class="tabs">
+                                        <!-- Tab 1，默认激活 -->
+                                        <div id="tab1" class="tab active">
+                                            ... Tab 1 content ...
+                                        </div>
+                                        <!-- Tab 2 -->
+                                        <div id="tab2" class="tab">
+                                            ... Tab 2 content ...
+                                        </div>
+                                        <!-- Tab 3 -->
+                                        <div id="tab3" class="tab">
+                                            ... Tab 3 content ...
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
