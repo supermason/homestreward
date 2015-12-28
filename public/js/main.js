@@ -15,7 +15,7 @@ requirejs.config({
     },
 
     shim: {
-        'angular': {
+        'angular.min': {
             exports: 'angular'
         },
         'Chart.min': {

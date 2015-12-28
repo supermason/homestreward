@@ -2,7 +2,7 @@
 /**
  * angular模块对象，用于控制器、服务、指令等创建
  */
-define(['app', 'angular'], function (app, angular) {
+define(['app', 'angular.min'], function (app, angular) {
     'use strict';
 
     return {

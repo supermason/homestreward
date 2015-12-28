@@ -7,8 +7,10 @@
         queryDate = {
             year: null,
             month: null,
+            byCC: false,
             reset: function() {
                 this.year = this.month = null;
+                this.byCC = false;
             }
         },
         billView = {
@@ -113,12 +115,12 @@
                     });
                     $("a[id='calTotal']").on('click', function() {
                         adjustQueryDate();
-                        billView.service.getTotalExpense(queryDate.year, queryDate.month);
+                        billView.service.getTotalExpense(queryDate.year, queryDate.month, queryDate.byCC);
                     });
 
                     $("a[id='getChartData']").on("click", function() {
                         adjustQueryDate();
-                        billView.service.getExpenseChartData(queryDate.year, queryDate.month);
+                        billView.service.getExpenseChartData(queryDate.year, queryDate.month, queryDate.byCC);
                     });
                 });
 
@@ -163,7 +165,10 @@
                 // 修改popup-over的标题
                 $('.popup-chart .navbar .navbar-inner .center > span.app-title').text(data.title + lang.bill.chart.title);
                 // 创建图表
-                data.maxDay = util.getMaxDayInGivenMonth(queryDate.year, queryDate.month);
+                if (data.type == myChart.type.WITH_MONTH) {
+                    data.maxDay = util.getMaxDayInGivenMonth(queryDate.year, queryDate.month);
+                }
+                data.byCC = queryDate.byCC;
                 myChart.update(data);
 
                 // 打开图表所在的popupover
@@ -238,7 +243,7 @@
     function adjustQueryDate() {
         // 先清理一下数据
         queryDate.reset();
-
+        // 年月
         var date = $("input[id='dateTime-picker']").val().split('-');
         if (date.length > 1) {
             queryDate.year = date[0];
@@ -250,6 +255,8 @@
                 queryDate.year = date[0];
             }
         }
+        // 是否根据消费类型
+        queryDate.byCC = $("input[name='byCC']").prop("checked") ? 1: 0;
     }
 
     function resetUI() {

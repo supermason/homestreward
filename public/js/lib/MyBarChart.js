@@ -38,10 +38,6 @@ define(['Chart.min', 'lang'], function(Chart, lang) {
                 },
                 responsive: true
             },
-            type: {
-                WITH_MONTH: 1,
-                WITHOUT_MONTH: 2
-            },
             reset: function() {
                 this.barData.labels.length = 0;
                 this.barData.datasets.forEach(function(dataset, index) {
@@ -66,6 +62,10 @@ define(['Chart.min', 'lang'], function(Chart, lang) {
                 createChartData(data);
                 barChart.clear();
                 barChart.update();
+            },
+            type: {
+                WITH_MONTH: 1,
+                WITHOUT_MONTH: 2
             }
         };
 
@@ -76,19 +76,24 @@ define(['Chart.min', 'lang'], function(Chart, lang) {
     function createChartData(data) {
         // 清理数据
         myBarChartData.reset();
-
-        var chartType = data.type;
-        switch (chartType) {
-            case myBarChartData.type.WITH_MONTH:
-                // 带着月份的说明是X年X月内的日消费,返回1-月底的数量
-                createDayData(data);
-                break;
-            case myBarChartData.type.WITHOUT_MONTH:
-                // 不带月份的就是一年内12个月的汇总
-                createMonthData(data);
-                break;
-            default:
-                break;
+        // 根据日期+消费类型汇总的
+        if (data.byCC == 1) {
+            createCCData(data);
+            // 根据日期汇总的
+        } else {
+            var chartType = data.type;
+            switch (chartType) {
+                case myBarChart.type.WITH_MONTH:
+                    // 带着月份的说明是X年X月内的日消费,返回1-月底的数量
+                    createDayData(data);
+                    break;
+                case myBarChart.type.WITHOUT_MONTH:
+                    // 不带月份的就是一年内12个月的汇总
+                    createMonthData(data);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -130,6 +135,18 @@ define(['Chart.min', 'lang'], function(Chart, lang) {
             } else {
                 myBarChartData.barData.datasets[0].data[j] = 0;
             }
+        }
+    }
+
+    /**
+     * 创建消费类型图表数据
+     *
+     * @param data
+     */
+    function createCCData(data) {
+        for (var i = 0; i < data.sum.length; ++i) {
+            myBarChartData.barData.labels[i] = data.sum[i].Category;
+            myBarChartData.barData.datasets[0].data[i] = data.sum[i].Amount;
         }
     }
 

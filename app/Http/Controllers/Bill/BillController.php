@@ -165,39 +165,42 @@ class BillController extends Controller
     public function chart($year, $month=null)
     {
         $date = $this->validateDate($year, $month);
-        $select = '';
-        $condition = '';
-        $groupBy = '';
+        $byCC = intval(Input::get('byCC'));
+        $condition = $date['hasMonth'] ? 'DATE_FORMAT(consuming_records.consumption_date, "%Y%m") = "' . $date['year'] . $date['month'] . '"' : 'DATE_FORMAT(consuming_records.consumption_date, "%Y") = "' . $date['year'] . '"';
+        $queryObj = null;
 
-//        $users = DB::table('users')
-//            ->select(DB::raw('count(*) as user_count, status'))
-//            ->where('status', '<>', 1)
-//            ->groupBy('status')
-//            ->get();
-
-        // 查询某年某月的日汇总
-        if ($date['hasMonth']) {
-            $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%e") AS Day, SUM(amount) AS Amount');
-            $condition = 'DATE_FORMAT(consuming_records.consumption_date, "%Y%m") = "' . $date['year'] . $date['month'] . '"';
-            $groupBy = 'Day';
-            // 查询某年的月汇总
+        // 根据类型查询
+        if ($byCC == 1) {
+            // select是相同的,唯一不同的是日期条件
+            $queryObj = ConsumingRecords::select(DB::raw('consumption_categories.name AS Category, SUM(consuming_records.amount) AS Amount'))
+                ->leftJoin('consumption_categories', 'consuming_records.category_id', '=', 'consumption_categories.id')
+                ->whereRaw($condition)
+                ->groupBy('consuming_records.category_id');
         } else {
-            $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%c") AS Month, SUM(amount) AS Amount');
-            $condition = 'DATE_FORMAT(consuming_records.consumption_date, "%Y") = "' . $date['year'] . '"';
-            $groupBy = 'Month';
+            $select = null;
+            $groupBy = null;
+            // 查询某年某月的日汇总
+            if ($date['hasMonth']) {
+                $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%e") AS Day, SUM(amount) AS Amount');
+                $groupBy = 'Day';
+                // 查询某年的月汇总
+            } else {
+                $select = DB::raw('DATE_FORMAT(consuming_records.consumption_date, "%c") AS Month, SUM(amount) AS Amount');
+                $groupBy = 'Month';
+            }
+
+            $queryObj = ConsumingRecords::select($select)
+                ->whereRaw($condition)
+                ->groupBy($groupBy)
+                ->orderBy('consuming_records.consumption_date');
         }
 
-//        return ConsumingRecords::select($select)->whereRaw($condition)->groupBy($groupBy)->get()->toJson();
         return response()->json([
             'type' => $date['hasMonth'] ? BillController::BAR_DATA_WITH_MONTH : BillController::BAR_DATA_WITHOUT_MONTH,
             'title' => $date['hasMonth'] ?
                 Lang::get('global.date.ym', ['year' => $date['year'], 'month' => $date['month']]) :
                 Lang::get('global.date.y', ['year' => $date['year']]),
-            'sum' => ConsumingRecords::select($select)
-                ->whereRaw($condition)
-                ->groupBy($groupBy)
-                ->orderBy('consuming_records.consumption_date')
-                ->get(),
+            'sum' => $queryObj->get(),
         ]);
     }
 

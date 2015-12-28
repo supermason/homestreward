@@ -105,6 +105,18 @@
                   </div>
               </li>
               <li>
+                  <label class="label-checkbox item-content">
+                      <!-- Checked by default -->
+                      <input type="checkbox" name="byCC" value="0" >
+                      <div class="item-media">
+                          <i class="icon icon-form-checkbox"></i>
+                      </div>
+                      <div class="item-inner">
+                          <div class="item-title"><span class="by-cc">根据消费类型</span></div>
+                      </div>
+                  </label>
+              </li>
+              <li>
                   <div class="item-content">
                       <div class="item-inner">
                           <div class="item-input">
