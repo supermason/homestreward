@@ -122,6 +122,10 @@
                         adjustQueryDate();
                         billView.service.getExpenseChartData(queryDate.year, queryDate.month, queryDate.byCC);
                     });
+                    // 关闭消费图表时清除数据
+                    $(".popup-chart").on("closed", function() {
+                        myChart.reset();
+                    });
                 });
 
                 return this;
