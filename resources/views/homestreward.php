@@ -174,7 +174,7 @@
                           </a>
                         </div>
                         <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                        <div class="center sliding"><span class="app-title">记帐吧</span></div>
+                        <div class="center">记帐吧</div>
                           <div class="right">
                               <a href="#" data-panel="right" class="link icon-only open-panel">
                                   <i class="fa fa-user"></i>
@@ -242,7 +242,7 @@
 
                             </div>
                             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                            <div class="center sliding"><span class="app-title">库存管理</span></div>
+                            <div class="center">库存管理</div>
                             <div class="right">
                                 <a href="#" data-panel="right" class="link icon-only open-panel">
                                     <i class="fa fa-user"></i>
@@ -296,7 +296,7 @@
 
                             </div>
                             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                            <div class="center sliding"><span class="app-title">我的信息</span></div>
+                            <div class="center">我的信息</div>
                             <div class="right">
                                 <a href="#" data-panel="right" class="link icon-only open-panel">
                                     <i class="fa fa-user"></i>
