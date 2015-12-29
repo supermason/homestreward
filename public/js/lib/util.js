@@ -198,7 +198,7 @@ define([], function() {
         if (!dest) dest = {};
 
         for (var key in src) {
-            if (!dest[key]) {
+            if (!(key in dest)) {
                 dest[key] = src[key];
             }
         }

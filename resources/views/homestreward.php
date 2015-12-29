@@ -187,7 +187,7 @@
                   <!-- Page, "data-page" contains page name -->
                   <div data-page="bill-page" class="page">
                     <!-- Search bar with "searchbar-init" class for auto initialization -->
-                    <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+                    <form class="searchbar">
                       <div class="searchbar-input">
                         <input type="search" placeholder="请输入日期" id="calendar-default" >
                         <a href="#" class="searchbar-clear"></a>
@@ -204,11 +204,7 @@
                         <div class="pull-to-refresh-arrow"></div>
                       </div>
                       <div class="content-block-title">消费记录</div>
-                      <!-- This block will be displayed if nothing found -->
-                      <div class="list-block searchbar-not-found">
-                        <div class="content-block-inner">您查找的日期没有消费记录</div>
-                      </div>
-                      <div class="list-block media-list search-here searchbar-found hidden">
+                      <div class="list-block media-list searchbar-found hidden">
                         <div class="card" ng-repeat="bill in data.bills">
                           <div class="card-content">
                             <div class="card-header">
