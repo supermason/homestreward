@@ -134,7 +134,6 @@ define(['framework7.min', 'util', 'lang'], function (fw7, util, lang) {
         if (!util.isFunction(options['onDayClick'])) return null;
 
         var params = util.copyObj({
-            inputReadOnly: false,
             closeOnSelect: true,
             monthNames: lang.app.calendar.monthNames,
             dayNames: lang.app.calendar.dayNames,

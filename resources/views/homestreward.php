@@ -163,171 +163,119 @@
     <!-- Views -->
     <div class="views toolbar-through tabs-animated-wrap theme-m">
         <div class="tabs">
-                <!-- Your main view, should have "view-main" class -->
-                <div class="view tab active" id="view-bill">
-                    <!-- Top Navbar-->
-                    <div class="navbar">
-                      <div class="navbar-inner">
-                        <div class="left sliding">
-                          <a href="#" data-panel="left" class="link icon-only open-panel">
-                            <i class="icon icon-plus"><strong>+</strong></i>
-                          </a>
-                        </div>
-                        <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                        <div class="center sliding"><span class="app-title">记帐吧</span></div>
-                          <div class="right">
-                              <a href="#" data-panel="right" class="link icon-only open-panel">
-                                  <i class="fa fa-user"></i>
-                              </a>
-                          </div>
-                      </div>
+            <!-- Your main view, should have "view-main" class -->
+            <div class="view tab active" id="view-bill">
+                <!-- Top Navbar-->
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="left sliding">
+                      <a href="#" data-panel="left" class="link icon-only open-panel">
+                        <i class="icon icon-plus"><strong>+</strong></i>
+                      </a>
                     </div>
-                    <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-                    <div class="pages navbar-through">
-                      <!-- Page, "data-page" contains page name -->
-                      <div data-page="bill-page" class="page">
-                        <!-- Search bar with "searchbar-init" class for auto initialization -->
-                        <form class="searchbar" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
-                          <div class="searchbar-input">
-                            <input type="search" placeholder="请输入日期"  id="calendar-default" >
-                            <a href="#" class="searchbar-clear"></a>
-                          </div>
-                          <a href="#" class="searchbar-cancel">取消</a>
-                        </form>
-
-                        <!-- Search bar overlay -->
-                        <div class="searchbar-overlay"></div>
-                        <!-- Scrollable page content -->
-                        <div class="page-content pull-to-refresh-content infinite-scroll" data-ptr-distance="30" data-distance="50" ng-controller="SearchController" >
-                          <div class="pull-to-refresh-layer">
-                            <div class="preloader"></div>
-                            <div class="pull-to-refresh-arrow"></div>
-                          </div>
-                          <div class="content-block-title">消费记录</div>
-                          <!-- This block will be displayed if nothing found -->
-                          <div class="list-block searchbar-not-found">
-                            <div class="content-block-inner">您查找的日期没有消费记录</div>
-                          </div>
-                          <div class="list-block media-list search-here searchbar-found hidden">
-                            <div class="card" ng-repeat="bill in data.bills">
-                              <div class="card-content">
-                                <div class="card-header">
-                                    {{$index+1}}、{{bill.who}} <span class="date">{{bill.date}}</span>
-                                </div>
-                                <div class="card-content">
-                                  <div class="card-content-inner">{{bill.category}}: {{bill.amount}}</div>
-                                </div>
-                                <div class="card-footer" ng-if="bill.remark !== null && bill.remark !==''">
-                                  备注：{{bill.remark}}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="list-block-label">
-                            <p style="text-align:center;">载入中...</p>
-                          </div>
-                          <!-- 加载提示符 -->
-                          <div class="infinite-scroll-preloader center">
-                            <div class="preloader"></div>
-                          </div>
-                        </div>
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <div class="center">记帐吧</div>
+                      <div class="right">
+                          <a href="#" data-panel="right" class="link icon-only open-panel">
+                              <i class="fa fa-user"></i>
+                          </a>
                       </div>
                   </div>
                 </div>
-                <!-- Second view -->
-                <div class="view tab" id="view-ws">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <div class="left sliding">
+                <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+                <div class="pages navbar-through">
+                  <!-- Page, "data-page" contains page name -->
+                  <div data-page="bill-page" class="page">
+                    <!-- Search bar with "searchbar-init" class for auto initialization -->
+                    <form class="searchbar">
+                      <div class="searchbar-input">
+                        <input type="search" placeholder="请输入日期" id="calendar-default" >
+                        <a href="#" class="searchbar-clear"></a>
+                      </div>
+                      <a href="#" class="searchbar-cancel">取消</a>
+                    </form>
 
+                    <!-- Search bar overlay -->
+                    <div class="searchbar-overlay"></div>
+                    <!-- Scrollable page content -->
+                    <div class="page-content pull-to-refresh-content infinite-scroll" data-ptr-distance="30" data-distance="50" ng-controller="SearchController" >
+                      <div class="pull-to-refresh-layer">
+                        <div class="preloader"></div>
+                        <div class="pull-to-refresh-arrow"></div>
+                      </div>
+                      <div class="content-block-title">消费记录</div>
+                      <div class="list-block media-list searchbar-found hidden">
+                        <div class="card" ng-repeat="bill in data.bills">
+                          <div class="card-content">
+                            <div class="card-header">
+                                {{$index+1}}、{{bill.who}} <span class="date">{{bill.date}}</span>
                             </div>
-                            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                            <div class="center sliding"><span class="app-title">库存管理</span></div>
-                            <div class="right">
-                                <a href="#" data-panel="right" class="link icon-only open-panel">
-                                    <i class="fa fa-user"></i>
-                                </a>
+                            <div class="card-content">
+                              <div class="card-content-inner">{{bill.category}}: {{bill.amount}}</div>
                             </div>
+                            <div class="card-footer" ng-if="bill.remark !== null && bill.remark !==''">
+                              备注：{{bill.remark}}
+                            </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="list-block-label">
+                        <p style="text-align:center;">载入中...</p>
+                      </div>
+                      <!-- 加载提示符 -->
+                      <div class="infinite-scroll-preloader center">
+                        <div class="preloader"></div>
+                      </div>
                     </div>
-                    <div class="pages navbar-through">
-                        <div class="page" data-page="inventory-page">
-                            <div class="page-content">
-                                <div class="content-block">
-                                    <!-- tabs控制面板 -->
-                                    <div class="buttons-row">
-                                        <a href="#tab-in" class="tab-link active button">进货</a>
-                                        <a href="#tab-out" class="tab-link button">出货</a>
-                                        <a href="#tab-query" class="tab-link button">查询</a>
-                                    </div>
-                                </div>
-                                <div class="tabs-animated-wrap">
-                                    <!-- Tabs -->
-                                    <div class="tabs">
-                                        <!-- Tab 1，默认激活 -->
-                                        <div id="tab-in" class="tab active">
-                                            <div class="content-block">
-                                                ... Tab 1 content ...
-                                            </div>
-                                        </div>
-                                        <!-- Tab 2 -->
-                                        <div id="tab-out" class="tab">
-                                            <div class="content-block">
-                                                ... Tab 2 content ...
-                                            </div>
-                                        </div>
-                                        <!-- Tab 3 -->
-                                        <div id="tab-query" class="tab">
-                                            <div class="content-block">
-                                                ... Tab 3 content ...
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                  </div>
+              </div>
+            </div>
+            <!-- Second view -->
+            <div class="view tab" id="view-ws">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left sliding">
+
+                        </div>
+                        <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                        <div class="center">库存管理</div>
+                        <div class="right">
+                            <a href="#" data-panel="right" class="link icon-only open-panel">
+                                <i class="fa fa-user"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <!--  Third view     -->
-                <div class="view tab" id="view-temp">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <div class="left sliding">
-
-                            </div>
-                            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                            <div class="center sliding"><span class="app-title">我的信息</span></div>
-                            <div class="right">
-                                <a href="#" data-panel="right" class="link icon-only open-panel">
-                                    <i class="fa fa-user"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pages navbar-through">
-                        <div class="page" data-page="personal-page" ng-controller="UserController">
-                            <div class="page-content">
-                                <div class="content-block avatar-container">
-                                    <div class="content-block-inner">
-                                        <div class="avatar"><img src="<?php echo '/img/wd/face/' . Auth::user()->headImg ?>"  /></div>
-                                        <p>
-                                            <span id="user-info">
-                                                <?php echo Auth::User()->name ?>
-                                            </span>
-                                            <a href="#" class="icon-only  prompt-title-ok-cancel" title="修改昵称">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </p>
-                                    </div>
+                <div class="pages navbar-through">
+                    <div class="page" data-page="inventory-page">
+                        <div class="page-content">
+                            <div class="content-block">
+                                <!-- tabs控制面板 -->
+                                <div class="buttons-row">
+                                    <a href="#tab-in" class="tab-link active button">进货</a>
+                                    <a href="#tab-out" class="tab-link button">出货</a>
+                                    <a href="#tab-query" class="tab-link button">查询</a>
                                 </div>
-                                <div class="content-block-title">其他操作</div>
-                                <div class="content-block">
-                                    <div class="row">
-                                        <div class="col-50">
-                                            <a href="#" class="button button-big open-picker" data-picker=".change-password-picker">修改密码</a>
+                            </div>
+                            <div class="tabs-animated-wrap">
+                                <!-- Tabs -->
+                                <div class="tabs">
+                                    <!-- Tab 1，默认激活 -->
+                                    <div id="tab-in" class="tab active">
+                                        <div class="content-block">
+                                            ... Tab 1 content ...
                                         </div>
-                                        <div class="col-50">
-                                            <a href="#" class="button button-big open-picker" data-picker=".change-face-picker">修改头像</a>
+                                    </div>
+                                    <!-- Tab 2 -->
+                                    <div id="tab-out" class="tab">
+                                        <div class="content-block">
+                                            ... Tab 2 content ...
+                                        </div>
+                                    </div>
+                                    <!-- Tab 3 -->
+                                    <div id="tab-query" class="tab">
+                                        <div class="content-block">
+                                            ... Tab 3 content ...
                                         </div>
                                     </div>
                                 </div>
@@ -336,6 +284,54 @@
                     </div>
                 </div>
             </div>
+            <!--  Third view     -->
+            <div class="view tab" id="view-temp">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left sliding">
+
+                        </div>
+                        <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                        <div class="center">我的信息</div>
+                        <div class="right">
+                            <a href="#" data-panel="right" class="link icon-only open-panel">
+                                <i class="fa fa-user"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pages navbar-through">
+                    <div class="page" data-page="personal-page" ng-controller="UserController">
+                        <div class="page-content">
+                            <div class="content-block avatar-container">
+                                <div class="content-block-inner">
+                                    <div class="avatar"><img src="<?php echo '/img/wd/face/' . Auth::user()->headImg ?>"  /></div>
+                                    <p>
+                                        <span id="user-info">
+                                            <?php echo Auth::User()->name ?>
+                                        </span>
+                                        <a href="#" class="icon-only  prompt-title-ok-cancel" title="修改昵称">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="content-block-title">其他操作</div>
+                            <div class="content-block">
+                                <div class="row">
+                                    <div class="col-50">
+                                        <a href="#" class="button button-big open-picker" data-picker=".change-password-picker">修改密码</a>
+                                    </div>
+                                    <div class="col-50">
+                                        <a href="#" class="button button-big open-picker" data-picker=".change-face-picker">修改头像</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--  Bottom Tabbar  -->
         <div class="toolbar tabbar toolbar-through tabbar-through tabbar-labels">
             <div class="toolbar-inner">

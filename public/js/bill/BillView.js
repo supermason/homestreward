@@ -78,6 +78,10 @@
                             billView.reset();
                             billView.date = [year, parseInt(month) + 1, day];
                             billView.query();
+                        },
+                        onClose: function(p) {
+                            // 关闭的时候判断是否选择了日期，如果选择了，就显示那个“取消按钮”；
+                            // 点击“取消”按钮后，清空文本框，然后做一次查询，并且隐藏这个按钮
                         }
                     });
 
@@ -271,7 +275,7 @@
     }
 
     function showResultList() {
-        var resultList = $(".list-block.media-list.search-here.searchbar-found");
+        var resultList = $(".list-block.media-list.searchbar-found");
         if (resultList.hasClass("hidden")) {
             resultList.removeClass("hidden");
         }
