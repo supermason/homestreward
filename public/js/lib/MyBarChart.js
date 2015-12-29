@@ -63,6 +63,13 @@ define(['Chart.min', 'lang'], function(Chart, lang) {
                 barChart.clear();
                 barChart.update();
             },
+            /**
+             * 重置数据
+             */
+            reset: function() {
+                // 清理数据
+                myBarChartData.reset();
+            },
             type: {
                 WITH_MONTH: 1,
                 WITHOUT_MONTH: 2
@@ -74,8 +81,6 @@ define(['Chart.min', 'lang'], function(Chart, lang) {
      * @param data
      */
     function createChartData(data) {
-        // 清理数据
-        myBarChartData.reset();
         // 根据日期+消费类型汇总的
         if (data.byCC == 1) {
             createCCData(data);

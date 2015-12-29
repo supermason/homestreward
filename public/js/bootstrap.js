@@ -33,16 +33,17 @@ require(['app', 'util'], function (app, util) {
                 },
 
                 'requestError': function(rejection) {
+                    app.hidePreloader();
                     return $q.reject(rejection);
                 },
 
                 'response': function(response) {
                     app.hidePreloader();
-
                     return response;
                 },
 
                 'responseError': function(rejection) {
+                    app.hidePreloader();
                     return $q.reject(rejection);
                 }
             };
