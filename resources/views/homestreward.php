@@ -161,9 +161,8 @@
         </div>
     </div>
     <!-- Views -->
-    <div class="views toolbar-through theme-m">
-        <div class="tabs-animated-wrap">
-            <div class="tabs">
+    <div class="views toolbar-through tabs-animated-wrap theme-m">
+        <div class="tabs">
                 <!-- Your main view, should have "view-main" class -->
                 <div class="view tab active" id="view-bill">
                     <!-- Top Navbar-->
@@ -337,7 +336,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <!--  Bottom Tabbar  -->
         <div class="toolbar tabbar toolbar-through tabbar-through tabbar-labels">
             <div class="toolbar-inner">
