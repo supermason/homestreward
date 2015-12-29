@@ -8,6 +8,17 @@
             year: null,
             month: null,
             byCC: false,
+            //curDate: new Date(), // 这里就只取年月日,所以只要不夸天数据就不会错,如果出现了跨天的情况再说吧
+            //isDateValid: function(year, month, day) {
+            //    if (year > this.curDate.getFullYear()
+            //        || month > this.curDate.getMonth()
+            //        || day > this.curDate.getData()) {
+            //
+            //        return false;
+            //    }
+            //
+            //    return true;
+            //},
             reset: function() {
                 this.year = this.month = null;
                 this.byCC = false;
@@ -70,21 +81,6 @@
                         billView.query();
                     });
                     // 日期搜索
-                    var selectedDay = "";
-                    var mySearchCalender = app.createCalendar({
-                        input: '#calendar-default',
-                        onDayClick: function (p, dayContainer, year, month, day) {
-                            selectedDay = year + month + day;
-                            billView.reset();
-                            billView.date = [year, parseInt(month) + 1, day];
-                            billView.query();
-                        },
-                        onClose: function(p) {
-                            // 关闭的时候判断是否选择了日期，如果选择了，就显示那个“取消按钮”；
-                            // 点击“取消”按钮后，清空文本框，然后做一次查询，并且隐藏这个按钮
-                        }
-                    });
-
                     var mySearch = f7App.searchbar(".searchbar", {
                         onDisable: function () {
                             if (selectedDay !== "") {
@@ -94,12 +90,42 @@
                             }
                         }
                     });
+                    // 由于在移动设备上,当激活一个input的focus事件时原生系统会调用方法弹出键盘
+                    // 这导致日期组建的使用很不方便,总是要先关闭输入键盘才能做日期的选择
+                    // 本来f7是默认启用input的inputReadOnly属性的,但这时搜索功能就不好用了
+                    // 因为readOnly的input是无法触发focus事件的,导致搜索栏无法启用
+                    // 所以才有了下面的这段代码
+                    // click事件是不会因为readOnly而被禁用的
+                    mySearch.input.on("click", function(){
+                        mySearch.enable();
+                    });
+
+                    var selectedDay = "";
+                    var mySearchCalender = app.createCalendar({
+                        input: '#calendar-default',
+                        onDayClick: function (p, dayContainer, year, month, day) {
+                            selectedDay = year + month + day;
+                            billView.reset();
+                            billView.date = [year, parseInt(month) + 1, day];
+                            billView.query();
+                        }
+                    });
                     // 添加消费日期
                     var myConsumptionCalender = app.createCalendar({
                         input: '#calendar-consumption',
+                        toolbarCloseText: lang.bill.closeAndRemoveDate,
+                        footer: true,
+                        footerTemplate:
+                        '<div class="picker-footer">' +
+                            '<a href="#" class="button-close-calendar close-picker">{{closeText}}</a>' +
+                        '</div>',
                         onDayClick: function (p, dayContainer, year, month, day) {
 
                         }
+                    });
+
+                    $("a.button-close-calendar").on("click", function(){
+                        alert("AAAA");
                     });
 
                     // 新增消费类型的modal

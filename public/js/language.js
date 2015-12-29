@@ -20,7 +20,8 @@ define([], function(){
                 dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
                 dayNamesShort: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
             },
-            dateTimePickerTip: '不选则按当前时间查询'
+            dateTimePickerTip: '不选则按当前时间查询',
+            close: "关闭"
         },
         /**
          * 记帐相关文字
@@ -33,7 +34,8 @@ define([], function(){
             chart: {
                 title: '消费汇总表',
                 toolTipTitle: '消费总数'
-            }
+            },
+            closeAndRemoveDate: '关闭并清除日期'
         },
         /**
          * 产品相关文字
