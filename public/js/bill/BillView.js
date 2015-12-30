@@ -121,11 +121,13 @@
                         '</div>',
                         onDayClick: function (p, dayContainer, year, month, day) {
 
+                        },
+                        onOpen: function(p) {
+                            $("a.button-close-calendar.close-picker").on("click", clearDate);
+                        },
+                        onClose: function(p) {
+                            $("a.button-close-calendar.close-picker").off("click", clearDate);
                         }
-                    });
-
-                    $("a.button-close-calendar").on("click", function(){
-                        alert("AAAA");
                     });
 
                     // 新增消费类型的modal
@@ -300,11 +302,24 @@
         loading = false;
     }
 
+    /**
+     * 显示查询后的账单信息列表
+     *
+     */
     function showResultList() {
         var resultList = $(".list-block.media-list.searchbar-found");
         if (resultList.hasClass("hidden")) {
             resultList.removeClass("hidden");
         }
+    }
+
+    /**
+     * 添加消费日期时，点击关闭按钮清理之前的日期数据
+     *
+     * @param e
+     */
+    function clearDate(e) {
+        $("input[id='calendar-consumption']").val("");
     }
 
     return billView;
