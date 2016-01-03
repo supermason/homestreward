@@ -302,9 +302,12 @@ i.icon.icon-blank {
 
 .go-to-wd {
   padding-left: 15px;
+  background: whitesmoke none repeat scroll 0 0;
 
   p {
     color: @error-color;
+    margin: 0;
+    padding: 1em 0;
 
     a {
       background: #007aff none repeat scroll 0 0;
@@ -314,6 +317,36 @@ i.icon.icon-blank {
       font-weight: bold;
       margin: 0 4px;
       padding: 4px 6px;
+    }
+  }
+}
+
+.tabs {
+  .tab {
+    .list-block {
+      &.accordion-list {
+
+        margin: 0 15px;
+        font-size: 14px;
+
+        .list-search-bar {
+          border-radius: 7px 7px 0 0;
+        }
+
+        .item-content {
+          background: whitesmoke none repeat scroll 0 0;
+        }
+      }
+
+      &.inset {
+        li {
+          &:last-child {
+            > a {
+              border-radius: 0;
+            }
+          }
+        }
+      }
     }
   }
 }
