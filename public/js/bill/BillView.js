@@ -245,7 +245,8 @@
              * @param response
              */
             error: function (response) {
-                alert("status: " + response.status + ", statusText: " + response.statusText);
+                //alert("status: " + respo nse.status + ", statusText: " + response.statusText);
+                app.handleError(response);
                 f7App.pullToRefreshDone();
             },
 

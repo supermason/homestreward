@@ -230,9 +230,20 @@ define(['framework7.min', 'util', 'lang'], function (fw7, util, lang) {
     /**
      *  打开一个popup
      *
+     *  @param {string} 选择器
+     *
      */
     myApp.openPopUp = function(selector) {
         f7App.popup(selector);
+    }
+
+    /**
+     * 统一简单的错误处理
+     *
+     * @param {Object} error
+     */
+    myApp.handleError = function(error) {
+        f7App.alert("status: " + error.status + ", statusText: " + error.statusText);
     }
 
     return myApp;
