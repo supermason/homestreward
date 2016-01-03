@@ -9,6 +9,7 @@ requirejs.config({
         lang: '../language',
         bill: '../bill',
         user: '../user',
+        inventory: '../inventory',
         app: '../app',
         ngmodule: '../ngmodule',
         bootstrap: '../bootstrap'

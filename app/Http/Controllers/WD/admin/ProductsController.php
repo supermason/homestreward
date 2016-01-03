@@ -207,4 +207,5 @@ class ProductsController extends Controller
             return $response->withErrors([]);
         }
     }
+
 }

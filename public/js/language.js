@@ -47,6 +47,18 @@ define([], function(){
             hasNoMore: "没有更多宝贝了"
         },
         /**
+         * 库存管理相关文字
+         */
+        inventory: {
+            success: "数据保存成功!",
+            in: {
+                inventoryInFailed: "进货数据保存失败!"
+            },
+            out: {
+                inventoryOutFailed: "出货数据保存失败!"
+            }
+        },
+        /**
          * 用户相关文字
          */
         user: {

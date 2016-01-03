@@ -86,7 +86,7 @@
       <div class="content-block">
           <p><a href="#" id="addNewCT" class="button button-fill prompt-title-ok-cancel">新增消费类型</a></p>
       </div>
-      <div class="list-block">
+      <div class="list-block inset">
           <ul>
               <li>
                   <div class="item-content">
@@ -251,8 +251,7 @@
                         <div class="content-block">
                             <!-- tabs控制面板 -->
                             <div class="buttons-row">
-                                <a href="#tab-in" class="tab-link active button">进货</a>
-                                <a href="#tab-out" class="tab-link button">出货</a>
+                                <a href="#tab-in-out" class="tab-link active button">进出货</a>
                                 <a href="#tab-query" class="tab-link button">查询</a>
                             </div>
                         </div>
@@ -260,18 +259,120 @@
                             <!-- Tabs -->
                             <div class="tabs">
                                 <!-- Tab 1，默认激活 -->
-                                <div id="tab-in" class="tab active">
-                                    <div class="content-block">
-                                        ... Tab 1 content ...
+                                <div id="tab-in-out" class="tab active">
+                                    <div class="list-block accordion-list">
+                                        <ul>
+                                            <li class="accordion-item">
+                                                <a href="#" class="item-link item-content">
+                                                    <div class="item-inner">
+                                                        <div class="item-title">进货管理</div>
+                                                    </div>
+                                                </a>
+                                                <div class="accordion-item-content">
+                                                    <form method="put" id="inventory-in-form" name="inventory-in-form" ng-controller="InventoryInController" ng-submit="product.purchase()">
+                                                        <input type="hidden" ng-model="product.p_id" required/>
+                                                        <div class="list-block">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="text" placeholder="请输入货品名称"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="text" placeholder="请输入本次进货数量" ng-model="product.p_count" required ng-pattern="/^[0-9]*$/"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="text" placeholder="请输入本次货品价格" ng-model="product.p_price" required ng-pattern="/^\d+(\.\d+)?$/"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="submit" class="button" value="进货" ng-disabled="product.disabled()"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </form>
+                                                    <div class="go-to-wd">
+                                                        <p>如果是新进货品,请点击<a href="<?php echo url('/wd/admin/products/create') ?>" class="external">这里</a>进行添加</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="accordion-item">
+                                                <a href="#" class="item-link item-content">
+                                                    <div class="item-inner">
+                                                        <div class="item-title">出货管理</div>
+                                                    </div>
+                                                </a>
+                                                <div class="accordion-item-content">
+                                                    <form method="PUT" id="inventory-out-form" name="inventory-out-form" ng-controller="InventoryOutController" ng-submit="product.sell()">
+                                                        <input type="hidden" name="p_id" ng-model="product.p_id" required>
+                                                        <div class="list-block">
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="text" placeholder="请输入售出货品名称"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="text" placeholder="请输入本次出货数量" ng-model="product.p_out_count" required ng-pattern="/^[0-9]*$/"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="text" placeholder="请输入本次出售价格" ng-model="product.p_out_price" required ng-pattern="/^\d+(\.\d+)?$/"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="item-content">
+                                                                        <div class="item-inner">
+                                                                            <div class="item-input">
+                                                                                <input type="submit" class="button" value="进货" ng-disabled="product.disabled()"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <!-- Tab 2 -->
-                                <div id="tab-out" class="tab">
-                                    <div class="content-block">
-                                        ... Tab 2 content ...
-                                    </div>
-                                </div>
-                                <!-- Tab 3 -->
                                 <div id="tab-query" class="tab">
                                     <div class="content-block">
                                         ... Tab 3 content ...
