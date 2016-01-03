@@ -258,9 +258,12 @@ i.icon.icon-blank {
 }
 .go-to-wd {
   padding-left: 15px;
+  background: whitesmoke none repeat scroll 0 0;
 }
 .go-to-wd p {
   color: #ff2d55;
+  margin: 0;
+  padding: 1em 0;
 }
 .go-to-wd p a {
   background: #007aff none repeat scroll 0 0;
@@ -270,5 +273,18 @@ i.icon.icon-blank {
   font-weight: bold;
   margin: 0 4px;
   padding: 4px 6px;
+}
+.tabs .tab .list-block.accordion-list {
+  margin: 0 15px;
+  font-size: 14px;
+}
+.tabs .tab .list-block.accordion-list .list-search-bar {
+  border-radius: 7px 7px 0 0;
+}
+.tabs .tab .list-block.accordion-list .item-content {
+  background: whitesmoke none repeat scroll 0 0;
+}
+.tabs .tab .list-block.inset li:last-child > a {
+  border-radius: 0;
 }
 /*====================================================Mason End============================================================*/

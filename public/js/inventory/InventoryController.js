@@ -6,22 +6,16 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
 
     'use strict';
 
+    view.init();
+
     var inventoryCtrl = {
         inventoryInController: function($scope, InventoryService) {
             $scope.product = {
-                p_id: 0,
-                p_count: 0,
-                p_price: 0,
-                disabled: function() {
-                    return this.p_count == 0 || this.p_id == 0 || this.p_price == 0;
-                },
-                reset: function() {
-                    this.p_id = this.p_count = this.p_price = 0;
-                },
+                data: createScopeData(),
                 purchase: function() {
-                    InventoryService.inventoryIn($scope.product).then(
+                    InventoryService.inventoryIn($scope.product.data).then(
                         function(response) { // success
-                            $scope.reset();
+                            $scope.data.reset();
                             view.alert(response.data);
                         },
                         function(response) { // error
@@ -34,19 +28,11 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
 
         inventoryOutController: function($scope, InventoryService) {
             $scope.product = {
-                p_id: 0,
-                p_count: 0,
-                p_price: 0,
-                disabled: function() {
-                    return this.p_count == 0 || this.p_id == 0 || this.p_price == 0;
-                },
-                reset: function() {
-                    this.p_id = this.p_count = this.p_price = 0;
-                },
+                data: createScopeData(),
                 sell: function() {
-                    InventoryService.inventoryOut($scope.product).then(
+                    InventoryService.inventoryOut($scope.product.data).then(
                         function(response) {
-                            $scope.reset();
+                            $scope.data.reset();
                             view.alert(response.data);
                         }, function(response) {
                             view.error(response);
@@ -56,6 +42,27 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
             };
         }
     };
+
+    /**
+     * 创建scope内使用的数据模型对象
+     *
+     * @return Object
+     */
+    function createScopeData() {
+        var modle = {
+            p_id: "",
+            p_count: "",
+            p_price: "",
+            disabled: function() {
+                return this.p_count == 0 || this.p_id == 0 || this.p_price == 0 || this.p_count === "" || this.p_id === "" || this.p_price === "";
+            },
+            reset: function() {
+                this.p_id = this.p_count = this.p_price = "";
+            }
+        };
+
+        return modle;
+    }
 
     ngmodule.controllers
         .controller("InventoryInController", ['$scope', 'InventoryService', inventoryCtrl.inventoryInController])

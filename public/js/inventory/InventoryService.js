@@ -9,7 +9,7 @@ define(['ngmodule', 'app'], function(ngmodule, app) {
         inApi = baseApi + "in",
         outApi = baseApi + "out";
 
-    ngmodule.service.factory("InventoryService", ["$http", function($http) {
+    ngmodule.services.factory("InventoryService", ["$http", function($http) {
 
         return {
             search: function(keywords){
