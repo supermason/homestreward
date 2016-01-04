@@ -278,7 +278,7 @@
                                                 </a>
                                                 <div class="accordion-item-content">
                                                     <form id="inventory-in-form" name="inventory-in-form" ng-controller="InventoryInController" ng-submit="product.purchase()">
-                                                        <input type="hidden" name="p_in_id" ng-model="product.data.p_id" required/>
+                                                        <input type="hidden" ng-model="product.data.p_id" required/>
                                                         <div class="list-block">
                                                             <ul>
                                                                 <li>
@@ -324,7 +324,7 @@
                                                 </a>
                                                 <div class="accordion-item-content">
                                                     <form id="inventory-out-form" name="inventory-out-form" ng-controller="InventoryOutController" ng-submit="product.sell()">
-                                                        <input type="hidden" name="p_out_id" ng-model="product.data.p_id" required>
+                                                        <input type="hidden" ng-model="product.data.p_id" required>
                                                         <div class="list-block">
                                                             <ul>
                                                                 <li>

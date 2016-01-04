@@ -20,7 +20,7 @@ define(["ngmodule", "app"], function (ngmodule, app) {
             return $http({
                 method: method,
                 url: baseAPI + url + "/",
-                dataType: 'json',
+                //dataType: 'json',
                 //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: data
             });

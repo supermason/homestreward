@@ -10,6 +10,16 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
 
     var inventoryCtrl = {
         inventoryInController: function($scope, InventoryService) {
+
+            view.addService('searchPName', function(keywords) {
+                InventoryService.search(keywords)
+                    .then(function(response) {
+                        view.renderACP(response);
+                    }, function(response) {
+                        view.error(response);
+                    });
+            });
+
             $scope.product = {
                 data: createScopeData(),
                 purchase: function() {

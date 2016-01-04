@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function() {
      | 库存总路由
      |--------------------------------------------------------------------------
      */
-    Route::group(['prefix' => 'inventory', 'namespace' => 'inventory'], function() {
+    Route::group(['prefix' => 'inventory', 'namespace' => 'Inventory'], function() {
         Route::get("/search/{keywords}", "InventoryController@search");
         Route::put("/in", "InventoryController@inventoryIn");
         Route::put("/out", "InventoryController@inventoryOut");

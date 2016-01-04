@@ -21,7 +21,7 @@ class InventoryController extends Controller
      */
     public function search($keywords)
     {
-        return Product::where('name', 'like', '%' . $keywords . '%')->orderBy('created_at', 'desc')->paginate(10)->toJson();
+        return Product::select('id', 'name')->where('name', 'like', '%' . $keywords . '%')->orderBy('created_at', 'desc')->paginate(10)->toJson();
     }
 
     /**

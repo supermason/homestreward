@@ -4,6 +4,7 @@
     var f7App = app.f7App,
         $ = app.$$,
         loading = false,
+        service = {},
         queryDate = {
             year: null,
             month: null,
@@ -30,7 +31,6 @@
             totalPage: 0,
             date: null, // 用于搜索的日期
             $scope: null,
-            service: {},
             /**
              * 为视图添加服务
              *
@@ -39,7 +39,7 @@
              * @returns {billView}
              */
             addService: function(key, func) {
-                this.service[key] = func;
+                service[key] = func;
                 return this;
             },
             /**
@@ -134,7 +134,7 @@
                     $("a[id='addNewCT']").on('click', function () {
                         f7App.prompt('新的消费类型名称', '消费新花样',
                             function (value) {
-                                billView.service.addCT(value);
+                                service.addCT(value);
                             },
                             function (value) {
 
@@ -147,12 +147,12 @@
                     });
                     $("a[id='calTotal']").on('click', function() {
                         adjustQueryDate();
-                        billView.service.getTotalExpense(queryDate.year, queryDate.month, queryDate.byCC);
+                        service.getTotalExpense(queryDate.year, queryDate.month, queryDate.byCC);
                     });
 
                     $("a[id='getChartData']").on("click", function() {
                         adjustQueryDate();
-                        billView.service.getExpenseChartData(queryDate.year, queryDate.month, queryDate.byCC);
+                        service.getExpenseChartData(queryDate.year, queryDate.month, queryDate.byCC);
                     });
                     // 关闭消费图表时清除数据
                     $(".popup-chart").on("closed", function() {
@@ -167,7 +167,7 @@
              *
              */
             query: function () {
-                this.service.getBill();
+                service.getBill();
             },
             /**
              * 账单查询结果更新视图
