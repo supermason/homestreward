@@ -9,6 +9,46 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
     view.init();
 
     var inventoryCtrl = {
+
+        inventoryController: function($scope, InventoryService) {
+
+            view.addService('searchPName', function(keywords) {
+                InventoryService.search(keywords)
+                    .then(function(response) {
+                        view.renderACP(response);
+                    }, function(response) {
+                        view.error(response);
+                    });
+            }).addService('updatePID', function(selectedPID) {
+                $scope.product.data.p_id = selectedPID;
+            });
+
+            $scope.product = {
+                data: createScopeData(),
+                purchase: function() {
+                    InventoryService.inventoryIn($scope.product.data).then(
+                        function(response) { // success
+                            $scope.data.reset();
+                            view.ok(response.data);
+                        },
+                        function(response) { // error
+                            view.error(response);
+                        }
+                    );
+                },
+                sell: function() {
+                    InventoryService.inventoryOut($scope.product.data).then(
+                        function(response) {
+                            $scope.data.reset();
+                            view.ok(response.data);
+                        }, function(response) {
+                            view.error(response);
+                        }
+                    );
+                }
+            };
+        },
+
         inventoryInController: function($scope, InventoryService) {
 
             view.addService('searchPName', function(keywords) {
@@ -74,9 +114,12 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
         return modle;
     }
 
+    //ngmodule.controllers
+    //    .controller("InventoryInController", ['$scope', 'InventoryService', inventoryCtrl.inventoryInController])
+    //    .controller("InventoryOutController", ['$scope', 'InventoryService', inventoryCtrl.inventoryOutController]);
+
     ngmodule.controllers
-        .controller("InventoryInController", ['$scope', 'InventoryService', inventoryCtrl.inventoryInController])
-        .controller("InventoryOutController", ['$scope', 'InventoryService', inventoryCtrl.inventoryOutController]);
+        .controller("InventoryController", ['$scope', 'InventoryService', inventoryCtrl.inventoryController]);
 
     return inventoryCtrl;
 });

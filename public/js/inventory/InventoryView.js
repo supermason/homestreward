@@ -38,6 +38,9 @@ define(['app', 'lang', 'util'], function(app, lang, util) {
                             pad.render = render;
                             // Do Ajax request to Autocomplete data
                             service.searchPName(query);
+                        },
+                        onChange: function (a, clickedItem) {
+                            updateFormData(clickedItem);
                         }
                     });
                 });
@@ -45,6 +48,11 @@ define(['app', 'lang', 'util'], function(app, lang, util) {
             renderACP: function(response) {
                 pad.view.hidePreloader();
                 pad.render(response.data.data);
+            },
+            ok: function (data) {
+                // 清除input中的数据
+                $('#product-autocomplete-dropdown').val("");
+                this.alert(data);
             },
             alert: function(data) {
                 var type = data.type;
@@ -59,6 +67,14 @@ define(['app', 'lang', 'util'], function(app, lang, util) {
             }
         };
 
+    /**
+     * 根据autocomplete的选择,更新表单数据
+     *
+     * @param selectedItem
+     */
+    function updateFormData(selectedItem) {
+        service.updatePID(selectedItem.id);
+    }
 
     return inventoryView;
 
