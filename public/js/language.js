@@ -51,10 +51,12 @@ define([], function(){
          */
         inventory: {
             success: "数据保存成功!",
+            count: "该商品当前库存：",
             in: {
                 inventoryInFailed: "进货数据保存失败!"
             },
             out: {
+                inventoryNotEnough: "库存数量不足，请先进货！",
                 inventoryOutFailed: "出货数据保存失败!"
             }
         },

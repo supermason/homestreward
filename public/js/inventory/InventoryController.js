@@ -13,6 +13,8 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
         inventoryController: function($scope, InventoryService) {
 
             view.addService('searchPName', function(keywords) {
+                if (keywords === "") return;
+
                 InventoryService.search(keywords)
                     .then(function(response) {
                         view.renderACP(response);
@@ -28,7 +30,7 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
                 purchase: function() {
                     InventoryService.inventoryIn($scope.product.data).then(
                         function(response) { // success
-                            $scope.data.reset();
+                            $scope.product.data.reset();
                             view.ok(response.data);
                         },
                         function(response) { // error
@@ -39,52 +41,10 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
                 sell: function() {
                     InventoryService.inventoryOut($scope.product.data).then(
                         function(response) {
-                            $scope.data.reset();
+                            $scope.product.data.reset();
                             view.ok(response.data);
-                        }, function(response) {
-                            view.error(response);
-                        }
-                    );
-                }
-            };
-        },
-
-        inventoryInController: function($scope, InventoryService) {
-
-            view.addService('searchPName', function(keywords) {
-                InventoryService.search(keywords)
-                    .then(function(response) {
-                        view.renderACP(response);
-                    }, function(response) {
-                        view.error(response);
-                    });
-            });
-
-            $scope.product = {
-                data: createScopeData(),
-                purchase: function() {
-                    InventoryService.inventoryIn($scope.product.data).then(
-                        function(response) { // success
-                            $scope.data.reset();
-                            view.alert(response.data);
                         },
-                        function(response) { // error
-                            view.error(response);
-                        }
-                    );
-                }
-            };
-        },
-
-        inventoryOutController: function($scope, InventoryService) {
-            $scope.product = {
-                data: createScopeData(),
-                sell: function() {
-                    InventoryService.inventoryOut($scope.product.data).then(
                         function(response) {
-                            $scope.data.reset();
-                            view.alert(response.data);
-                        }, function(response) {
                             view.error(response);
                         }
                     );
@@ -113,10 +73,6 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
 
         return modle;
     }
-
-    //ngmodule.controllers
-    //    .controller("InventoryInController", ['$scope', 'InventoryService', inventoryCtrl.inventoryInController])
-    //    .controller("InventoryOutController", ['$scope', 'InventoryService', inventoryCtrl.inventoryOutController]);
 
     ngmodule.controllers
         .controller("InventoryController", ['$scope', 'InventoryService', inventoryCtrl.inventoryController]);

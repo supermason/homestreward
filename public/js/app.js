@@ -243,7 +243,21 @@ define(['framework7.min', 'util', 'lang'], function (fw7, util, lang) {
      * @param {Object} error
      */
     myApp.handleError = function(error) {
-        f7App.alert("status: " + error.status + ", statusText: " + error.statusText);
+        var msg = "";
+
+        if (error.exception) {
+            msg = error.msg;
+        } else {
+            if (error.data) {
+                for (var key in error.data) {
+                    msg += "[" + key + "] = " + error.data[key][0]
+                }
+            } else {
+                msg = "status: " + error.status + ", statusText: " + error.statusText;
+            }
+        }
+
+        f7App.alert(msg);
     }
 
     return myApp;

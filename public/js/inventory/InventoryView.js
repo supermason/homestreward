@@ -28,8 +28,10 @@ define(['app', 'lang', 'util'], function(app, lang, util) {
                         expandInput: true, // expand input
                         source: function (autocomplete, query, render) {
                             var results = [];
-                            if (query.length === 0) {
+                            if (query.trim().length === 0 || (query = util.stripScript(query)) === "") {
                                 render(results);
+                                // 如果关键字为空了，则重置选中的商品编号为空
+                                updateFormData({id: ""});
                                 return;
                             }
                             // Show Preloader
@@ -50,14 +52,15 @@ define(['app', 'lang', 'util'], function(app, lang, util) {
                 pad.render(response.data.data);
             },
             ok: function (data) {
-                // 清除input中的数据
-                $('#product-autocomplete-dropdown').val("");
-                this.alert(data);
+                this.alert(data, function() {
+                    // 清除input中的数据
+                    $('#product-autocomplete-dropdown').val("");
+                });
             },
-            alert: function(data) {
+            alert: function(data, callback) {
                 var type = data.type;
                 if (data.success) {
-                    app.alert(lang.inventory.success);
+                    app.alert(lang.inventory.success + "<br>" +  lang.inventory.count + data.count, callback);
                 } else {
                     app.alert(lang.getErrByTag('inventory', type == 1 ? "in" : "out", data.msgTag));
                 }

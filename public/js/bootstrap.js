@@ -50,6 +50,8 @@ require(['app', 'util'], function (app, util) {
         }]);
         angularApp.config(['$httpProvider', function($httpProvider) {
             $httpProvider.interceptors.push('wdInterceptor');
+            // angularjs 默认的ajax请求里是不带这个标识的，所以laravel端的$request->ajax()便无法正常工作（看源码就知道了）
+            $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         }]);
         // 手动初始化angular
         angular.bootstrap(document, [app.name]);
