@@ -8,7 +8,7 @@ define(['ngmodule', 'user/UserView'], function(ngmodule, view, lang) {
     var userCtrl = {
         infoController: function($scope, UserService) {
 
-            view.init($scope)
+            view.init()
                 .addService("changeNickname", function(newName) {
                     UserService.changeNickname({name: newName})
                         .then(function(response){

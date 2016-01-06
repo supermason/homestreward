@@ -259,7 +259,7 @@
                             <!-- Tabs -->
                             <div class="tabs">
                                 <!-- Tab 1，默认激活 -->
-                                <div id="tab-in-out" class="tab active">
+                                <div id="tab-in-out" class="tab active" ng-controller="InventoryController">
                                     <div class="list-block accordion-list inset">
                                         <ul>
                                             <li class="item-content list-search-bar">
@@ -277,8 +277,8 @@
                                                     </div>
                                                 </a>
                                                 <div class="accordion-item-content">
-                                                    <form id="inventory-in-form" name="inventory-in-form" ng-controller="InventoryInController" ng-submit="product.purchase()">
-                                                        <input type="hidden" name="p_in_id" ng-model="product.data.p_id" required/>
+                                                    <form id="inventory-in-form" name="inventory-in-form" ng-submit="product.purchase()">
+                                                        <input type="hidden" ng-model="product.data.p_id" required/>
                                                         <div class="list-block">
                                                             <ul>
                                                                 <li>
@@ -323,8 +323,8 @@
                                                     </div>
                                                 </a>
                                                 <div class="accordion-item-content">
-                                                    <form id="inventory-out-form" name="inventory-out-form" ng-controller="InventoryOutController" ng-submit="product.sell()">
-                                                        <input type="hidden" name="p_out_id" ng-model="product.data.p_id" required>
+                                                    <form id="inventory-out-form" name="inventory-out-form" ng-submit="product.sell()">
+                                                        <input type="hidden" ng-model="product.data.p_id" required>
                                                         <div class="list-block">
                                                             <ul>
                                                                 <li>

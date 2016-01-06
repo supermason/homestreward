@@ -4,15 +4,13 @@ define(['app', 'lang'], function (app, lang) {
 
     var f7App = app.f7App,
         $ = app.$$,
+        service = {},
         userView = {
-            $scope: null,
-            service: {},
             addService: function(key, func) {
-                this.service[key] = func;
+                service[key] = func;
                 return this;
             },
-            init: function($scope) {
-                this.$scope = $scope;
+            init: function() {
 
                 f7App.onPageInit("personal-page", function(page) {
                     var pageCon = $(page.container);
@@ -25,7 +23,7 @@ define(['app', 'lang'], function (app, lang) {
                                 if (value.trim() === '') {
                                     app.alert(lang.user.changeNickname.emptyError);
                                 } else {
-                                    userView.service.changeNickname(value);
+                                    service.changeNickname(value);
                                 }
                             },
                             function (value) {

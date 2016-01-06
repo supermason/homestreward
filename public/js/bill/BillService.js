@@ -40,7 +40,7 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                     return $http({
                         method: 'POST',
                         url: baseAPI + 'new',
-                        dataType: 'json',
+                        //dataType: 'json',
                         //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         //headers: {'Content-Type': 'application/json'},
                         data: bill
@@ -65,7 +65,7 @@ define(['ngmodule', 'app'], function (ngmodule, app) {
                     return $http({
                         method: 'POST',
                         url: baseAPI + 'new',
-                        dataType: 'json',
+                        //dataType: 'json',
                         data: setting
                     });
                 }
