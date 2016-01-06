@@ -56,10 +56,10 @@ class InventoryController extends Controller
 
             $log->save();
 
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true, 'count' => $product->count]);
 
         } else {
-            return response()->json(['success' => false, 'msgTag' => "inventoryInFailed"]);
+            return response()->json(['success' => false, 'msgTag' => "inventoryInFailed", 'type' => 1]);
         }
     }
 
@@ -83,7 +83,11 @@ class InventoryController extends Controller
 
         $product = Product::findOrFail($id);
         // 这里要怎么处理呢? 预售的话,是没有库存数量的
-        $product->count -= $count;
+        if ($product->count < $count) {
+            return response()->json(['success' => false, 'msgTag' => 'inventoryNotEnough']);
+        } else {
+            $product->count -= $count;
+        }
 
         if ($product->save()) {
             // 货品更新成功了,记录一下log
@@ -97,10 +101,10 @@ class InventoryController extends Controller
 
             $log->save();
 
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true, 'count' => $product->count]);
 
         } else {
-            return response()->json(['success' => false, 'msgTag' => "inventoryOutFailed"]);
+            return response()->json(['success' => false, 'msgTag' => "inventoryOutFailed", 'type' => 2]);
         }
     }
 }
