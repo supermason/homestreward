@@ -155,7 +155,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function save(Request $request, $id)
+    public function update(Request $request, $id)
     {
         // 先验证
         $this->validate($request, [
@@ -185,7 +185,7 @@ class ProductsController extends Controller
 //            return redirect($request->getPathInfo() . $id . '/edit' )->withMessage([
 //                'ok' => 'new info saved!'
 //            ]);
-            return redirect($request->getPathInfo() . $id . '/edit')->withInput()->withOk('new info saved!');
+            return redirect($request->getPathInfo(). '/edit')->withInput()->withOk(trans('adminTip.products.editProduct.ok'));
         } else {
             return Redirect::back()->withInput()->withErrors('error');
         }

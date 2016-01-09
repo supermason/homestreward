@@ -80,6 +80,7 @@ return [
                 'pCurImg' => '当前图片',
                 'pEdit' => '修改',
             ],
+            'ok' => '信息修改成功!',
         ],
         'pagination' => '每页显示@件，共#件商品',
         'form' => [

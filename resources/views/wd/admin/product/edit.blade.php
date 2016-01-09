@@ -44,7 +44,8 @@
                 </div>
             @endif
 
-            <form method="put" class="form-horizontal" action="{{url('/wd/admin/products/' . $data["product"]->id)}}" enctype="multipart/form-data">
+            <form method="post" class="form-horizontal" action="{{url('/wd/admin/products/' . $data["product"]->id)}}" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="put">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pName')}}</label>
