@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 use App\Product;
@@ -106,5 +107,19 @@ class InventoryController extends Controller
         } else {
             return response()->json(['success' => false, 'msgTag' => "inventoryOutFailed", 'type' => 2]);
         }
+    }
+
+    /**
+     * 库存结算
+     *
+     * @return response
+     */
+    public function balancing()
+    {
+        return response()->json([
+            'inventory' => Product::sum('count'),
+            'totalPrice' => InventoryLog::where('type', '=', InventoryConfig::IN)->sum(DB::raw('count * price')),
+            'totalPayment' => InventoryLog::where('type', '=', InventoryConfig::OUT)->sum(DB::raw('count * price')),
+        ]);
     }
 }

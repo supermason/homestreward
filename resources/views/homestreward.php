@@ -259,7 +259,7 @@
                             <!-- Tabs -->
                             <div class="tabs">
                                 <!-- Tab 1，默认激活 -->
-                                <div id="tab-in-out" class="tab active" ng-controller="InventoryController">
+                                <div id="tab-in-out" class="tab active" ng-controller="inventoryInOutController">
                                     <div class="list-block accordion-list inset">
                                         <ul>
                                             <li class="item-content list-search-bar">
@@ -359,19 +359,41 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="content-block">
-                                        <a href="<?php echo url('/wd/admin/products') ?>" class="button button-big external color-green button-fill">
-                                            前往后台管理商品
-                                        </a>
-                                    </div>
                                 </div>
                                 <!-- Tab 2 -->
-                                <div id="tab-query" class="tab">
-                                    <div class="content-block">
-                                        ... Tab 3 content ...
+                                <div id="tab-query" class="tab" ng-controller="inventoryBalancingController">
+                                    <div class="inventory-button-block">
+                                        <a href="javascript:void(0);" class="button button-big color-green button-fill" ng-click="balancing.getBalancing()">查看当前库存</a>
+                                    </div>
+                                    <div class="list-block inset little-top-margin">
+                                        <ul>
+                                            <li class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title">库存总数:</div>
+                                                    <div class="item-after">{{balancing.inventory}}件</div>
+                                                </div>
+                                            </li>
+                                            <li class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title">总进货款:</div>
+                                                    <div class="item-after">{{balancing.totalPrice}}元</div>
+                                                </div>
+                                            </li>
+                                            <li class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title">总出货款:</div>
+                                                    <div class="item-after">{{balancing.totalPayment}}元</div>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="inventory-button-block">
+                            <a href="<?php echo url('/wd/admin/products') ?>" class="button button-big external color-red button-fill">
+                                前往后台管理商品
+                            </a>
                         </div>
                     </div>
                 </div>

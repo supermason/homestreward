@@ -18,6 +18,8 @@ return [
           'login' => '登　录',
           'logout' => '登　出',
           'welcome' => '欢迎',
+          'goToWD' => '前往微店',
+          'goToHS' => '前往管家'
       ],
     ],
     'banner' => [

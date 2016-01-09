@@ -27,8 +27,18 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{trans('adminTip.nav.rightNav.welcome')}}&nbsp;<span class="fa fa-user"></span>&nbsp;{{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu admin-dropdown-menu" role="menu">
                                 <li>
+                                    <a href="{{'/'}}">
+                                        {{trans('adminTip.nav.rightNav.goToHS')}}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{'/wd'}}">
+                                        {{trans('adminTip.nav.rightNav.goToWD')}}
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ url('/auth/logout') }}">
-                                        {{trans('adminTip.nav.rightNav.logout')}}<i class="fa fa-sign-out"></i>
+                                        {{trans('adminTip.nav.rightNav.logout')}}
                                     </a>
                                 </li>
                             </ul>

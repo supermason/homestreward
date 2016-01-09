@@ -10,7 +10,7 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
 
     var inventoryCtrl = {
 
-        inventoryController: function($scope, InventoryService) {
+        inventoryInOutController: function($scope, InventoryService) {
 
             view.addService('searchPName', function(keywords) {
                 if (keywords === "") return;
@@ -26,7 +26,17 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
             });
 
             $scope.product = {
-                data: createScopeData(),
+                data: {
+                    p_id: "",
+                    p_count: "",
+                    p_price: "",
+                    disabled: function() {
+                        return this.p_count == 0 || this.p_id == 0 || this.p_price == 0 || this.p_count === "" || this.p_id === "" || this.p_price === "";
+                    },
+                    reset: function() {
+                        this.p_id = this.p_count = this.p_price = "";
+                    }
+                },
                 purchase: function() {
                     InventoryService.inventoryIn($scope.product.data).then(
                         function(response) { // success
@@ -50,32 +60,33 @@ define(['ngmodule', 'inventory/InventoryView'], function(ngmodule, view){
                     );
                 }
             };
+        },
+
+        inventoryBalancingController: function($scope, InventoryService) {
+            $scope.balancing = {
+                inventory: 0,
+                totalPrice: 0,
+                totalPayment: 0,
+
+                getBalancing: function() {
+                    InventoryService.inventoryBalancing().then(
+                        function(response) {
+                            $scope.balancing.inventory = response.data.inventory;
+                            $scope.balancing.totalPrice = response.data.totalPrice;
+                            $scope.balancing.totalPayment = response.data.totalPayment;
+                        },
+                        function(response) {
+
+                        }
+                    );
+                }
+            };
         }
     };
 
-    /**
-     * 创建scope内使用的数据模型对象
-     *
-     * @return Object
-     */
-    function createScopeData() {
-        var modle = {
-            p_id: "",
-            p_count: "",
-            p_price: "",
-            disabled: function() {
-                return this.p_count == 0 || this.p_id == 0 || this.p_price == 0 || this.p_count === "" || this.p_id === "" || this.p_price === "";
-            },
-            reset: function() {
-                this.p_id = this.p_count = this.p_price = "";
-            }
-        };
-
-        return modle;
-    }
-
     ngmodule.controllers
-        .controller("InventoryController", ['$scope', 'InventoryService', inventoryCtrl.inventoryController]);
+        .controller("inventoryInOutController", ['$scope', 'InventoryService', inventoryCtrl.inventoryInOutController])
+        .controller("inventoryBalancingController", ['$scope', 'InventoryService', inventoryCtrl.inventoryBalancingController]);
 
     return inventoryCtrl;
 });

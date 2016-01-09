@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get("/search/{keywords}", "InventoryController@search");
         Route::put("/in", "InventoryController@inventoryIn");
         Route::put("/out", "InventoryController@inventoryOut");
+        Route::get("/balancing", "InventoryController@balancing");
     });
 
     /*

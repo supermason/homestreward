@@ -8,7 +8,8 @@ define(['ngmodule', 'app'], function(ngmodule, app) {
     var baseApi = app.config.apiRoot + "inventory/",
         searchApi = baseApi + "search/",
         inApi = baseApi + "in",
-        outApi = baseApi + "out";
+        outApi = baseApi + "out",
+        balancingApi = baseApi + "balancing";
 
     ngmodule.services.factory("InventoryService", ["$http", function($http) {
 
@@ -31,6 +32,9 @@ define(['ngmodule', 'app'], function(ngmodule, app) {
                     //dataType: 'json',
                     data: product
                 });
+            },
+            inventoryBalancing: function() {
+                return $http.get(balancingApi);
             }
         };
 
