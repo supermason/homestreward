@@ -287,4 +287,15 @@ i.icon.icon-blank {
 .tabs .tab .list-block.inset li:last-child > a {
   border-radius: 0;
 }
+.tabs-animated-wrap {
+  height: auto;
+}
+.inventory-button-block {
+  box-sizing: border-box;
+  color: #6d6d72;
+  padding: 0 15px;
+}
+.little-top-margin {
+  margin-top: 10px;
+}
 /*====================================================Mason End============================================================*/

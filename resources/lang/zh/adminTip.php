@@ -18,6 +18,8 @@ return [
           'login' => '登　录',
           'logout' => '登　出',
           'welcome' => '欢迎',
+          'goToWD' => '前往微店',
+          'goToHS' => '前往管家'
       ],
     ],
     'banner' => [
@@ -78,6 +80,7 @@ return [
                 'pCurImg' => '当前图片',
                 'pEdit' => '修改',
             ],
+            'ok' => '信息修改成功!',
         ],
         'pagination' => '每页显示@件，共#件商品',
         'form' => [

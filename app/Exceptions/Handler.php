@@ -46,10 +46,10 @@ class Handler extends ExceptionHandler
             return response()->json(['exception' => true, 'msg' => $e->getMessage(), 'code' => $e->getCode()]);
         }
 
-        if ($e instanceof ModelNotFoundException) {
-            // Custom logic for model not found...
-            return view("wd.admin.error")->with("exception", $e->getMessage());
-        }
+//        if ($e instanceof ModelNotFoundException) {
+//            // Custom logic for model not found...
+//            return view("wd.admin.error")->with("exception", $e->getMessage());
+//        }
 
         return parent::render($request, $e);
     }

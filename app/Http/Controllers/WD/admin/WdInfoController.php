@@ -6,6 +6,7 @@ use App\Util\Graphics\ImageUtil;
 use App\WdInfo;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -86,10 +87,10 @@ class WdInfoController extends Controller
         ]);
 
         //
-        $wdInfo = Product::findOrFail($id);
+        $wdInfo = WdInfo::findOrFail($id);
 
-        $wdInfo->name = Input::get('title');
-        $wdInfo->subtitle = Input::get('content');
+        $wdInfo->title = Input::get('title');
+        $wdInfo->content = Input::get('content');
 
         // 单独处理图片
         $newLogo = ImageUtil::saveImgFromRequest($request, 'logo', 'img/wd/');
@@ -102,10 +103,11 @@ class WdInfoController extends Controller
         }
 
         if ($wdInfo->save()) {
-            return redirect('/wd/admin/1/edit')->withData([
-                'wdInfo' => $wdInfo,
-                'message' => [trans('adminTip.wdInfo.editInfo.success.edit')]
-            ]);
+//            return redirect($request->getPathInfo(). '/edit')->withData([
+//                'wdInfo' => $wdInfo,
+//                'message' => [trans('adminTip.wdInfo.editInfo.success.edit')]
+//            ]);
+            return redirect($request->getPathInfo(). '/edit')->withInput()->withOk(trans('adminTip.wdInfo.editInfo.success.edit'));
         } else {
             return Redirect::back()->withInput()->withErrors('error');
         }

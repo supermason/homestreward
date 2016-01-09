@@ -27,12 +27,20 @@
                 </div>
             @endif
 
-            <form class="form-horizontal" action="{{url('/wd/admin/info/' . $data["wdInfo"]->id)}}" method="put" enctype="multipart/form-data">
+                @if (session('ok'))
+                    <div class="alert alert-success alert-dismissable fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>{{session('ok')}}</strong>
+                    </div>
+                @endif
+
+            <form class="form-horizontal" action="{{url('/wd/admin/info/' . $data["wdInfo"]->id)}}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="put">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="title" class="col-md-1 control-label">{{trans('adminTip.wdInfo.editInfo.form.iTitle')}}</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{trans('adminTip.wdInfo.editInfo.form.iTitleTip')}}" required value="{{$data["wdInfo"]->name}}">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="{{trans('adminTip.wdInfo.editInfo.form.iTitleTip')}}" required value="{{$data["wdInfo"]->title}}">
                     </div>
                     <div class="col-md-2">
                         <h3><span class="danger-left-arrow"></span><span class="label label-danger">{{trans('adminTip.products.form.mustFill')}}</span></h3>
