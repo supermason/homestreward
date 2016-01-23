@@ -55,6 +55,8 @@ return [
                 'pSubtitleTip' => '请输入副标题',
                 'pImg' => '图片',
                 'pCategory' => '类型',
+                'pPurchasePrice' => '进货价',
+                'pPurchasePriceTip' => '请输入进货价',
                 'pPrice' => '零售价',
                 'pPriceTip' => '请输入零售价格',
                 'pWholesalePrice' => '代理价',
