@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\wd\admin;
 
+use App\InventoryLog;
 use App\Menu;
 use App\Product;
 use Illuminate\Http\Request;
