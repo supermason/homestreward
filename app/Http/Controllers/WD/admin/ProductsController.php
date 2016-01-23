@@ -173,6 +173,7 @@ class ProductsController extends Controller
         // 先验证
         $this->validate($request, [
             'name' => 'required',
+            'purchasePrice' => 'required',
             'price' => 'required',
             'wholesalePrice' => 'required',
             'description' => 'required',
@@ -184,6 +185,7 @@ class ProductsController extends Controller
         $product->name = Input::get('name');
         $product->subtitle = Input::get('subtitle');
         $product->category_id = Input::get('category');
+        $product->domestic_price = Input::get('purchasePrice');
         $product->retail_price = Input::get('price');
         $product->wholesale_price = Input::get('wholesalePrice');
         $product->count = Input::get('count');
