@@ -36,7 +36,7 @@ class ExceptionInfoController extends Controller
         // 验证一下必填项
         $this->validate($request, [
             'device' => 'required',
-            'android' => 'required',
+            'system_version' => 'required',
             'title' => 'required',
             'content' => 'required',
         ]);
