@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\wd\admin;
 
+use App\InventoryLog;
 use App\Menu;
 use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Inventory\InventoryConfig;
 use Illuminate\Support\Facades\Input;
 
 use App\UI\Select\SelectCreator;
@@ -70,6 +72,7 @@ class ProductsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'productImg' => 'required',
+            'purchasePrice' => 'required',
             'price' => 'required',
             'wholesalePrice' => 'required',
             'description' => 'required',
@@ -88,6 +91,7 @@ class ProductsController extends Controller
                 'subtitle' => Input::get('subtitle'),
                 'thumbnail' => $imgPath,
                 'category_id' => Input::get('category'),
+                'domestic_price' => Input::get('purchasePrice'),
                 'retail_price' => Input::get('price'),
                 'wholesale_price' => Input::get('wholesalePrice'),
                 'count' => Input::get('count'),
@@ -98,6 +102,16 @@ class ProductsController extends Controller
                 $status['msg'] = trans('products.addNewProduct.errors.addError');
             } else {
                 $status['ok'] = true;
+                // 这里需要记录一下进货记录
+                $log = new InventoryLog([
+                    'product_id' => $product->id,
+                    'count' => Input::get('count'),
+                    'price' => Input::get("purchasePrice"),
+                    'type' => InventoryConfig::IN,
+
+                ]);
+
+                $log->save();
             }
         } else {
             $status['msg'] = trans('products.addNewProduct.errors.imgError');
@@ -160,6 +174,7 @@ class ProductsController extends Controller
         // 先验证
         $this->validate($request, [
             'name' => 'required',
+            'purchasePrice' => 'required',
             'price' => 'required',
             'wholesalePrice' => 'required',
             'description' => 'required',
@@ -171,6 +186,7 @@ class ProductsController extends Controller
         $product->name = Input::get('name');
         $product->subtitle = Input::get('subtitle');
         $product->category_id = Input::get('category');
+        $product->domestic_price = Input::get('purchasePrice');
         $product->retail_price = Input::get('price');
         $product->wholesale_price = Input::get('wholesalePrice');
         $product->count = Input::get('count');

@@ -86,6 +86,15 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="purchasePrice" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pPurchasePrice')}}</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="price" name="purchasePrice" placeholder="{{trans('adminTip.products.addNewProduct.form.pPurchasePriceTip')}}" required value="{{$data["product"]->domestic_price}}">
+                    </div>
+                    <div class="col-md-2">
+                        <h3><span class="danger-left-arrow"></span><span class="label label-danger">{{trans('adminTip.products.form.mustFill')}}</span></h3>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="price" class="col-md-1 control-label">{{trans('adminTip.products.addNewProduct.form.pPrice')}}</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="price" name="price" placeholder="{{trans('adminTip.products.addNewProduct.form.pPriceTip')}}" required value="{{$data["product"]->retail_price}}">
