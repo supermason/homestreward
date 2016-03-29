@@ -155,6 +155,9 @@
                     <a class="item-link list-button external" href="<?php echo url('/wd/admin') ?>"><strong>宝贝</strong>管理</a>
                 </li>
                 <li>
+                    <a class="item-link list-button external" href="<?php echo url('/matchstatistic') ?>"><strong>查看</strong>异常</a>
+                </li>
+                <li>
                     <a class="item-link list-button external" href="<?php echo url('/auth/logout') ?>"><strong>退出</strong>系统</a>
                 </li>
             </ul>
