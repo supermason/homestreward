@@ -14,4 +14,5 @@ return [
         'ym' => ':year年:month月',
         'y' => ':year年'
     ],
+    'back' => '返回',
 ];
