@@ -13,7 +13,7 @@
 
         <div class="product-content">
             <div class="form-group">
-            <textarea type="text" class="form-control" disabled="true" contenteditable="false" rows="40">
+            <textarea class="form-control" rows="40">
                 {{$data["exception"]->content}}
             </textarea>
             </div>
