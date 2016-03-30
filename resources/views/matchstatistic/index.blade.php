@@ -9,6 +9,11 @@
                     {{trans('matchStatistic.title')}}
                 </a>
             </li>
+            <li role="presentation">
+                <a href="{{url('/matchstatistic/exception/create')}}" aria-controls="create" role="tab" >
+                    {{trans('matchStatistic.newException.title')}}
+                </a>
+            </li>
         </ul>
 
         <div class="product-content table-responsive">
@@ -34,7 +39,7 @@
                             <td><strong>{{$exception->device}}</strong></td>
                             <td>{{$exception->system_version}}}}</td>
                             <td><span class="normal-price">{{$exception->created_at}}</span></td>
-                            <td><a href="{{url('/matchStatistic/'.$exception->id.'/show/')}}" class="btn btn-danger btn-sm">{{trans('matchStatistic.table.tableRow.show')}}</a> </td>
+                            <td><a href="{{url('/matchStatistic/exception/'.$exception->id.'/show/')}}" class="btn btn-danger btn-sm">{{trans('matchStatistic.table.tableRow.show')}}</a> </td>
                         </tr>
                     @endforeach
                 @endif

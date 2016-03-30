@@ -85,14 +85,15 @@ Route::group(['middleware' => 'auth'], function() {
             Route::post('/face', 'UserController@changeFace');
         });
     });
-    /*
-     |--------------------------------------------------------------------------
-     | 统计app异常信息总路由
-     |--------------------------------------------------------------------------
-     */
-    Route::group(['prefix' => 'matchstatistic', 'namespace' => 'MatchStatistic'], function() {
-        Route::resource("/", 'ExceptionInfoController', ['only' => 'index', 'store', 'show']);
-    });
+});
+
+/*
+ |--------------------------------------------------------------------------
+ | 统计app异常信息总路由
+ |--------------------------------------------------------------------------
+ */
+Route::group(['prefix' => 'matchstatistic', 'namespace' => 'MatchStatistic'], function() {
+    Route::resource("/exception", 'ExceptionInfoController', ['only' => ['index', 'create', 'store', 'show']]);
 });
 
 /*
