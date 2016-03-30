@@ -26,6 +26,17 @@ class ExceptionInfoController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+        return view("matchstatistic.create");
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,12 +52,17 @@ class ExceptionInfoController extends Controller
             'content' => 'required',
         ]);
 
-        $exception = new MatchStatisticExceptions(Input::getAll());
+        $exception = new MatchStatisticExceptions([
+            'device' => Input::get('device'),
+            'system_version' => Input::get('system_version'),
+            'title' => Input::get('title'),
+            'content' => Input::get('content'),
+        ]);
 
         // 不用理会是否保存成功
         $exception->save();
 
-        return null;
+        return response()->json(["statusCode" => 0, "message" => 'exceptionSaved']);
     }
 
     /**

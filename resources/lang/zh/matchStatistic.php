@@ -18,5 +18,12 @@ return [
             'empty' => '暂时没有任何异常信息',
             'show' => '详情'
         ],
+    ],
+    'newException' => [
+        'title' => '数据测试',
+        'device' => '设备型号',
+        'system_version' => '系统版本',
+        'exp_title' => '异常标题',
+        'exception' => '异常信息'
     ]
 ];
