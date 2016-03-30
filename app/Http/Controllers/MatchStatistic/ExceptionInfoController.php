@@ -33,7 +33,8 @@ class ExceptionInfoController extends Controller
     public function create()
     {
         //
-        return view("matchstatistic.create");
+//        return view("matchstatistic.create");
+        return response("NotAllowed", 401);
     }
 
     /**
@@ -44,25 +45,34 @@ class ExceptionInfoController extends Controller
      */
     public function store(Request $request)
     {
-        // 验证一下必填项
-        $this->validate($request, [
-            'device' => 'required',
-            'system_version' => 'required',
-            'title' => 'required',
-            'content' => 'required',
-        ]);
 
-        $exception = new MatchStatisticExceptions([
-            'device' => Input::get('device'),
-            'system_version' => Input::get('system_version'),
-            'title' => Input::get('title'),
-            'content' => Input::get('content'),
-        ]);
+        //这里要判断是不是来自我们的app端
+        $from = $request->headers->get("from");
+        
+        if (strcasecmp($from, "MC_NAB_APP") == 0) {
+            // 验证一下必填项
+            $this->validate($request, [
+                'device' => 'required',
+                'system_version' => 'required',
+                'title' => 'required',
+                'content' => 'required',
+            ]);
 
-        // 不用理会是否保存成功
-        $exception->save();
+            $exception = new MatchStatisticExceptions([
+                'device' => Input::get('device'),
+                'system_version' => Input::get('system_version'),
+                'title' => Input::get('title'),
+                'content' => Input::get('content'),
+            ]);
 
-        return response()->json(["statusCode" => 0, "message" => 'exceptionSaved']);
+            // 不用理会是否保存成功
+            $exception->save();
+
+            return response()->json(["statusCode" => 0, "message" => 'exceptionSaved']);
+        } else {
+            return response()->json(["statusCode" => -1, "message" => 'notAllowed']);
+        }
+
     }
 
     /**

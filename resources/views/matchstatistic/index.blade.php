@@ -25,6 +25,7 @@
                     <th>{{trans('matchStatistic.table.header.device')}}</th>
                     <th>{{trans('matchStatistic.table.header.systemVersion')}}</th>
                     <th>{{trans('matchStatistic.table.header.occurDate')}}</th>
+                    <th>　</th>
                 </tr>
                 </thead>
                 <tbody>
