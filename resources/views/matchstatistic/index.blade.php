@@ -38,9 +38,9 @@
                         <tr>
                             <td>{{$exception->id}}</td>
                             <td><strong>{{$exception->device}}</strong></td>
-                            <td>{{$exception->system_version}}}}</td>
+                            <td>{{$exception->system_version}}</td>
                             <td><span class="normal-price">{{$exception->created_at}}</span></td>
-                            <td><a href="{{url('/matchStatistic/exception/'.$exception->id.'/show/')}}" class="btn btn-danger btn-sm">{{trans('matchStatistic.table.tableRow.show')}}</a> </td>
+                            <td><a href="{{url('/matchstatistic/exception/'.$exception->id)}}" class="btn btn-danger btn-sm">{{trans('matchStatistic.table.tableRow.show')}}</a> </td>
                         </tr>
                     @endforeach
                 @endif
