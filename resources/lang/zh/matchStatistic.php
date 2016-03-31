@@ -16,8 +16,10 @@ return [
         ],
         'tableRow' => [
             'empty' => '暂时没有任何异常信息',
-            'show' => '详情'
+            'show' => '详情',
+
         ],
+        'pagination' => '每页显示@条，共#条异常信息',
     ],
     'newException' => [
         'title' => '数据测试',
