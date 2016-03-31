@@ -31,7 +31,7 @@
                 <tbody>
                 @if (count($data['exceptions']) == 0)
                     <tr>
-                        <td colspan="4" style="text-align: center">{{trans('matchStatistic.table.tableRow.empty')}}</td>
+                        <td colspan="5" style="text-align: center">{{trans('matchStatistic.table.tableRow.empty')}}</td>
                     </tr>
                 @else
                     @foreach ($data['exceptions'] as $exception)
@@ -48,7 +48,7 @@
             </table>
 
             <div class="page-info">
-                <p><code>{{strtr(trans('adminTip.products.pagination'), ['@' => '16', '#' => $data['exceptions']->total()])}}</code></p>
+                <p><code>{{strtr(trans('matchStatistic.table.pagination'), ['@' => '16', '#' => $data['exceptions']->total()])}}</code></p>
             </div>
         </div>
         {!! $data['exceptions']->render() !!}
