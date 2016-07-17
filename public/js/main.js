@@ -10,6 +10,7 @@ requirejs.config({
         bill: '../bill',
         user: '../user',
         inventory: '../inventory',
+        contacts: '../contacts',
         app: '../app',
         ngmodule: '../ngmodule',
         bootstrap: '../bootstrap'
