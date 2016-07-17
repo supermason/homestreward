@@ -4,5 +4,6 @@
 define([
     './bill/BillController',
     './user/UserController',
-    './inventory/InventoryController'
+    './inventory/InventoryController',
+    './contacts/ContactsController'
 ], function () { });

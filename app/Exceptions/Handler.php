@@ -43,7 +43,7 @@ class Handler extends ExceptionHandler
         // 判断是否为ajax请求
         if ($request->ajax()) {
             // 将错误信息转化为json格式
-            return response()->json(['exception' => true, 'msg' => $e->getMessage(), 'code' => $e->getCode()]);
+            return response()->json(['exception' => true, 'msg' => $e->getTraceAsString(), 'code' => $e->getCode()]);
         }
 
 //        if ($e instanceof ModelNotFoundException) {

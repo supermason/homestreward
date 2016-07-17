@@ -4,5 +4,6 @@
 define([
     './bill/BillService',
     './user/UserService',
-    './inventory/InventoryService'
+    './inventory/InventoryService',
+    './contacts/ContactsService'
 ], function () { });

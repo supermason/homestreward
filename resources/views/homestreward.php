@@ -402,7 +402,100 @@
                 </div>
             </div>
         </div>
-        <!--  Third view     -->
+        <!--  Third view      -->
+        <div class="view tab" id="view-contacts">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">客户联系人</div>
+                    <div class="right">
+                        <a href="#" data-panel="right" class="link icon-only open-panel">
+                            <i class="fa fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div class="page" data-page="contacts-page" ng-controller="ContactsController">
+                    <div class="page-content">
+                        <div class="content-block-title">新增客户</div>
+                        <form method="post" id="addContactForm" name="addContactForm" ng-submit="contact.addNew()">
+                            <div class="list-block inset accordion-list">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input">
+                                                    <input type="text" name="name" placeholder="客户名称" required ng-model="contact.data.name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input">
+                                                    <input type="text" name="phone" placeholder="客户电话" required ng-pattern="/^\d+(\.\d+)?$/" title="请输入数字" ng-model="contact.data.phone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input">
+                                                    <input type="text" name="address" placeholder="客户地址" required ng-model="contact.data.address">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-input">
+                                                    <input type="submit" class="button" value="新增" ng-disabled="contact.data.name===''||contact.data.phone===''||contact.data.address===''" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                        <div class="content-block-title">查找客户</div>
+                        <div class="list-block inset accordion-list">
+                            <ul>
+                                <li class="item-content list-search-bar">
+                                    <div class="item-inner">
+                                        <div class="item-title label">名称:</div>
+                                        <div class="item-input">
+                                            <input type="text" placeholder="请输入客户名称或地址关键字" id="contacts-autocomplete-dropdown"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">姓名:</div>
+                                        <div class="item-after">{{contact.searchResult.name}}</div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">手机:</div>
+                                        <div class="item-after">{{contact.searchResult.phone}}</div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">地址:</div>
+                                        <div class="item-after">{{contact.searchResult.address}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Fourth view     -->
         <div class="view tab" id="view-temp">
             <div class="navbar">
                 <div class="navbar-inner">
@@ -459,6 +552,10 @@
                 <a href="#view-ws" class="tab-link">
                     <i class="fa fa-list fa-2x"></i>
                     <span class="tabbar-label">库存</span>
+                </a>
+                <a href="#view-contacts" class="tab-link">
+                    <i class="fa fa-contao fa-2x"></i>
+                    <span class="tabbar-label">客户</span>
                 </a>
                 <a href="#view-temp" class="tab-link">
                     <i class="fa fa-user fa-2x"></i>

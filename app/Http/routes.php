@@ -85,6 +85,15 @@ Route::group(['middleware' => 'auth'], function() {
             Route::post('/face', 'UserController@changeFace');
         });
     });
+
+    /*
+     |--------------------------------------------------------------------------
+     | 客户联系人总路由
+     |--------------------------------------------------------------------------
+     */
+    Route::group(['prefix' => 'contact', 'namespace' => 'Contact'], function () {
+        Route::resource("/", "ContactController", ['only' => ['index', 'store', 'update']]);
+    });
 });
 
 /*
