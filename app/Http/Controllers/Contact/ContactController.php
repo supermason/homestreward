@@ -27,7 +27,7 @@ class ContactController extends Controller
         // 先验证
         $this->validate($request, [
             'name' => 'required',
-            'phone' => 'required|digits:11',
+            'phone' => 'required|digits:11|unique:contacts,phone',
             'address' => 'required',
         ]);
 
