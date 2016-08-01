@@ -50,7 +50,7 @@
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-input">
-                    <input type="text" name="amount" placeholder="今天花了多少票票" required ng-pattern="/^\d+(\.\d+)?$/" title="请输入数字" ng-model="newData.bill.amount" onkeyup="value=value.replace(/[^\d]/g,'')">
+                    <input type="text" name="amount" placeholder="今天花了多少票票" required ng-pattern="/^\d+(\.\d+)?$/" title="请输入数字" ng-model="newData.bill.amount" onkeyup="value=value.replace(/[^\d.]/g,'')">
                   </div>
                 </div>
               </div>
